@@ -111,7 +111,7 @@ if (settingsjson.settings.StatusEnabled) {
                     },
                     {
                         "name": "How do I direct connect?",
-                        "value": '``F8 -> connect 14.102.233.141``',
+                        "value": '``F8 -> connect s1.rift.city``',
                         "inline": false
                     },
                 ],

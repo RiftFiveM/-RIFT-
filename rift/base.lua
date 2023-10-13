@@ -983,7 +983,7 @@ AddEventHandler("playerConnecting",function(name,setMessage, deferrals)
                                             show_auth_card(code, deferrals, check_verified)
                                         else
                                             deferrals.update("[RIFT] Checking discord verification...")
-                                            if not tRIFT.checkForRole(user_id, '1158810417410363432') then
+                                            if not tRIFT.checkForRole(user_id, '1162343507579654221') then
                                             deferrals.done("[RIFT]: You are required to be verified within discord.gg/rift to join the server. If you previously were verified, please contact management.")
                                             end
                                             if RIFT.CheckTokens(source, user_id) then 

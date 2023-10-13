@@ -35,7 +35,7 @@ exports.runcmd = async(fivemexports, client, message, params) => {
                     message.channel.send({ embed }).then(msg => {
                         msg.delete(10000)
                     })
-                    await message.member.addRole("1162343507579654221").then().catch(console.error);
+                    await message.member.addRole("1158810417410363432").then().catch(console.error);
                 }
             });
            }
