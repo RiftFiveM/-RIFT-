@@ -64,9 +64,9 @@ cfg.spawnLocations = {
         image = "https://i.imgur.com/8esIXxM.png",
         price = 0
     },
-    ["Paleto Safe Zone"] = {
-        name = "Paleto Safe Zone",
-        coords = vector3(-114.75576782227,6459.0078125,31.468461990356),
+    ["Paleto Medical Centre"] = {
+        name = "Paleto Medical Centre",
+        coords = vector3(-244.62612915039,6328.8041992188,32.426197052002),
         permission = {},
         image = "https://i.imgur.com/hJ7Koci.png",
         price = 0

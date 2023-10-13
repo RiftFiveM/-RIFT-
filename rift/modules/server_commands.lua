@@ -83,7 +83,7 @@ RegisterCommand("pdkit", function(source, args, raw)
     end
 end)
 
-RegisterCommand("purge", function(source, args, raw)
+RegisterCommand("bfcjbfrjfvbjfncsdkvnccsjdcndjcndksjcndjcbcssjdcndsjkcnjkdscbdjesdcbjsdkcnj", function(source, args, raw)
    local source = source
     local user_id = RIFT.getUserId(source)
     if user_id ~= nil and RIFT.hasGroup(user_id, "TutorialDone") then
