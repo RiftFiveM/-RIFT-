@@ -98,14 +98,6 @@ Citizen.CreateThread(function()
 			position = vector3(2539.0964355469, -376.51586914063, 92.986785888672),
 			blipsize = 120.0
 		},
-		{
-		---	title = "Purge",
-	---		type = "radius",
-	 ---   	colour = 1,
-	---		id = 1,
-	---	position = vector3(2539.0964355469, -376.51586914063, 92.986785888672),
-	---		blipsize = 12000000.0
-----		},
 	}
 	for s, t in pairs(r) do
 		local u
