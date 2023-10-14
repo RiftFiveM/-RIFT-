@@ -7,8 +7,6 @@ local function getRadioType(user_id)
         return "NHS"
     elseif RIFT.hasPermission(user_id, "prisonguard.onduty.permission") then
         return "HMP"
-    elseif RIFT.hasPermission(user_id, "admin.tickets") then
-        return "Staff"
     elseif RIFT.hasPermission(user_id, "lfb.onduty.permission") then
         return "LFB"
     end
@@ -26,12 +24,6 @@ local radioChannels = {
         name = 'NHS',
         players = {},
         channel = 2,
-        callsign = false,
-    },
-    ['HMP'] = {
-        name = 'Staff',
-        players = {},
-        channel = 3,
         callsign = false,
     },
     ['Staff'] = {

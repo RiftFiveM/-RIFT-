@@ -21,13 +21,6 @@ cfg.standardChannels = {
         deleteWhenEmpty = false,
         isDefault = true
     },
-    ["Staff"] = {
-        permissions = {
-            "admin.tickets"
-        },
-        deleteWhenEmpty = false,
-        isDefault = false
-    },
     ["HMP"] = {
         permissions = {
             "prisonguard.onduty.permission",
@@ -85,9 +78,6 @@ cfg.sortOrder = {
         "nhs.criticalcare",
         "nhs.paramedic",
         "nhs.traineeparamedic"
-    },
-    ["Staff"] = {
-        "admin.tickets"
     },
     ["HMP"] = {
         "hmp.governor",
