@@ -259,7 +259,7 @@ client.on('message', (message) => {
                 } catch (err) {
                     let embed = {
                         "title": "Error Occured!",
-                        "description": "\nAn error occured. Contact <@620232047671377931> about the issue:\n\n```" + err.message + "\n```",
+                        "description": "\nAn error occured. Contact <@893213468264640583> about the issue:\n\n```" + err.message + "\n```",
                         "color": 13632027
                     }
                     message.channel.send({ embed })
