@@ -302,7 +302,7 @@ for i=0,31,1 do
                         if not allPlayersHaveBusted then
                             if dealerHand >= 17 then
                             else
-                                local nextCardCount = 3
+                                local nextCardCount = 5
                                 local highestPlayerHand = 0
                                 for k,v in pairs(blackjackGameData[gameId]) do 
                                     if k ~= "dealer" then 
