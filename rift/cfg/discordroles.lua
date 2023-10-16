@@ -117,7 +117,11 @@ end
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 cfg.Bot_Token = 'MTE2MzU4NDU4NzU2MjI0MjE3OA.G0mH4o.rWJywsKzS7SbB1DcFGHJiYfPDE4ywzt6ja-S3s'
+=======
+cfg.Bot_Token = 'MTE2MjM5NTA4NzAzMzA5MDE3OA.GY3BDK.QWEbareqJa2p8--zFBgy6S-vbkUgbm39JWuw_g'
+>>>>>>> parent of 20ae1f0 (Bot fixed 😎😎😎)
 =======
 cfg.Bot_Token = 'MTE2MjM5NTA4NzAzMzA5MDE3OA.GY3BDK.QWEbareqJa2p8--zFBgy6S-vbkUgbm39JWuw_g'
 >>>>>>> parent of 20ae1f0 (Bot fixed 😎😎😎)
