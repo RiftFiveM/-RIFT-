@@ -10,7 +10,7 @@ cfg = {
   	},
 	RoleList = {},
 
-	CacheDiscordRoles = true, -- true to cache player roles, false to make a new Discord Request every time
+	CacheDiscordRoles = false, -- true to cache player roles, false to make a new Discord Request every time
 	CacheDiscordRolesTime = 60, -- if CacheDiscordRoles is true, how long to cache roles before clearing (in seconds)
 }
 
@@ -29,7 +29,7 @@ cfg.Guild_Roles = {
 		['Support Team'] = 1162343507764203524, -- 2
 		['Trial Staff'] = 1162343507764203523, -- 1
 		['cardev'] = 1157871123137048698,
-		['Cinematic'] = 1162343507579654219,
+	---	['Cinematic'] = 1162343507579654219,
 		['Supporter'] = 1162343507642552341,
 		['Premium'] = 1162343507642552342,
 		['Supreme'] = 1162343507642552343,
