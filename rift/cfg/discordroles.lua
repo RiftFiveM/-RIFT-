@@ -10,7 +10,7 @@ cfg = {
   	},
 	RoleList = {},
 
-	CacheDiscordRoles = false, -- true to cache player roles, false to make a new Discord Request every time
+	CacheDiscordRoles = true, -- true to cache player roles, false to make a new Discord Request every time
 	CacheDiscordRolesTime = 60, -- if CacheDiscordRoles is true, how long to cache roles before clearing (in seconds)
 }
 
@@ -116,6 +116,6 @@ for faction_name, faction_roles in pairs(cfg.Guild_Roles) do
 end
 
 
-cfg.Bot_Token = 'MTE2MzU2Njg4ODc4MjEzOTQwMw.GoEDiH.Yag7F5E69TpGR93kq1kIvJ275cKV39EWYDV7DY'
+cfg.Bot_Token = 'MTE2MzU4NDU4NzU2MjI0MjE3OA.G0mH4o.rWJywsKzS7SbB1DcFGHJiYfPDE4ywzt6ja-S3s'
 
 return cfg

@@ -11,10 +11,8 @@ exports.runcmd = (fivemexports, client, message, params) => {
     message.delete()
     if (params[0] == 'end') {
         let embed = {
-            "title": `Auction Ended`,
-            "description": `${message.author} has ended the auction.\n\n<@${prevbids.prevbidder}> won the auction with a bid of £${prevbids.prevbid.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}.`,
-            "color": settingsjson.settings.botColour,
-            "timestamp": new Date()
+            "description": `${message.author.username} has won the auction`,
+            "color": 0x57f288,
         };      
         message.channel.send({embed})
         prevbids.prevbid = 0
@@ -38,7 +36,7 @@ exports.runcmd = (fivemexports, client, message, params) => {
         houseName = `${params.join(' ').replace(params[0], '').replace(params[1], '').replace(params[2], '')}`
         message.guild.createChannel(`auction-${houseName}`, 'text')
         .then(channel => {
-            let category = message.guild.channels.find(c => c.name == "[AUCTIONS]" && c.type == "category");
+            let category = message.guild.channels.find(c => c.name == "[Auctions]" && c.type == "category");
             channel.setParent(category.id);
             let embed = {
                 "title": `Auction`,
@@ -85,6 +83,6 @@ exports.runcmd = (fivemexports, client, message, params) => {
 
 exports.conf = {
     name: "houseauction",
-    perm: 5,
+    perm: 9,
     guild: "1162343507579654214"
 }

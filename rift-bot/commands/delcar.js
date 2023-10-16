@@ -4,7 +4,12 @@ const settingsjson = require(resourcePath + '/settings.js')
 
 exports.runcmd = (fivemexports, client, message, params) => {
     if (!params[0] || !parseInt(params[0]) || !params[1]) {
-        return message.reply('Invalid args! Correct term is: ' + process.env.PREFIX + 'delcar [permid] [spawn code]')
+        let embed = {
+            "title": "An Error Occurred",
+            "description": "Incorrect Usage\n\nCorrect Usage" + process.env.PREFIX + '\n`!delcar [permid] [spawn code]`',
+            "color": 0xed4245,
+    }
+    return message.channel.send({ embed })
     }
     fivemexports.ghmattimysql.execute("DELETE FROM rift_user_vehicles WHERE user_id = ? AND vehicle = ?", [params[0], params[1]], (result) => {
         if (result) {

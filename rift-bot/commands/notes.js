@@ -1,7 +1,12 @@
 
 exports.runcmd = (fivemexports, client, message, params) => {
     if (!params[0]) {
-        return message.reply('Invalid args! Correct term is: ' + process.env.PREFIX + 'notes [permid]')
+        let embed = {
+            "title": "An Error Occurred",
+            "description": "Incorrect Usage\n\nCorrect Usage" + process.env.PREFIX + '\n`!notes [permid]`',
+            "color": 0xed4245,
+    }
+    return message.channel.send({ embed })
     }
     fivemexports.ghmattimysql.execute("SELECT * FROM `rift_user_notes` WHERE user_id = ?", [params[0]], (result) => {
         let notes = ''

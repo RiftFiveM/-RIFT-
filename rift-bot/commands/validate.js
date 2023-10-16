@@ -9,12 +9,17 @@ const settingsjson = require(resourcePath + '/settings.js')
 
 exports.runcmd = (fivemexports, client, message, params) => {
     if (!params[0]) {
-        return message.reply('Invalid args! Correct term is: ' + process.env.PREFIX + 'validate [tbx-id]')
+        let embed = {
+            "title": "An Error Occurred",
+            "description": "Incorrect Usage\n\nCorrect Usage" + process.env.PREFIX + '\n`!validate [tbx-id]`',
+            "color": 0xed4245,
+    }
+    return message.channel.send({ embed })
     }
     else {
         axios.get(`https://plugin.tebex.io/payments/${params[0]}`, {
             method: 'GET',
-            headers: { 'X-Tebex-Secret': "2298ebec9c1a3ec05d8da9a87ec01f38187b6c39"},
+            headers: { 'X-Tebex-Secret': "69dee6e9dc188d1389918dc878ba253fe52477d7"},
         }).then((res) => {
             //console.log(res.data)
             if (!res.data) {

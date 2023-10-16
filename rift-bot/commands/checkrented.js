@@ -4,7 +4,12 @@ const fs = require('fs');
 
 exports.runcmd = (fivemexports, client, message, params) => {
     if (!params[0]) {
-        return message.reply('Invalid args! Correct term is: ' + process.env.PREFIX + 'checkrented [permid]')
+        let embed = {
+            "title": "An Error Occurred",
+            "description": "Incorrect Usage\n\nCorrect Usage" + process.env.PREFIX + '\n`!checkrented [permid]`',
+            "color": 0xed4245,
+    }
+    return message.channel.send({ embed })
     }
     let count = 0
     fivemexports.ghmattimysql.execute("SELECT * FROM `rift_user_vehicles` WHERE rentedid = ?", [params[0]], (result) => {

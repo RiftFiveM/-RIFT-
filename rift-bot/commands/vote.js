@@ -1,7 +1,12 @@
 exports.runcmd = (fivemexports, client, message, params) => {
     message.delete()
     if (!params[0]) {
-        return message.reply('Invalid args! Correct term is: ' + process.env.PREFIX + 'vote [vote contents]')
+        let embed = {
+            "title": "An Error Occurred",
+            "description": "Incorrect Usage\n\nCorrect Usage" + process.env.PREFIX + '\n`!vote [vote contents]`',
+            "color": 0xed4245,
+    }
+    return message.channel.send({ embed })
     }
     const resourcePath = global.GetResourcePath ?
         global.GetResourcePath(global.GetCurrentResourceName()) : global.__dirname
@@ -11,7 +16,7 @@ exports.runcmd = (fivemexports, client, message, params) => {
     const vote = params.slice(0).join(' ');
 
     let embed = {
-        "title": "Community Vote",
+        "title": "RIFT Vote!",
         "description": `\n${vote}`,
         "color": settingsjson.settings.botColour,
         "footer": {
@@ -25,12 +30,12 @@ exports.runcmd = (fivemexports, client, message, params) => {
         message.react("👍")
         message.react("👎")
     })
-    channel.send(`||@everyone||`)
-    message.channel.send(`Started community vote in ${channel}`)
+    //channel.send(`||@everyone||`)
+    message.channel.send(`Started vote in ${channel}`)
 }
 
 exports.conf = {
     name: "vote",
-    perm: 7,
+    perm: 10,
     guild: "1162343507579654214"
 }

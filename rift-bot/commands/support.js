@@ -3,16 +3,7 @@ const resourcePath = global.GetResourcePath ?
 const settingsjson = require(resourcePath + '/settings.js')
 
 exports.runcmd = (fivemexports, client, message, params) => {
-    let embed = {
-        "title": "RIFT Support Discord",
-        "description": `https://discord.gg/mg5UcRkXHP`,
-        "color": settingsjson.settings.botColour,
-        "footer": {
-            "text": ""
-        },
-        "timestamp": new Date()
-    }
-    message.channel.send({ embed })
+    message.channel.send('https://discord.gg/8Ygzf7PUhY')
 }
 
 exports.conf = {

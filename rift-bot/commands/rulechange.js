@@ -4,26 +4,39 @@ const settingsjson = require(resourcePath + '/settings.js')
 
 exports.runcmd = (fivemexports, client, message, params) => {
     message.delete()
-    if (!params[0] || !params[1]) {
-        return message.reply('Invalid args! Correct term is: ' + process.env.PREFIX + 'rulechange [description]')
+    if (!params[0]) {
+        let embed = {
+            "title": "An Error Occurred",
+            "description": "Incorrect Usage\n\nCorrect Usage" + process.env.PREFIX + '\n`!rulechange [description]`',
+            "color": 0xed4245,
+    }
+    return message.channel.send({ embed })
     }
     else {
         let embed = {
-            "author" : {name: `RIFT - New Rule Change`},
-            "title": `${params[0]}`,
-            "description": `${params.join(' ').replace(params[0], '')}`,
-            "color": settingsjson.settings.botColour,
+            "author" : {
+                name: "RIFT Announcement!",
+                icon_url: "https://cdn.discordapp.com/attachments/1108459861907361802/1123313848124973076/rift.png"
+            },
+            //"title": `${params[0]}`,
+            "description": `${params.join(' ')}`,
+            "color": 0xffa358,
+            "thumbnail": {
+                url: 'https://cdn.discordapp.com/attachments/1125831111021445180/1126272989877501953/image.png',
+            },
             "footer": {
-                "text": `Rule change by ${message.author.username}`
+                "text": `Posted by ${message.author.username}`
             },
             "timestamp": new Date()
         }
-        message.channel.send( { embed })
+        const channel = client.channels.find(channel => channel.name === settingsjson.settings.RuleChangesChannel)
+        channel.send({embed})
+        message.channel.send(`Rule Change Sent in ${channel}`)
     }
 }
 
 exports.conf = {
     name: "rulechange",
-    perm: 6,
+    perm: 7,
     guild: "1162343507579654214"
 }

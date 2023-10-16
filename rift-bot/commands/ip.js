@@ -3,16 +3,7 @@ const resourcePath = global.GetResourcePath ?
 const settingsjson = require(resourcePath + '/settings.js')
 
 exports.runcmd = (fivemexports, client, message, params) => {
-    let embed = {
-        "title": "Server IP",
-        "description": `F8 > connect ${client.ip}`,
-        "color": settingsjson.settings.botColour,
-        "footer": {
-            "text": ""
-        },
-        "timestamp": new Date()
-    }
-    message.channel.send({ embed })
+    message.channel.send('F8 -> **connect s1.rift.city**')
 }
 
 exports.conf = {

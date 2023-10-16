@@ -7,22 +7,22 @@ exports.runcmd = (fivemexports, client, message, params) => {
         fivemexports.ghmattimysql.execute("SELECT discord_id FROM `rift_verification` WHERE user_id = ?", [params[0]], (result) => {
             if (result.length > 0) {
                 let embed = {
-                    "title": "Perm ID to Discord",
-                    "description": `\n**Perm ID: **${[params[0]]}**\nDiscord**: <@${result[0].discord_id}>\n**Discord Profile**: https://lookup.guru/${result[0].discord_id}`,
-                    "color": settingsjson.settings.botColour,
+                    "title": "Discord Account for " + params[0] + "",
+                    "description": `\n\n Linked Discords: \n<@${result[0].discord_id}> \n\nVerified Discord: \n<@${result[0].discord_id}>`,
+                    "color": 0x5865f2,
                     "footer": {
-                        "text": ''
+                        "text": 'RIFT Droid'
                     },
                     "timestamp": new Date()
                 }
                 message.channel.send({ embed })
             } else {
                 let embed = {
-                    "title": "Perm ID to Discord",
-                    "description": `\nFailed! There is no Discord linked to this Perm ID!`,
-                    "color": settingsjson.settings.botColour,
+                    "title": "Discord Account for " + params[0] + "",
+                    "description": `\n\n Linked Discords: \nNon Found \n\nVerified Discord: \n<@${result[0].discord_id}>`,
+                    "color": 0x5865f2,
                     "footer": {
-                        "text": ""
+                        "text": 'RIFT Droid'
                     },
                     "timestamp": new Date()
                 }
@@ -31,11 +31,11 @@ exports.runcmd = (fivemexports, client, message, params) => {
         });
     } else {
         let embed = {
-            "title": "Perm ID to Discord",
-            "description": `\nFailed! You need to enter a valid Perm ID!`,
-            "color": settingsjson.settings.botColour,
+            "title": "Discord Account for " + params[0] + "",
+            "description": `\n\n Linked Discords: \n<@${result[0].discord_id}> \n\nVerified Discord: \nNon Found`,
+            "color": 0x5865f2,
             "footer": {
-                "text": ""
+                "text": 'RIFT Droid'
             },
             "timestamp": new Date()
         }

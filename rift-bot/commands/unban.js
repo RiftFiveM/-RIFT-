@@ -4,7 +4,12 @@ const settingsjson = require(resourcePath + '/settings.js')
 
 exports.runcmd = (fivemexports, client, message, params) => {
     if (!params[0]) {
-        return message.reply('Invalid args! Correct term is: ' + process.env.PREFIX + 'unban [permid]')
+        let embed = {
+            "title": "An Error Occurred",
+            "description": "Incorrect Usage\n\nCorrect Usage" + process.env.PREFIX + '\n`!unban [permid]`',
+            "color": 0xed4245,
+    }
+    return message.channel.send({ embed })
     }
     const reason = params.slice(1).join(' ');
     let newval = fivemexports.rift.riftbot('setBanned', [params[0], false])

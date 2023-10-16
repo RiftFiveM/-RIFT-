@@ -7,7 +7,12 @@ const settingsjson = require(resourcePath + '/settings.js')
 
 exports.runcmd = (fivemexports, client, message, params) => {
     if (!params[0] || !parseInt(params[0])) {
-        return message.reply('Invalid args! Correct term is: ' + process.env.PREFIX + 'showf10 [permid]')
+        let embed = {
+            "title": "An Error Occurred",
+            "description": "Incorrect Usage\n\nCorrect Usage" + process.env.PREFIX + '\n`!showf10 [permid]`',
+            "color": 0xed4245,
+    }
+    return message.channel.send({ embed })
     }
     fivemexports.ghmattimysql.execute("SELECT * FROM `rift_warnings` WHERE user_id = ?", [params[0]], (result) => {
         var table = new AsciiTable(`F10 Warnings for Perm ID ${[params[0]]}`)

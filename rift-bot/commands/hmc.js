@@ -4,18 +4,23 @@ const settingsjson = require(resourcePath + '/settings.js')
 
 exports.runcmd = (fivemexports, client, message, params) => {
     if (!params[0]) {
-        return message.reply('Invalid args! Correct term is: ' + process.env.PREFIX + 'hmc [spawn code]')
+        let embed = {
+            "title": "An Error Occurred",
+            "description": "Incorrect Usage\n\nCorrect Usage" + process.env.PREFIX + '\n`!hmc [spawncode]`',
+            "color": 0xed4245,
+    }
+    return message.channel.send({ embed })
     }
     fivemexports.ghmattimysql.execute("SELECT * FROM rift_user_vehicles WHERE vehicle = ?", [params[0].toLowerCase()], (result) => {
         if (result) {
             let embed = {
                 "title": "Car Count",
-                "description": `\nThere are **${result.length}** ${params[0]}'s in the server.`,
-                "color": settingsjson.settings.botColour,
+                "description": `\nThere are **${result.length}** ${params[0]}'s in the city.`,
+                "color": 0x3498db,
                 "footer": {
                     "text": ""
                 },
-                "timestamp": new Date()
+                //"timestamp": new Date()
             }
             message.channel.send({ embed })
         }

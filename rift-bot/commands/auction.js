@@ -4,40 +4,41 @@ const fs = require('fs');
 const resourcePath = global.GetResourcePath ?
     global.GetResourcePath(global.GetCurrentResourceName()) : global.__dirname
 const settingsjson = require(resourcePath + '/settings.js')
-
 let prevbids = require(resourcePath + '/prevbid.json')
 
 exports.runcmd = (fivemexports, client, message, params) => {
     message.delete()
     if (params[0] == 'end') {
         let embed = {
-            "title": `Auction Ended`,
-            "description": `${message.author} has ended the auction.\n\n<@${prevbids.prevbidder}> won the auction with a bid of £${prevbids.prevbid.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}.`,
-            "color": settingsjson.settings.botColour,
-            "timestamp": new Date()
+            "description": `${message.author.username} has won the auction`,
+            "color": 0x57f288,
         };      
         message.channel.send({embed})
         prevbids.prevbid = 0
-        fs.writeFile(`${resourcePath}/prevbid.json`, JSON.stringify(prevbids), function(err) {});
+        fs.writeFile(`${resourcePath}/prevbid.json`, JSON.stringify(auctionnames),JSON.stringify(auctions), function(err) {});
         const role = message.guild.roles.find(r => r.name === "@everyone");
 
         message.channel.overwritePermissions(role, { SEND_MESSAGES: false })
     }
-    else if (!params[0] || !params[1] || !params[2] || !params[3] || !params[4]) {
-        return message.reply('Invalid args! Correct term is: ' + process.env.PREFIX + 'auction [spawncode] [imagelink] [ends-at] [maxSpeed] [carname]')
+    if (!params[0] || !params[1] || !params[2] || !params[4]) {
+        let embed = {
+            "title": "An Error Occurred",
+            "description": "Incorrect Usage\n\nCorrect Usage" + process.env.PREFIX + '\n`!auction [spawncode] [imagelink] [ends-at] [carname]`',
+            "color": 0xed4245,
+    }
+    return message.channel.send({ embed })
     }
     else {
         spawncode = params[0]
         imagelink = params[1]
         endsat = params[2]
-        maxSpeed = params[3]
-        carName = `${params.join(' ').replace(params[0], '').replace(params[1], '').replace(params[2], '').replace(params[3], '')}`
+        carName = `${params.join(' ').replace(params[0], '').replace(params[1], '').replace(params[2], '')}`
         fivemexports.ghmattimysql.execute("SELECT * FROM rift_user_vehicles WHERE vehicle = ?", [params[0].toLowerCase()], (result) => {
             if (result) {
                 carcount = result.length
-                message.guild.createChannel(`auction-${spawncode}`, 'text')
+                message.guild.createChannel(`auction-${carName}`, 'text')
                 .then(channel => {
-                    let category = message.guild.channels.find(c => c.name == "Auctions" && c.type == "category");
+                    let category = message.guild.channels.find(c => c.name == "[Auctions]" && c.type == "category");
                     channel.setParent(category.id);
                     let embed = {
                         "title": `RIFT Auction`,
@@ -49,7 +50,7 @@ exports.runcmd = (fivemexports, client, message, params) => {
                             },
                             {
                                 "name": '**Info**',
-                                "value": `1:${carcount} 🔒 - ${maxSpeed}mph - (spawncode: ${spawncode})`,
+                                "value": `1:${carcount} 🔒`,
                                 "inline": true,
                             },
                             {
@@ -59,7 +60,6 @@ exports.runcmd = (fivemexports, client, message, params) => {
                             },
                         ],
                         "color": settingsjson.settings.botColour,
-                        "timestamp": new Date(),
                         "footer": {
                             "text": "!bid [amount] to place a bid"
                         },
@@ -73,9 +73,8 @@ exports.runcmd = (fivemexports, client, message, params) => {
                 let embed = {
                     "title": `Created Auction`,
                     //"description": `Click to view ${channel}\n\n**Name:** ${carName}\n**Spawncode:** ${spawncode}\n**Max Speed:** ${maxSpeed}\n**Car Count:** 1:${carcount}\n\n**Created By:** ${message.author}`,
-                    "description": `**Name:** ${carName}\n**Spawncode:** ${spawncode}\n**Max Speed:** ${maxSpeed}\n**Car Count:** 1:${carcount}\n**Ends At:** ${endsat}\n\n**Created By:** ${message.author}`,
+                    "description": `**Name:** ${carName}\n**Car Count:** 1:${carcount}\n**Ends At:** ${endsat}\n\n**Created By:** ${message.author}`,
                     "color": settingsjson.settings.botColour,
-                    "timestamp": new Date(),
                     "image": {
                         "url": imagelink,
                     },
@@ -86,8 +85,9 @@ exports.runcmd = (fivemexports, client, message, params) => {
     }
 }
 
+
 exports.conf = {
     name: "auction",
-    perm: 6,
+    perm: 9,
     guild: "1162343507579654214"
 }

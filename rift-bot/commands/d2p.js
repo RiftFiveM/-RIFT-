@@ -18,11 +18,11 @@ exports.runcmd = (fivemexports, client, message, params) => {
                 }
                 message.channel.send({ embed })
             } else {
-                message.reply('No account is linked for this user.')
+                message.channel.send('No account is linked for this user.')
             }
         });
     } else {
-        message.reply('You need to mention someone!')
+        message.channel.send('You need to mention someone!')
     }
 }
 
