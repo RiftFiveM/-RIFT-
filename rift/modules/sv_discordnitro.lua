@@ -4,7 +4,7 @@ RegisterCommand('craftbmx', function(source)
     if RIFT.hasPermission(user_id, 'admin.tickets') then
         TriggerClientEvent("RIFT:spawnNitroBMX", source)
     else
-        if tRIFT.checkForRole(user_id, '1162482745499471883') then
+        if tRIFT.checkForRole(user_id, '1149710708485927003') then
             TriggerClientEvent("RIFT:spawnNitroBMX", source)
         end
     end
@@ -19,4 +19,3 @@ RegisterCommand('craftmoped', function(source)
         end
     end)
 end)
-
