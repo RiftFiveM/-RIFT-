@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@discordjs/uws@^10.149.0":
+  version "10.149.0"
+  resolved "https://registry.npmjs.org/@discordjs/uws/-/uws-10.149.0.tgz"
+  integrity sha512-N1wjoAD2DOgzevqzyTOWTgyO2divX03JWNQx4JHm/jQ/BRzZNkhwVRO3RC5Guww+srdgs4Tw4gwrzlJrlOhq/Q==
+
 ascii-table@^0.0.9:
   version "0.0.9"
   resolved "https://registry.npmjs.org/ascii-table/-/ascii-table-0.0.9.tgz"
