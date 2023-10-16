@@ -52,17 +52,6 @@ function tRIFT.isSpectatingEvent()
     return a8
 end
 
-RegisterServerEvent("RIFT:acType2") -- Player Spawned Weapon!
-AddEventHandler("RIFT:acType2", function(theweapon)
-    local source = source
-	local user_id = RIFT.getUserId(source)
-	local name = GetPlayerName(source)
-    Wait(500)
-    if theweapon ~= 'GADGET_PARACHUTE' then
-        TriggerEvent("RIFT:acBan", user_id, 2, name, source, theweapon)
-    end
-end)
-
 
 local BlockedExplosions = {--0, 
 1, 2, --4, 
