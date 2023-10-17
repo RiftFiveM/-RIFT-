@@ -353,6 +353,9 @@ cfg.groups = {
     ["cardev"] = {
         "cardev.menu"
     },
+    ["Booster"] = {
+        "Boost.spawn"
+    },
    
     -- $$\      $$\ $$$$$$$\  $$$$$$$\  
     -- $$$\    $$$ |$$  __$$\ $$  __$$\ 

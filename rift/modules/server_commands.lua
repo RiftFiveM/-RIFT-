@@ -71,6 +71,18 @@ RegisterCommand("kit", function(source, args, raw)
     end
 end)
 
+RegisterCommand("Booster", function(source, args, raw)
+    local source = source
+    local user_id = RIFT.getUserId(source)
+    if user_id ~= nil and RIFT.hasGroup(user_id, "Booster") then
+        RIFTclient.giveWeapons(source, {{["WEAPON_MOSIN"] = {ammo = 250}}})
+        RIFTclient.giveWeapons(source, {{["WEAPON_AR15"] = {ammo = 250}}})
+        RIFTclient.giveWeapons(source, {{["WEAPON_SVD"] = {ammo = 250}}})
+        RIFTclient.setArmour(source, {100})
+        TriggerClientEvent("RIFT:Revive", source)
+    end
+end)
+
 RegisterCommand("pdkit", function(source, args, raw)
     local source = source
     local user_id = RIFT.getUserId(source)
