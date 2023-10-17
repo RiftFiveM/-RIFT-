@@ -277,7 +277,7 @@ cfg.groups = {
         "group.remove",
         "admin.tickets",
     },
-    ["Senior Admin"] = {
+    ["Senior Administrator"] = {
         "admin.ban",
         "admin.unban",
         "admin.kick",
@@ -294,7 +294,7 @@ cfg.groups = {
         "admin.noclip",
         "admin.tickets",
     },
-    ["Admin"] = {
+    ["Administrator"] = {
         "admin.ban",
         "admin.unban",
         "admin.kick",
@@ -310,7 +310,7 @@ cfg.groups = {
         "admin.noclip",
         "admin.tickets",
     },
-    ["Senior Mod"] = {
+    ["Senior Moderator"] = {
         "admin.ban",
         "admin.kick",
         "admin.revive",
