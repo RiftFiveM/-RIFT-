@@ -420,7 +420,7 @@ Citizen.CreateThread(function()
                     elseif isChairHighRollers(F) and z < B then
                         tRIFT.notify("~r~Minimum bet is " .. tostring(getMoneyStringFormatted(B)))
                     elseif z > 250000000 then
-                        tRIFT.notify("~r~Maximum bet is £1,000,000,000")
+                        tRIFT.notify("~r~Maximum bet is £250,000,000")
                     else
                         TriggerServerEvent("Blackjack:setBlackjackBet", t, math.floor(z), F)
                         d = getClosestDealer()
