@@ -1,25 +1,25 @@
 {
     "1": {
-        "fg_ts": {
-            "t4": "17477026782095374947",
-            "t3": "IhdselX1sOfSwMt4XaWPuShunIiw5KWa",
-            "t2": "e32ccb4c:a5effa75:7f9f2372:b65c6c65:1af75e9d:b6a63b91:c868e376:2082e36f:ef03506d:9037debf",
-            "t1": "3bf7294b801cb54e0d18b20e96aad7926a72a77f7fc9b0e19617b8cb47f17960"
-        },
-        "license": "license:5cd4dbd03768d5a42930d8d234315c1e0ea0f9bf",
-        "reason": "Spoofed Bullet Shot Detected",
         "discord": "1127559986281725982",
-        "manual": false,
-        "ip": "152.37.102.90",
-        "xbl": "Invalid",
-        "live": "Invalid",
         "tokens": [
             "3:3b2ccdd49dde5454cdb57e72b83334a5b774054e482c54550404263a5b72719f",
             "4:bce8af5ab06f001be98132ba05d92600cb4c88a3433401ac66b93c1569eda5d8",
             "4:b6ba0efdaba84d41987695707650f2d61b615ea276f1b70915d632d35cb0d862",
             "4:229cf788ca81110b035e28a57e5bb0cbfc712f5d334238a46c1157dd06bf06ff"
         ],
+        "reason": "Spoofed Bullet Shot Detected",
+        "name": "​",
         "steam": "Invalid",
-        "name": "​"
+        "ip": "152.37.102.90",
+        "fg_ts": {
+            "t3": "IhdselX1sOfSwMt4XaWPuShunIiw5KWa",
+            "t2": "e32ccb4c:a5effa75:7f9f2372:b65c6c65:1af75e9d:b6a63b91:c868e376:2082e36f:ef03506d:9037debf",
+            "t4": "17477026782095374947",
+            "t1": "3bf7294b801cb54e0d18b20e96aad7926a72a77f7fc9b0e19617b8cb47f17960"
+        },
+        "manual": false,
+        "live": "Invalid",
+        "xbl": "Invalid",
+        "license": "license:5cd4dbd03768d5a42930d8d234315c1e0ea0f9bf"
     }
 }
