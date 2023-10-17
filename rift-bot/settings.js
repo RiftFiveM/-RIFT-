@@ -14,6 +14,6 @@ exports.settings = {
     VoteChannel: "votes", // The vote channel
     minBid: 100000, // Minimum bid amount, 
     prevBid: 0,
-    carReportWebhook: "",
+    carReportWebhook: "https://discord.com/api/webhooks/1163736221642674219/khCg2nIGI9rMhGkYpT0TabqlhNi7PqLT_HF70vuoQroZs4edKPSrXeUR8skO3Sufd4uF",
     botLogWebhook: "",
 }
