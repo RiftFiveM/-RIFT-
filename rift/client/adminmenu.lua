@@ -122,6 +122,8 @@ local groups = {
     ["Taco Seller"] = "Taco Seller",
     ["Burger Shot Cook"] = "Burger Shot Cook",
     ["Cinematic"] = "Cinematic Menu",
+    ["Booster"] = "Discord Booster",
+    ["Editz"] = "Editz Perms",
 }
 
 

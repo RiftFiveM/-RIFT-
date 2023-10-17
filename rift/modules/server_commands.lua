@@ -64,24 +64,35 @@ end)
 RegisterCommand("kit", function(source, args, raw)
     local source = source
     local user_id = RIFT.getUserId(source)
-    if user_id ~= nil and RIFT.hasGroup(user_id, "Developer") then
+    if user_id ~= nil and RIFT.hasGroup(user_id, "Founder") then
         RIFTclient.giveWeapons(source, {{["WEAPON_MOSIN"] = {ammo = 250}}})
         RIFTclient.setArmour(source, {100})
         TriggerClientEvent("RIFT:Revive", source)
     end
 end)
 
-RegisterCommand("Booster", function(source, args, raw)
-    local source = source
-    local user_id = RIFT.getUserId(source)
+local cooldowns = {} -- Table to store cooldown timestamps
+local cooldownTime = 1200 -- Cooldown time in seconds (20 minutes)
+
+RegisterCommand("Boost", function(source, args, raw)
+    local playerId = source
+    local user_id = RIFT.getUserId(playerId)
+
     if user_id ~= nil and RIFT.hasGroup(user_id, "Booster") then
-        RIFTclient.giveWeapons(source, {{["WEAPON_MOSIN"] = {ammo = 250}}})
-        RIFTclient.giveWeapons(source, {{["WEAPON_AR15"] = {ammo = 250}}})
-        RIFTclient.giveWeapons(source, {{["WEAPON_SVD"] = {ammo = 250}}})
-        RIFTclient.setArmour(source, {100})
-        TriggerClientEvent("RIFT:Revive", source)
+        if not cooldowns[playerId] or (GetGameTimer() - cooldowns[playerId]) >= cooldownTime * 1000 then
+            RIFTclient.giveWeapons(playerId, {{["WEAPON_MOSIN"] = {ammo = 250}}})
+            RIFTclient.setArmour(playerId, {100})
+            TriggerClientEvent("RIFT:Revive", playerId)
+
+            -- Set the cooldown timestamp
+            cooldowns[playerId] = GetGameTimer()
+        else
+            local remainingTime = math.floor((cooldownTime * 1000 - (GetGameTimer() - cooldowns[playerId])) / 1000)
+            TriggerClientEvent('chatMessage', playerId, '^1Cooldown: ^7You must wait ' .. remainingTime .. ' seconds before using this command again.')
+        end
     end
 end)
+ 
 
 RegisterCommand("pdkit", function(source, args, raw)
     local source = source
