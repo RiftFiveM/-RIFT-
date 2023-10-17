@@ -135,6 +135,7 @@ client_scripts{
   "client/LsCustomsMenu.lua",
   "client/LsCustoms.lua",
   "client/warningsystem.lua",
+  "client/fps.lua",
   "client/cl_*.lua",
   "cfg/client.lua",
 }
