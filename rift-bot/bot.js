@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const { SlashCommandBuilder } = require('@discordjs/builders');
 const client = new Discord.Client();
 const path = require('path')
 const resourcePath = global.GetResourcePath ?
@@ -7,7 +6,6 @@ const resourcePath = global.GetResourcePath ?
 require('dotenv').config({ path: path.join(resourcePath, './.env') })
 const fs = require('fs');
 const settingsjson = require(resourcePath + '/settings.js')
-var statusLeaderboard = require(resourcePath + '/statusleaderboard.json');
 
 client.path = resourcePath
 client.ip = settingsjson.settings.ip
@@ -16,11 +14,10 @@ if (process.env.TOKEN == "" || process.env.TOKEN == "TOKEN") {
     console.log(`Error! No Token Provided you forgot to edit the .env`);
     throw new Error('Whoops!')
 }
-
+// Test
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}! Players: ${GetNumPlayerIndices()}`);
     console.log(`Your Prefix Is ${process.env.PREFIX}`)
-    client.user.setActivity(`riftstudios.uk`, { type: 'WATCHING' })
     init()
 });
 
@@ -28,6 +25,15 @@ let onlinePD = 0
 let onlineStaff = 0
 let onlineNHS = 0
 let serverStatus = ""
+let currentFooterEmoji = '⚪';
+
+setInterval(() => {
+    if (currentFooterEmoji === "⚪") {
+        currentFooterEmoji = "⚫";
+    } else {
+        currentFooterEmoji = "⚪";
+    }
+}, 300);
 
 if (settingsjson.settings.StatusEnabled) {
     setInterval(() => {
@@ -56,6 +62,12 @@ if (settingsjson.settings.StatusEnabled) {
             else
                 onlinePD = result.length
         })
+        exports.rift.riftbot('getUsersByPermission', ['nhs.onduty.permission'], function(result) {
+            if (!result.length)
+                onlineNHS = 0
+            else
+                onlineNHS = result.length
+        })
         exports.rift.getServerStatus([], function(result) {
             serverStatus = result
         })
@@ -63,103 +75,76 @@ if (settingsjson.settings.StatusEnabled) {
             let status = {
                 "color": settingsjson.settings.botColour,
                 "fields": [{
-                    "name": "Server Status",
-                    "value": `✅ Online`,
-                    "inline": true
+                        "name": "Server Status",
+                        "value": `✅ Online`,
+                        "inline": true
+                    },
+                    {
+                        "name": "Average Player Ping",
+                        "value": `${Math.floor(Math.random() * 18 ) + 2}ms`,
+                        "inline": true
+                    },
+                    {
+                        "name": "Ping",
+                        "value": `${Math.floor(Math.random() * 19 ) + 4}ms`,
+                        "inline": true
+                    },
+                    {
+                        "name": "<:met:1123722186469949450> Police",
+                        "value": `${onlinePD}`,
+                        "inline": true
+                    },
+                    {
+                        "name": "<:nhs:1123722213804224542> NHS",
+                        "value": `${onlineNHS}`,
+                        "inline": true
+                    },
+                    {
+                        "name": "💂 Staff",
+                        "value": `${onlineStaff}`,
+                        "inline": true
+                    },
+                    {
+                        "name": "👫 Players",
+                        "value": `${GetNumPlayerIndices()}/${GetConvarInt("sv_maxclients",600)}`,
+                        "inline": true
+                    },
+                    {
+                        "name": "How do I direct connect?",
+                        "value": '``F8 -> connect s1.rift.city``',
+                        "inline": false
+                    },
+                ],
+                "title": "<:rift:1124621326074773554> RIFT Server #1 Status",
+                "footer": {
+                    "text": `${currentFooterEmoji} RIFT`
                 },
-                {
-                    "name": "Average Player Ping",
-                    "value": `${Math.floor(Math.random() * 18 ) + 2}ms`,
-                    "inline": true
-                },
-                {
-                    "name": "Ping",
-                    "value": `${Math.floor(Math.random() * 19 ) + 4}ms`,
-                    "inline": true
-                },
-                {
-                    "name": "<:met:1151242226559619082> Police",
-                    "value": `${onlinePD}`,
-                    "inline": true
-                },
-                {
-                    "name": "<:logo:1151242143692759140> Staff",
-                    "value": `${onlineStaff}`,
-                    "inline": true
-                },
-                {
-                    "name": "👫 Players",
-                    "value": `${GetNumPlayerIndices()}/${GetConvarInt("sv_maxclients",600)}`,
-                    "inline": true
-                },
-                {
-                    "name": "How do I direct connect?",
-                    "value": '``F8 -> connect s1.rift.city``',
-                    "inline": false
-                },
-            ],
-            "title": "<:logo:1151242143692759140> RIFT Server #1 Status",
-            "footer": {
-                "text": "⚪ RIFT"
-            },
                 "timestamp": new Date()
             }
             msg.edit({ embed: status }) // uncomment when not using testing bot
         }).catch(err => {
-            channelid.send('RIFT Status Page Starting...').then(id => {
+            channelid.send('Status Page Starting..').then(id => {
                 settingsjsons.messageid = id.id
                 fs.writeFile(`${resourcePath}/params.json`, JSON.stringify(settingsjsons), function(err) {});
                 return
             })
         })
-    }, 15000); 
+    }, 15000);
 }
 
 
 client.commands = new Discord.Collection();
 
 const init = async() => {
-  fs.readdir(resourcePath + '/commands/', (err, files) => {
-    if (err) console.error(err);
-    console.log(`Loading a total of ${files.length} commands.`);
-    files.forEach(f => {
-      let command = require(`${resourcePath}/commands/${f}`);
-      client.commands.set(command.conf.name, command);
+    fs.readdir(resourcePath + '/commands/', (err, files) => {
+        if (err) console.error(err);
+        console.log(`Loading a total of ${files.length} commands.`);
+        files.forEach(f => {
+            let command = require(`${resourcePath}/commands/${f}`);
+            client.commands.set(command.conf.name, command);
+        });
     });
-    if (!statusLeaderboard['leaderboard']) {
-      statusLeaderboard['leaderboard'] = {}
-    }
-    else {
-      statusLeaderboard['leaderboard'] = statusLeaderboard['leaderboard']
-    }
-  });
 }
-
-setInterval(function(){
-  promotionDetection();
-}, 60*1000);
-
-function promotionDetection(){
-  client.users.forEach(user =>{ //iterate over each user
-    if(user.presence.status == "online" || user.presence.status == 'dnd' || user.presence.status == 'idle' && !user.bot){ //check if user is online and is not a bot
-      if(!statusLeaderboard['leaderboard'][user.id]){ // if user hasn't  created a profile before
-        var userProfile = {}; // create new profile
-        statusLeaderboard['leaderboard'][user.id] = userProfile; //set profile to object literal
-        statusLeaderboard['leaderboard'][user.id] = 0; //set minutes to 0
-      }
-      if(Object.entries(user.presence.activities).length > 0 && typeof(user.presence.activities[0].state) === 'string' && user.presence.activities[0].state.includes('discord.gg/rift') ){ //check if they have a status
-        statusLeaderboard['leaderboard'][user.id] += 1;
-        fs.writeFileSync(`${resourcePath}/statusleaderboard.json`, JSON.stringify(statusLeaderboard), function(err) {});
-      }
-      else {
-        // remove user from leaderboard if their status no longer includes "12345"
-        delete statusLeaderboard['leaderboard'][user.id];
-        fs.writeFileSync(`${resourcePath}/statusleaderboard.json`, JSON.stringify(statusLeaderboard), function(err) {});
-      }
-    }
-  })
-}
-
 
 
 client.getPerms = function(msg) {
@@ -172,11 +157,7 @@ client.getPerms = function(msg) {
     let lvl5 = msg.guild.roles.find(r => r.name === settings.Level5Perm);
     let lvl6 = msg.guild.roles.find(r => r.name === settings.Level6Perm);
     let lvl7 = msg.guild.roles.find(r => r.name === settings.Level7Perm);
-    let lvl8 = msg.guild.roles.find(r => r.name === settings.Level8Perm);
-    let lvl9 = msg.guild.roles.find(r => r.name === settings.Level9Perm);
-    let lvl10 = msg.guild.roles.find(r => r.name === settings.Level10Perm);
-    let lvl11 = msg.guild.roles.find(r => r.name === settings.Level11Perm);
-    if (!lvl1 || !lvl2 || !lvl3 || !lvl4 || !lvl5 || !lvl6 || !lvl7 || !lvl8 || !lvl9 || !lvl10 || !lvl11) {
+    if (!lvl1 || !lvl2 || !lvl3 || !lvl4 || !lvl5 || !lvl6 || !lvl7) {
         console.log(`Your permissions are not setup correctly and the bot will not function as intended.\nStatus: Please check permission levels are setup correctly.`)
     }
 
@@ -189,15 +170,7 @@ client.getPerms = function(msg) {
     // hot fix for Discord role caching 
 
     let level = 0;
-    if (msg.member.roles.has(lvl11.id)) {
-        level = 11;
-    } else if (msg.member.roles.has(lvl10.id)) {
-        level = 10;
-    } else if (msg.member.roles.has(lvl9.id)) {
-        level = 9;
-    } else if (msg.member.roles.has(lvl8.id)) {
-        level = 8;
-    } else if (msg.member.roles.has(lvl7.id)) {
+    if (msg.member.roles.has(lvl7.id)) {
         level = 7;
     } else if (msg.member.roles.has(lvl6.id)) {
         level = 6;
@@ -214,9 +187,10 @@ client.getPerms = function(msg) {
     }
     return level
 }
+
 client.on('message', (message) => {
     if (!message.author.bot){
-        if (message.channel.name.includes('・auction-')){
+        if (message.channel.name.includes('auction-')){
             if (message.channel.name == '・auction-room'){
                 return
             }
@@ -272,12 +246,12 @@ client.on('message', (message) => {
                             let { Webhook, MessageBuilder } = require('discord-webhook-node');
                             let hook = new Webhook(settingsjson.settings.botLogWebhook);
                             let embed = new MessageBuilder()
-                            .setTitle('Bot Logs')
+                            .setTitle('Bot Command Log')
                             .addField('Command Used:', `${cmd.conf.name}`)
                             .addField('Parameters:', `${params}`)
                             .addField('Admin:', `${message.author.username} - <@${message.author.id}>`)
-                            .setColor('0x57f288')
-                            .setFooter('RIFT')
+                            .setColor('0x2596be')
+                            .setFooter('RIFT RP')
                             .setTimestamp();
                             hook.send(embed);
                         }
@@ -285,15 +259,15 @@ client.on('message', (message) => {
                 } catch (err) {
                     let embed = {
                         "title": "Error Occured!",
-                        "description": "\nAn error occured. Contact <@1082736643372498994> about the issue:\n\n```" + err.message + "\n```",
+                        "description": "\nAn error occured. Contact <@620232047671377931> about the issue:\n\n```" + err.message + "\n```",
                         "color": 13632027
                     }
                     message.channel.send({ embed })
                 }
             }
         } else {
-            if (cmd.conf.support && message.guild.id === "1147954594903761036"){
-                if (message.member.roles.has("1150349001300914306")){
+            if (cmd.conf.support && message.guild.id === "1162343507579654214"){
+                if (message.member.roles.has("1131931433347317944")){
                     cmd.runcmd(exports, client, message, params, permissions);
                 }
             } else {
@@ -330,14 +304,13 @@ exports('dmUser', (source, args) => {
         let embed = {
             "title": `Discord Account Link Request`,
             "description": `User ID ${permid} has requested to link this Discord account.\n\nThe code to link is **${verifycode}**\nThis code will expire in 5 minutes.\n\nIf you have not requested this then you can safely ignore the message. Do **NOT** share this message or code with anyone else.`,
-            "color": 0x1e1f22,
+            "color": settingsjson.settings.botColour,
             "thumbnail": {
-                "url": "https://cdn.discordapp.com/attachments/1108459861907361802/1131274035221766165/RIFT_2.png",
+                "url": "https://cdn.discordapp.com/icons/1162343507579654214/719d25a3f8b4852159905244bfed520b.webp?size=2048",
             },
         }
         member.send({embed})
     } catch (error) {}
 });
 
-
-client.login("MTE1MjM5Nzk2OTMxMjcyMjk4NA.Gyi1Qx.Tp5Npr5DRCxjIwRVOc_UvfpTQxCfHZlCs9Lv9k")
+client.login(process.env.TOKEN)

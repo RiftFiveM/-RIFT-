@@ -4,12 +4,7 @@ const settingsjson = require(resourcePath + '/settings.js')
 
 exports.runcmd = (fivemexports, client, message, params) => {
     if (!params[0] || !params[1] || !parseInt(params[1])) {
-        let embed = {
-            "title": "An Error Occurred",
-            "description": "Incorrect Usage\n\nCorrect Usage" + process.env.PREFIX + '\n`!ban [permid] [time (hours)] [reason]`',
-            "color": 0xed4245,
-    }
-    return message.channel.send({ embed })
+        return message.reply('Invalid args! Correct term is: ' + process.env.PREFIX + 'ban [permid] [time (hours)] [reason]')
     }
     fivemexports.ghmattimysql.execute("SELECT user_id FROM `rift_verification` WHERE discord_id = ?", [message.author.id], (result) => {
         if (result.length > 0) {
@@ -45,5 +40,5 @@ exports.runcmd = (fivemexports, client, message, params) => {
 exports.conf = {
     name: "ban",
     perm: 3,
-    guild: "1147954594903761036"
+    guild: "1162343507579654214"
 }

@@ -18,17 +18,17 @@ exports.runcmd = (fivemexports, client, message, params) => {
                 }
                 message.channel.send({ embed })
             } else {
-                message.channel.send('No account is linked for this user.')
+                message.reply('No account is linked for this user.')
             }
         });
     } else {
-        message.channel.send('You need to mention someone!')
+        message.reply('You need to mention someone!')
     }
 }
 
 exports.conf = {
     name: "d2p",
     perm: 1,
-    guild: "1147954594903761036",
+    guild: "1162343507579654214",
     support: true,
 }

@@ -4,12 +4,7 @@ const settingsjson = require(resourcePath + '/settings.js')
 
 exports.runcmd = (fivemexports, client, message, params) => {
     if (!params[0] || !parseInt(params[0]) || !params[1]) {
-        let embed = {
-            "title": "An Error Occurred",
-            "description": "Incorrect Usage\n\nCorrect Usage" + process.env.PREFIX + '\n`!addgroup [permid] [group name]`',
-           "color": 0xed4245,
-        }
-    return message.channel.send({ embed })
+        return message.reply('Invalid args! Correct term is: ' + process.env.PREFIX + 'addgroup [permid] [group name]')
     }
     fivemexports.ghmattimysql.execute("SELECT * FROM `rift_user_data` WHERE user_id = ?", [params[0]], (result) => {
         if (result.length > 0) {
@@ -34,5 +29,5 @@ exports.runcmd = (fivemexports, client, message, params) => {
 exports.conf = {
     name: "addgroup",
     perm: 6,
-    guild: "1147954594903761036"
+    guild: "1162343507579654214"
 }

@@ -85,8 +85,8 @@ local a = {
     },
     [75] = {
         id = 75,
-        position = vector3(-2335.204, 266.0559, 169.602),
-        name = "Kortz Center",
+        position = vector3(-746.73297119141,5808.3422851562,17.59623336792),
+        name = "Vip Island",
         destination = {74}
     },
     [95] = {

@@ -3,21 +3,19 @@ const resourcePath = global.GetResourcePath ?
 const settingsjson = require(resourcePath + '/settings.js')
 
 exports.runcmd = async(fivemexports, client, message, params) => {
-    if(message.channel.name === "・verify"){
-        message.delete();
-    }
+    message.delete()
     if (!params[0] && !parseInt(params[0])) {
         let embed = {
             "title": "Verify",
             "description": `:x: Invalid command usage \`${process.env.PREFIX}verify [code]\``,
-            "color": 0xed4245,
+            "color": settingsjson.settings.botColour,
             "footer": {
                 "text": ""
             },
             "timestamp": new Date()
         }
         message.channel.send({ embed }).then(msg => {
-            msg.delete(5000)
+            msg.delete(10000)
         })
     }
     fivemexports.ghmattimysql.execute("SELECT * FROM `rift_verification` WHERE code = ?", [params[0]], (code) => {
@@ -26,32 +24,55 @@ exports.runcmd = async(fivemexports, client, message, params) => {
             fivemexports.ghmattimysql.execute("UPDATE `rift_verification` SET discord_id = ?, verified = 1 WHERE code = ?", [message.author.id, params[0]], async (result) => {
                 if (result) {
                     let embed = {
-                        "description": `:white_check_mark: Account successfully verified with RIFT!`,
-                        "color": 0x57f288,
+                        "title": "Verify",
+                        "description": `:white_check_mark: Great you're verified, head back in game and press connect.`,
+                        "color": settingsjson.settings.botColour,
+                        "footer": {
+                            "text": ""
+                        },
+                        "timestamp": new Date()
                     }
                     message.channel.send({ embed }).then(msg => {
-                        msg.delete(5000)
+                        msg.delete(10000)
                     })
-                    await message.member.addRole("1150349001300914306").then().catch(console.error);
+                    await message.member.addRole("1158810417410363432").then().catch(console.error);
                 }
             });
            }
            else{
-            message.channel.send(`A discord account is already linked to this Perm ID, please contact Management to reverify.`).then(msg => {
-                msg.delete(5000)
-            }).catch(console.error);
+            let embed = {
+                "title": "Verify",
+                "description": `:x: A discord account is already linked to this Perm ID, please contact Management to reverify.`,
+                "color": settingsjson.settings.botColour,
+                "footer": {
+                    "text": ""
+                },
+                "timestamp": new Date()
+            }
+            message.channel.send({ embed }).then(msg => {
+                msg.delete(10000)
+            })
            }
         }
         else {
-            message.channel.send(`code \`\`${params[0]}\`\` does not exist.`).then(msg => {
-                msg.delete(5000);
-            }).catch(console.error);
-        }     
+            let embed = {
+                "title": "Verify",
+                "description": `:x: That code was invalid make sure you have a valid code.`,
+                "color": settingsjson.settings.botColour,
+                "footer": {
+                    "text": ""
+                },
+                "timestamp": new Date()
+            }
+            message.channel.send({ embed }).then(msg => {
+                msg.delete(10000)
+            })
+        }
     })
 }
 
 exports.conf = {
     name: "verify",
     perm: 0,
-    guild: "1147954594903761036"
+    guild: "1162343507579654214"
 }

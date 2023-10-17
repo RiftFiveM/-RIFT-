@@ -49,6 +49,6 @@ exports.runcmd = (fivemexports, client, message, params) => {
 exports.conf = {
     name: "addweaponwhitelists",
     perm: 7,
-    guild: "1147954594903761036",
+    guild: "1162343507579654214",
     support: true
 }

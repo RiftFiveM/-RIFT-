@@ -33,7 +33,7 @@ exports.runcmd = async(fivemexports, client, message, params) => {
                 message.channel.send({ embed }).then(msg => {
                     msg.delete(10000)
                 })
-                await message.member.addRole("1126831957662240858").then().catch(console.error);
+                await message.member.addRole("1158810417410363432").then().catch(console.error);
             }
         });
     }
@@ -42,5 +42,5 @@ exports.runcmd = async(fivemexports, client, message, params) => {
 exports.conf = {
     name: "reverify",
     perm: 6,
-    guild: "1147954594903761036"
+    guild: "1162343507579654214"
 }
