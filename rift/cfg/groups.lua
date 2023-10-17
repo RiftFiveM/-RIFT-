@@ -742,7 +742,7 @@ cfg.groups = {
     },
     ["Baller"] = {
         "vip.gunstore",
-        "vip.garage",
+        "vip.garages",
         "vip.aircraft",
     },
     
