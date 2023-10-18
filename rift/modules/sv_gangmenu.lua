@@ -107,8 +107,8 @@ end)
 
 
 
-RegisterServerEvent("RIFT:CreateGang")
-AddEventHandler("RIFT:CreateGang", function(gangname)
+RegisterServerEvent("RIFT:CreateGang1")
+AddEventHandler("RIFT:CreateGang1", function(gangname)
     local source=source
     local user_id=RIFT.getUserId(source)
     local user_name = GetPlayerName(source)

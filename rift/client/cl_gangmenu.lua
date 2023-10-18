@@ -159,7 +159,7 @@ function func_drawGangUI()
                 PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                 createGangName = GetGangNameText()
                 if createGangName ~= nil and createGangName ~= "null" and createGangName ~= "" then
-                    TriggerServerEvent("RIFT:CreateGang", createGangName) 
+                    TriggerServerEvent("RIFT:CreateGang1", createGangName) 
                     Citizen.Wait(10000)
                 else
                     tRIFT.notify("~r~No gang name entered!")
