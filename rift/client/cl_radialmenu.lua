@@ -584,9 +584,9 @@ RegisterNUICallback(
         end
     end
 )
-RegisterNetEvent("RIFTUI5:police.onduty.permission")
+RegisterNetEvent("RIFTUI5:globalOnPoliceDuty")
 AddEventHandler(
-    "RIFTUI5:police.onduty.permission",
+    "RIFTUI5:globalOnPoliceDuty",
     function(aK)
         f = aK
     end
