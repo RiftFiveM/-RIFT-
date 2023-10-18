@@ -584,22 +584,22 @@ RegisterNUICallback(
         end
     end
 )
-RegisterNetEvent("rift-ui5:police.onduty.permission")
+RegisterNetEvent("RIFTUI5:police.onduty.permission")
 AddEventHandler(
-    "rift-ui5:police.onduty.permission",
+    "RIFTUI5:police.onduty.permission",
     function(aK)
         f = aK
     end
 )
-RegisterNetEvent("rift-ui5:globalOnNHSDuty")
+RegisterNetEvent("RIFTUI5:globalOnNHSDuty")
 AddEventHandler(
-    "rift-ui5:globalOnNHSDuty",
+    "RIFTUI5:globalOnNHSDuty",
     function(aK)
         g = aK
     end
 )
 RegisterNetEvent(
-    "rift-ui5:globalOnPrisonDuty",
+    "RIFTUI5:globalOnPrisonDuty",
     function(aL)
         h = aL
     end
