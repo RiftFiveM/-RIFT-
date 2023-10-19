@@ -37,6 +37,12 @@ local i = {
             110,5,"VIP Gun Store",{"vip.gunstore"},true
         }
     },
+    ["Plat"] = {
+        _config = {
+            {vector3(-2151.5739746094,5191.2548828125,14.718822479248)},
+            110,5,"VIP Gun Store",{"vip.gunstore"},true
+        }
+    },
     ["Rebel"] = {
         _config = {
             {vector3(1545.2521972656, 6331.5615234375, 23.07857131958),
@@ -84,7 +90,7 @@ RageUI.CreateWhile(1.0, true, function()
         if b~=nil and i~=nil then 
             if tRIFT.isPlatClub() then 
                 if b=="VIP"then 
-                    RageUI.ButtonWithStyle("~y~[Platinum Large Arms]","",{RightLabel="→→→"},true,function(j,k,l)
+                    RageUI.ButtonWithStyle("~y~[Platinum Very Large Arms]","",{RightLabel="→→→"},true,function(j,k,l)
                     end,RMenu:Get("RIFTGunstore","vip"))
                 end 
             end
@@ -171,7 +177,7 @@ RageUI.CreateWhile(1.0, true, function()
     end
     if RageUI.Visible(RMenu:Get("RIFTGunstore", "vip")) then
         RageUI.DrawContent({ header = true, glare = false, instructionalButton = true}, function()
-            local C=i["LargeArmsDealer"]
+            local C=i["Plat"]
             for o,p in pairs(sortedKeys(C))do 
                 h=true
                 local q=C[p]
@@ -203,7 +209,7 @@ RageUI.CreateWhile(1.0, true, function()
                             d.model=p
                             d.price=s
                             d.ammoPrice=t
-                            d.weaponShop="LargeArmsDealer"
+                            d.weaponShop="Plat"
                         end 
                     end,RMenu:Get("RIFTGunstore","type"))
                 end 

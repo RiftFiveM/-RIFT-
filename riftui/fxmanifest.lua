@@ -1,21 +1,15 @@
-fx_version "bodacious"
-game "gta5"
-
-loadscreen "html/loadscreen.html"
-loadscreen_manual_shutdown "yes"
-
+shared_script '@erm/ai_module_fg-obfuscated.lua'
+fx_version 'bodacious'
+games { 'gta5' }
+description "RP module/framework"
 ui_page "ui/index.html"
-
 -- client scripts
 client_scripts{
-    "@rift/lib/utils.lua",
+    "@fr/lib/utils.lua",
     "client/*.lua",
 }
-
 -- client files
 files{
-    "html/*",
-    "html/terminal/*",
     "ui/*.ttf",
     "ui/*.otf",
     "ui/*.woff",
@@ -24,8 +18,9 @@ files{
     "ui/*.png",
     "ui/main.js",
     "ui/index.html",
+    -- Loading Screen
+    'loading/**',
 }
-
-server_scripts{
-    "starter.js",
-}
+loadscreen 'loading/loading.html'
+loadscreen_cursor 'yes'
+loadscreen_manual_shutdown "yes"

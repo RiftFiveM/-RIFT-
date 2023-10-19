@@ -46,6 +46,19 @@ cfg.GunStores={
         ["WEAPON_MOLOTOV"]={"Molotov Cocktail",5000,0,"N/A","w_ex_molotov"},
         -- smoke grenade
         ["WEAPON_SNOWBALL"]={"Snowball",10000,0,"N/A","w_ex_snowball"},
+        
+    },
+    ["Plat"]={
+        ["_config"]={{vector3(-2151.5739746094,5191.2548828125,14.718822479248)},110,5,"VIP Gun Store",{"vip.gunstore"},false},
+        ["WEAPON_GOLDAK"]={"Golden AK-47",750000,0,"N/A","w_ar_goldak"},
+        ["WEAPON_MK18V2"]={"MK-18 Type-2",950000,0,"N/A","w_ar_mk18v2"},
+        ["WEAPON_CMGTRADERRIFLE"]={"Rust Trader Rifle",815000,0,"N/A","w_sb_cmgtraderrifle"},
+        ["WEAPON_TYLON"]={"Tylon Assault",1200000,0,"N/A","w_ar_tylon"},
+        ["WEAPON_MOSIN"]={"Mosin",750000,0,"N/A","w_ar_mosin"},
+        ["WEAPON_VTSGLOW"]={"VTS Glow Pistol",310000,0,"N/A","w_pi_vtsglow"},
+        ["item4"]={"LVL 4 Armour",60000,0,"N/A","prop_bodyarmour_04"},
+        -- smoke grenade
+        --w_ar_mosin
     },
     ["Rebel"]={
         ["_config"]={{vector3(1545.2521972656,6331.5615234375,23.07857131958),vector3(4925.6259765625,-5243.0908203125,1.524599313736)},110,5,"Rebel Gun Store",{"rebellicense.whitelisted"},true},

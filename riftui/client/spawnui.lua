@@ -1,7 +1,7 @@
 RegisterNUICallback("respawnButtonClicked", function(data, cb)
     local name = data.location.name
     local price = tonumber(data.location.price)
-    TriggerEvent("RIFT:respawnButtonClicked", name, price)
+    TriggerEvent("FR:respawnButtonClicked", name, price)
     SendNUIMessage({
         app = "",
         type = "APP_TOGGLE",
@@ -10,7 +10,7 @@ RegisterNUICallback("respawnButtonClicked", function(data, cb)
     cb()
 end)
 
-AddEventHandler("RIFTDEATHUI:openSpawnMenu", function(locations)
+AddEventHandler("FRDEATHUI:openSpawnMenu", function(locations)
     SendNUIMessage({
         type = "SET_SPAWN_LOCATIONS",
         info = {

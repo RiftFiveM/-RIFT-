@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap);
 
-.rift-location-img {
+.fr-location-img {
     width: 100%;
     height: 100%;
     /* clip-path: polygon(47% 0, 86% 0, 66% 100%, 28% 100%); */
@@ -10,7 +10,7 @@
     object-fit: cover;
 }
 
-.rift-spawn{
+.fr-spawn{
     width: 100%;
     height: 100%;
     background:  url(https://cdn.discordapp.com/attachments/791428458424959036/859926002461048862/65.png?test);
@@ -33,12 +33,12 @@
 .glow {
     filter: drop-shadow(14px 1px 10px rgb(56, 56, 56));
 }
-.rift-locations{
+.fr-locations{
     width: 100%;
     height: 100vh;
     overflow:visible;
 }
-.rift-location{
+.fr-location{
     height: 70%;
     width: 200%;
     position: relative;
@@ -56,7 +56,7 @@
     margin-top: 3%;;
 }
 
-/* .rift-location-img:hover {
+/* .fr-location-img:hover {
     height: 1000px;
     z-index: 20;
     position: absolute;
@@ -91,7 +91,7 @@
 
 }
 
-.rift-spawn-text{
+.fr-spawn-text{
     position: relative;;
     left: 125px;
     top: -50px;
@@ -196,11 +196,11 @@
 
 
 @media only screen and (min-width: 1920px){ 
-    /* .rift-location{
+    /* .fr-location{
         height: 650px;
         width: 600px;
     } */
-    .rift-spawn-text{
+    .fr-spawn-text{
         position: relative;;
         left: 125px;
         top: -60px;
@@ -246,7 +246,7 @@
     }
     
 
-    /* .rift-location{
+    /* .fr-location{
         height: 700px;
         width: 750px;
     } */
@@ -254,7 +254,7 @@
     
     
     
-    .rift-spawn-text{
+    .fr-spawn-text{
         position: relative;;
         left: 125px;
         top: -150px;
@@ -376,7 +376,7 @@ body {
 
 @font-face {
     font-family: "Akrobat-Bold";
-    src: url("Akrobat-Bold.otf") format("opentype");
+    src: url("https://cdn.cmg.city/content/fonts/Akrobat-Bold.otf") format("opentype");
     font-weight: normal;
     font-style: normal; 
 }
@@ -398,16 +398,6 @@ div.death-screen-black-bar{
     width: 100%;
     height: 100%;
     background-image: url(e4d0487887d574c327cbf411a8ca83df.png);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    position: absolute;
-}
-
-div.death-screen-snow{
-    width: 100%;
-    height: 100%;
-    /* uncomment background for xmas death screen */
-    /*background-image: url(snow.png); */
     background-size: 100%;
     background-repeat: no-repeat;
     position: absolute;
@@ -671,12 +661,12 @@ body {
     height: 100% !important;
 }
 
-.rift-ui {
+.fr-ui {
     width: 100%;
     height: 100% !important;
 }
 
-.rift-router{
+.fr-router{
     width: 100%;
     height: 100% !important;
 }
@@ -719,13 +709,13 @@ body {
     background-size: 45%; 
 }
 
-.rift-crosshair{
+.fr-crosshair{
     position: absolute !important;
     top: calc(50% - 4px) !important;
     left: calc(50% - 4px) !important;
 }
 
-.rift-radialmenu {
+.fr-radialmenu {
     position: absolute !important;
     top: 50%;
     left: 50%;
