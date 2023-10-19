@@ -73,6 +73,16 @@ cfg.GunStores={
         ["item1"]={"LVL 1 Armour",25000,0,"N/A","prop_armour_pickup",nil,25000},
         ["item2"]={"LVL 2 Armour",50000,0,"N/A","prop_bodyarmour_02",nil,50000},
     },
+    ["CityLargeArmsDealer"]={
+        ["_config"]={{vector3(1140.0528564453,-428.7509765625,67.2958984375),vector3(1140.0528564453,-428.7509765625,67.2958984375)},110,1,"Large Arms Dealer",{"gang.whitelisted"},false},
+        ["WEAPON_GOLDAK"]={"AK-47 Assault Rifle",750000,0,"N/A","w_ar_goldak",nil,750000},
+        ["WEAPON_MOSIN"]={"Mosin Bolt-Action",900000,0,"N/A","w_ar_mosin",nil,900000},
+        ["WEAPON_OLYMPIA"]={"Olympia Shotgun",900000,0,"N/A","w_sg_olympia",nil,900000},
+        ["WEAPON_UMP45"]={"UMP45 SMG",300000,0,"N/A","w_sb_ump45",nil,300000},
+        ["WEAPON_UZI"]={"Uzi SMG",250000,0,"N/A","w_sb_uzi",nil,250000},
+        ["item1"]={"LVL 1 Armour",25000,0,"N/A","prop_armour_pickup",nil,25000},
+        ["item2"]={"LVL 2 Armour",50000,0,"N/A","prop_bodyarmour_02",nil,50000},
+    },
     ["SmallArmsDealer"]={
         ["_config"]={{vector3(2437.5708007813,4966.5610351563,41.34761428833),vector3(-1500.4978027344,-216.72758483887,46.889373779297),vector3(1242.7232666016,-426.84201049805,67.913963317871),vector3(1242.791,-426.7525,67.93467)},110,1,"Small Arms Dealer",{""},true},
         ["WEAPON_BERETTA"]={"Berreta M9 Pistol",60000,0,"N/A","w_pi_beretta"},
