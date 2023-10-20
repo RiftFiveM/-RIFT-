@@ -12534,7 +12534,7 @@
                         }))
                     }
                     countdownEnded() {
-                        fetch("https://frui/countdownEnded", {
+                        fetch("https://RIFTui/countdownEnded", {
                             method: "POST",
                             body: ""
                         }).then((e => e.json())).then((e => console.log(e)))
@@ -12812,7 +12812,7 @@
                                     closeOnClick: !0,
                                     menuItems: u,
                                     onClick: function(t) {
-                                        fetch("http://frui/radialClick", {
+                                        fetch("http://RIFTUI/radialClick", {
                                             method: "POST",
                                             body: JSON.stringify({
                                                 itemid: t.id,
@@ -12826,7 +12826,7 @@
                                     closeOnClick: !0,
                                     menuItems: l,
                                     onClick: function(t) {
-                                        fetch("http://frui/radialClick", {
+                                        fetch("http://RIFTUI/radialClick", {
                                             method: "POST",
                                             body: JSON.stringify({
                                                 itemid: t.id,
@@ -12843,7 +12843,7 @@
                                 closeOnClick: !0,
                                 menuItems: s,
                                 onClick: function(t) {
-                                    fetch("http://frui/radialClick", {
+                                    fetch("http://RIFTUI/radialClick", {
                                         method: "POST",
                                         body: JSON.stringify({
                                             itemid: t.id,
@@ -13251,7 +13251,7 @@
                                 })
                             });
                         case "RESPAWN_BUTTON_CLICK":
-                            return fetch("https://frui/respawnButtonClicked", {
+                            return fetch("https://RIFTUI/respawnButtonClicked", {
                                 method: "POST",
                                 body: JSON.stringify({
                                     location: e.spawn.selectedSpawn

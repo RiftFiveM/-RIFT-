@@ -1,6 +1,6 @@
 local countdown = 0
 
-RegisterNetEvent("FR:CLOSE_DEATH_SCREEN", function()
+RegisterNetEvent("RIFT:CLOSE_DEATH_SCREEN", function()
     SendNUIMessage({
         app = "",
         type = "APP_TOGGLE",
@@ -9,14 +9,14 @@ RegisterNetEvent("FR:CLOSE_DEATH_SCREEN", function()
     countdown = 0
 end)
 
-RegisterNetEvent("FR:respawnKeyPressed", function()
+RegisterNetEvent("RIFT:respawnKeyPressed", function()
     SendNUIMessage({
         page = "deathscreen",
         type = "RESPAWN_KEY_PRESSED",
     })
 end)
 
-RegisterNetEvent("FR:SHOW_DEATH_SCREEN", function(timer, killer, killerPermId, killedByWeapon, suicide)
+RegisterNetEvent("RIFT:SHOW_DEATH_SCREEN", function(timer, killer, killerPermId, killedByWeapon, suicide)
     SendNUIMessage({
         page = "deathscreen",
         type = "SHOW_DEATH_SCREEN",
@@ -31,7 +31,7 @@ RegisterNetEvent("FR:SHOW_DEATH_SCREEN", function(timer, killer, killerPermId, k
     countdown = math.floor(timer)
 end)
 
-RegisterNetEvent("FR:DEATH_SCREEN_NHS_CALLED", function()
+RegisterNetEvent("RIFT:DEATH_SCREEN_NHS_CALLED", function()
     SendNUIMessage({
         page = "deathscreen",
         type = "DEATH_SCREEN_NHS_CALLED",
@@ -43,7 +43,7 @@ Citizen.CreateThread(function()
         if countdown > 0 then
             countdown = countdown - 1
             if countdown == 0 then
-                TriggerEvent("FR:countdownEnded")
+                TriggerEvent("RIFT:countdownEnded")
             end
         end
         Citizen.Wait(1000)
