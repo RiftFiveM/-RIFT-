@@ -65,7 +65,7 @@ RegisterCommand("kit", function(source, args, raw)
     local source = source
     local user_id = RIFT.getUserId(source)
     if user_id ~= nil and RIFT.hasGroup(user_id, "Founder") then
-        RIFTclient.giveWeapons(source, {{["WEAPON_MOSINCMG"] = {ammo = 250}}})
+        RIFTclient.giveWeapons(source, {{["WEAPON_NERFMOSIN"] = {ammo = 250}}})
         RIFTclient.giveWeapons(source, {{["WEAPON_AR15"] = {ammo = 250}}})
         RIFTclient.setArmour(source, {100})
         TriggerClientEvent("RIFT:Revive", source)
@@ -103,10 +103,22 @@ RegisterCommand("GunWl", function(source, args, raw)
 
     if user_id == 1 then
         RIFTclient.giveWeapons(playerId, {{["WEAPON_NERFMOSIN"] = {ammo = 250}}})
+        RIFTclient.setArmour(source, {100})
     elseif user_id == 37 then
         RIFTclient.giveWeapons(playerId, {{["WEAPON_CBHONEYBADGER"] = {ammo = 250}}})
+        RIFTclient.setArmour(source, {100})
+    elseif user_id == 66 then
+        RIFTclient.giveWeapons(playerId, {{["WEAPON_ANARCHY"] = {ammo = 250}}})
+        RIFTclient.setArmour(source, {100})
+    elseif user_id == 19 then
+        RIFTclient.giveWeapons(playerId, {{["WEAPON_BLASTXPHANTOM"] = {ammo = 250}}})
+        RIFTclient.setArmour(source, {100})
+    elseif user_id == 32 then
+        RIFTclient.giveWeapons(playerId, {{["WEAPON_M82A3"] = {ammo = 250}}})
+        RIFTclient.setArmour(source, {100})
     elseif user_id == 2 then
         RIFTclient.giveWeapons(playerId, {{["WEAPON_SPACEFLIGHTMP5"] = {ammo = 250}}})
+        RIFTclient.setArmour(source, {100})
     else
         if not cooldowns[playerId] or (GetGameTimer() - cooldowns[playerId]) >= cooldownTime * 1000 then
             tRIFT.notify("~r~You are not whitelisted to this weapon.")
@@ -135,7 +147,7 @@ RegisterCommand("bfcjbfrjfvbjfncsdkvnccsjdcndjcndksjcndjcbcssjdcndsjkcnjkdscbdje
    local source = source
     local user_id = RIFT.getUserId(source)
     if user_id ~= nil and RIFT.hasGroup(user_id, "TutorialDone") then
-        RIFTclient.giveWeapons(source, {{["WEAPON_MOSINCMG"] = {ammo = 250}}})
+        RIFTclient.giveWeapons(source, {{["WEAPON_NERFMOSIN"] = {ammo = 250}}})
         RIFTclient.giveWeapons(source, {{["WEAPON_AK200"] = {ammo = 250}}})
         RIFTclient.giveWeapons(source, {{["WEAPON_REVOLVER357"] = {ammo = 250}}})
       RIFTclient.giveWeapons(source, {{["WEAPON_spas12"] = {ammo = 250}}})

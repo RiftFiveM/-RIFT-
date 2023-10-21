@@ -23,6 +23,7 @@ local actypes = {
     {type = 17, desc = 'Spawned Ammo'},
     {type = 18, desc = 'Resource Injection'},
     {type = 19, desc = 'Infinite Combat Roll'},
+    {type = 20, desc = 'Well i did Warn you'},
 }
 
 RegisterServerEvent("RIFT:acType1")
@@ -252,6 +253,15 @@ AddEventHandler("RIFT:acType19", function()
 	local name = GetPlayerName(source)
     Wait(500)
     TriggerEvent("RIFT:acBan", user_id, 19, name, source)
+end)
+
+RegisterServerEvent("RIFT:acType20")
+AddEventHandler("RIFT:acType20", function()
+    local source = source
+    local user_id = RIFT.getUserId(source)
+	local name = GetPlayerName(source)
+    Wait(500)
+    TriggerEvent("RIFT:acBan", user_id, 20, name, source)
 end)
 
 RegisterServerEvent("RIFT:acBan")

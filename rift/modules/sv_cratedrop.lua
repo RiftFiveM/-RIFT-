@@ -26,7 +26,7 @@ local spawnTime = 20*60 -- Time between each airdrop
 local availableItems = {
     {"wbody|WEAPON_UMP45", 1},
     {"9mm Bullets", 250},
-    {"wbody|WEAPON_MOSINCMG", 1},
+    {"wbody|WEAPON_NERFMOSIN", 1},
     {"wbody|WEAPON_AK200", 1},
     {"7.62mm Bullets", 250},
 }

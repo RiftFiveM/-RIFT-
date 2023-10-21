@@ -740,7 +740,7 @@ RageUI.CreateWhile(1.0, true, function()
                     end
                 end, RMenu:Get('adminmenu', 'submenu'))
             end
-            if tRIFT.getStaffLevel() >= 3 then
+            if tRIFT.getStaffLevel() >= 5 then
                 RageUI.ButtonWithStyle("Revive", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
                         local uid = GetPlayerServerId(PlayerId())
@@ -775,6 +775,31 @@ RageUI.CreateWhile(1.0, true, function()
                 RageUI.ButtonWithStyle("Teleport to Legion", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
                         TriggerServerEvent("RIFT:Teleport2Legion", SelectedPlayer[2])
+                    end
+                end, RMenu:Get('adminmenu', 'submenu'))
+                RageUI.ButtonWithStyle("Give Player Mosin", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
+                    if Selected then
+                        TriggerServerEvent("RIFT:EditzgiveMosin", SelectedPlayer[2])
+                    end
+                end, RMenu:Get('adminmenu', 'submenu'))
+                RageUI.ButtonWithStyle("Teleport to Arena", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
+                    if Selected then
+                        TriggerServerEvent("RIFT:Teleport2arena", SelectedPlayer[2])
+                    end
+                end,RMenu:Get('adminmenu', 'submenu'))
+                RageUI.ButtonWithStyle("Teleport to Simeons", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
+                    if Selected then
+                        TriggerServerEvent("RIFT:Teleport2simeons", SelectedPlayer[2])
+                    end
+                end,RMenu:Get('adminmenu', 'submenu'))
+                RageUI.ButtonWithStyle("Teleport to Casino", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
+                    if Selected then
+                        TriggerServerEvent("RIFT:Teleport2casino", SelectedPlayer[2])
+                    end
+                end,RMenu:Get('adminmenu', 'submenu'))
+                RageUI.ButtonWithStyle("Teleport to Rebel", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
+                    if Selected then
+                        TriggerServerEvent("RIFT:Teleport2rebel", SelectedPlayer[2])
                     end
                 end,RMenu:Get('adminmenu', 'submenu'))
                 RageUI.ButtonWithStyle("Teleport to Paleto", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)

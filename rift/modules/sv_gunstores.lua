@@ -58,7 +58,7 @@ cfg.GunStores={
         ["WEAPON_VTSGLOW"]={"VTS Glow Pistol",310000,0,"N/A","w_pi_vtsglow"},
         ["item4"]={"LVL 4 Armour",60000,0,"N/A","prop_bodyarmour_04"},
         -- smoke grenade
-        --w_ar_mosin
+        --w_ar_mosin,
     },
     ["Rebel"]={
         ["_config"]={{vector3(1545.2521972656,6331.5615234375,23.07857131958),vector3(4925.6259765625,-5243.0908203125,1.524599313736)},110,5,"Rebel Gun Store",{"rebellicense.whitelisted"},true},
@@ -79,7 +79,7 @@ cfg.GunStores={
     ["LargeArmsDealer"]={
         ["_config"]={{vector3(-1108.3199462891,4934.7392578125,217.35540771484),vector3(5065.6201171875,-4591.3857421875,1.8652405738831)},110,1,"Large Arms Dealer",{"gang.whitelisted"},false},
         ["WEAPON_AK47U"]={"AK-47U",750000,0,"N/A","w_ar_goldak",nil,750000},
-        ["WEAPON_MOSINCMG"]={"Mosin Bolt-Action",900000,0,"N/A","w_ar_mosin",nil,900000},
+        ["WEAPON_NERFMOSIN"]={"Mosin Bolt-Action",900000,0,"N/A","w_ar_mosin",nil,900000},
         ["WEAPON_870SHOTGUN"]={"Fortnite Tac",900000,0,"N/A","w_sg_870shotgun",nil,900000},
         ["WEAPON_UMP"]={"UMP SMG",300000,0,"N/A","w_sb_ump",nil,300000},
         ["WEAPON_UZILUNA"]={"Uzi SMG",250000,0,"N/A","w_sb_uziluna",nil,250000},
@@ -89,7 +89,7 @@ cfg.GunStores={
     ["CityLargeArmsDealer"]={
         ["_config"]={{vector3(1140.0528564453,-428.7509765625,67.2958984375),vector3(1140.0528564453,-428.7509765625,67.2958984375)},110,1,"Large Arms Dealer",{"gang.whitelisted"},false},
         ["WEAPON_AKM"]={"AK-47 Assault Rifle",750000,0,"N/A","w_ar_goldak",nil,750000},
-        ["WEAPON_MOSINCMG"]={"Mosin Bolt-Action",900000,0,"N/A","w_ar_mosin",nil,900000},
+        ["WEAPON_NERFMOSIN"]={"Mosin Bolt-Action",900000,0,"N/A","w_ar_mosin",nil,900000},
         ["WEAPON_OLYMPIA"]={"Olympia Shotgun",900000,0,"N/A","w_sg_olympia",nil,900000},
         ["WEAPON_UMP45"]={"UMP45 SMG",300000,0,"N/A","w_sb_ump45",nil,300000},
         ["WEAPON_UZI"]={"Uzi SMG",250000,0,"N/A","w_sb_uzi",nil,250000},
@@ -180,6 +180,7 @@ local RebelWithAdvanced = {
     -- mk1emr
     ["WEAPON_MXM"]={"MXM",950000,0,"N/A","w_ar_mxm"},
     ["WEAPON_SPAR16"]={"Spar 16",900000,0,"N/A","w_ar_spar16"},
+    ["WEAPON_SCORPIONBLUE"]={"Scorpion Blue",650000,0,"N/A","w_ar_scorpionblue"},
 }
 
 

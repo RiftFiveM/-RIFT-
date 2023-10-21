@@ -244,7 +244,7 @@ Citizen.CreateThread(function()
                 SetEntityHealth(B,200)
             end
             if not isInTicket then
-                drawNativeText("~r~Reminder: You are /staffon'd.", 255, 0, 0, 255, true)
+                drawNativeText("~r~Reminder: You are /staffon'd. ~b~ If you staffed on illegally ~r~ you will be banned ", 255, 0, 0, 255, true)
             end
         end
     end
@@ -260,7 +260,7 @@ AddEventHandler('RIFT:sendTicketInfo', function(permid, name)
     while isInTicket do
         Wait(0)
         if permid ~= nil and name ~= nil then
-            drawNativeText("~y~You've taken the ticket of " ..name.. "("..permid..")", 255, 0, 0, 255, true)   
+            drawNativeText("~y~You've taken the ticket of " ..name.. "("..permid..") ~r~ Make sure to Upload Ban Clip", 255, 0, 0, 255, true)   
         end
     end
 end)

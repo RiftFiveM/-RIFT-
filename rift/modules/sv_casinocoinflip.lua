@@ -144,6 +144,7 @@ AddEventHandler("RIFT:acceptCoinflip", function(gameid)
                 if chips >= v.betAmount then
                     MySQL.execute("casinochips/remove_chips", {user_id = user_id, amount = v.betAmount})
                     TriggerClientEvent('RIFT:chipsUpdated', source)
+                    TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('coinflip-bet'))
                     MySQL.execute("casinochips/remove_chips", {user_id = v.user_id, amount = v.betAmount})
                     TriggerClientEvent('RIFT:chipsUpdated', RIFT.getUserSource(v.user_id))
                     local coinFlipOutcome = math.random(0,1)

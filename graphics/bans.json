@@ -1,97 +1,17 @@
 {
-    "10": {
-        "ip": "79.135.127.69",
-        "license": "license:c4d748aa533d55e4ed47caf2f5c6a48b10fa6631",
-        "discord": "925463770141184071",
-        "tokens": [
-            "5:b5b9b6c4c155101e12ab74600d9d998ce2c6174cb68e87e933599112dfe7e7a4",
-            "4:cc4c571672a12611011397fd67dfe77ee27f1da55638d70ba6e92129fc29200e",
-            "4:feec1da295882aa675d81c7059716f09a5357b251254a558f4514692705bddef",
-            "4:6226b2b20bbc3fe212b4995c28126e126f318d2d0171472d69be732f02885fac"
-        ],
-        "steam": "Invalid",
-        "xbl": "xbl:2535425368637203",
-        "name": "Banksy",
-        "live": "live:914799227009459",
-        "reason": "Detected Edited Head Hitbox (4)",
-        "manual": false
-    },
     "4": {
-        "ip": "82.44.47.149",
-        "license": "license:0543332eba768128174eaf76452327770e434dc2",
-        "discord": "1108063052001181757",
-        "tokens": [
-            "5:6d6cc5e749edb7a813b064e7e0a50544fa986ad505764fbb87fb19f1d658b151",
-            "2:533c3c9e213d428d0ec80ce77b17e66ffaa9f6647c464c8b2769f8b6efd4f839",
-            "4:d08ae3213ad809f7eec8d6ef8279a06099ff9ec80df63ddbace5013c69306b77",
-            "4:506fa565ad8e3693df47a6d4ed0a3ff02d86a0b8cf47741d92ab00fb2485748e",
-            "4:b9f0a10cbb03f590fa18c687451d6e7ed56657a07c24a36e453e39786124dfff"
-        ],
-        "steam": "Invalid",
+        "live": "live:914799096397257",
+        "name": "bricks",
         "fg_ts": {
-            "t1": "be7cc0b4005f66c819c63f0388e4d4c60d1e17c3c76b265dc2077d008be0b3de",
-            "t3": "XnUdVBx3llLFL50qfYySzqMosiaK75EW",
-            "t4": "18659967361522164959",
-            "t2": "02a45407:4277d4da:1af75e9d:3c5b612e:9c9bad8f:5e4efae7:8d758668"
+            "t3": "FZIeKwm9cjUKMhiC81EJU7qeGGajNHvD",
+            "t2": "a5effa75:cc10de1d:5c68a759:1af75e9d:a6d2f829:9fdfc202:2082e36f:7b9ba30c",
+            "t1": "1e9c39d52cc345de22c31a365f564bb0ed157d0082de698aba909cd38480d960",
+            "t4": "19859431462031218072"
         },
-        "live": "live:844425866440665",
-        "reason": "Cheat Detected (AI) (1)",
-        "name": "zyro cheats",
-        "xbl": "xbl:2535449093098412",
-        "manual": false
-    },
-    "3": {
-        "ip": "92.30.186.141",
-        "license": "license:e3cf8aa391b5592056a5fdd86764296faae65c6c",
-        "discord": "653992250707017768",
-        "tokens": [
-            "2:65b87dce4f137e073ac19959982f2ca428036031cbc1f5cf5b18f4ef2cdfb1d4",
-            "4:cb9d75579ebfcf3851aed02ad4e16ec2f6d165350567bf2f4a1637bbed5aa88f",
-            "4:3ac7d50fc683fbdcbd88f66d2cec60ae0b9a4d9aac34342a9f727ea4fb82a7e6",
-            "4:811f2624c3261b374f146c6ddc15d2949a50a0d1cfce0c0f176723d241fb4949"
-        ],
-        "steam": "Invalid",
-        "fg_ts": {
-            "t1": "d1815acac8e8cb1e956a5930057822bc4c2bc419c51773c10be0bcb9400dc14a",
-            "t3": "wsaKe6zZekOzx03szf2pHUA10k3JApZ7",
-            "t4": "17540593261759237597",
-            "t2": "7a59345d:1af75e9d:c99419f0:465f2c88:87e7cacf"
-        },
-        "live": "live:1055518969042100",
-        "reason": "bye nigger",
-        "name": "brian",
-        "xbl": "xbl:2535434846308462",
-        "manual": true
-    },
-    "11": {
-        "ip": "109.157.92.160",
-        "license": "license:9ee4fb6de9cc3213069a0d89422697443bc979cc",
-        "discord": "934856948824809534",
-        "tokens": [
-            "2:3b379c8694e7f8277b036e9fe013776addc32ae1b826993c5817501d08b95e31",
-            "3:b0e999e85f65b39f84ed271c72c655894ebaff7e6136e3632ec55674f3d98fac",
-            "5:3f4747403115a1e55af5eb4b02c2da3694be30e5d0c5d7978946a92c9b4eebfe",
-            "4:1c7a8b894c355379a3ecde5df27aec2292ac482e2569f5676977f18e26f2ef47",
-            "4:3d0c09f74ed2fe5a29128aed1a920961fd629ab221e8d3c0332215440800c748",
-            "4:47b2896d986c309bc30e5608c585e288423aea761125cac35323c104ea724060"
-        ],
-        "steam": "Invalid",
-        "xbl": "xbl:2535447793825223",
-        "fg_ts": {
-            "t1": "60bd9f4c7fd7e8b7353bd35dc94d7734d49b07576e46774278ad5409a4da7248",
-            "t3": "lMttDWjwFWclPFdk987tsv0uCe0XcYAM",
-            "t4": "16855183992096524235",
-            "t2": "9e0b00ee:9dcc26ef:bf2bbd5c:1af75e9d:2ffc4bab:c29515ec:132dd0dc:2183dcb3"
-        },
-        "name": "trendzzz.",
-        "live": "live:914799014004578",
-        "reason": "Cheat Detected (AI) (1)",
-        "manual": false
-    },
-    "9": {
         "ip": "90.192.162.140",
-        "license": "license:d21ee01332f22400287cf689754c493175ba1dd4",
+        "reason": "Revive,Cheating",
         "discord": "264772390951714816",
+        "steam": "Invalid",
         "tokens": [
             "2:88b33393f1464f44bd9b735778a1c0482ba56f97c2017e1521b9d39353a67061",
             "5:4026ee4e9d5ba1438aabdac9975dbc13665f7829c3139e8703ac1038b14d2b88",
@@ -99,82 +19,8 @@
             "4:cf74151b8d85a001e6f226c78bbefc5e5d52dd65c4e875fd5ea084a9d182b1e4",
             "4:6e349d25ca41d929c0e254ba0fbd22a18870aa008f720ee365d22a487ec251fa"
         ],
-        "steam": "Invalid",
-        "fg_ts": {
-            "t1": "1e9c39d52cc345de22c31a365f564bb0ed157d0082de698aba909cd38480d960",
-            "t3": "FZIeKwm9cjUKMhiC81EJU7qeGGajNHvD",
-            "t4": "19859431462031218072",
-            "t2": "a5effa75:cc10de1d:5c68a759:1af75e9d:a6d2f829:9fdfc202:2082e36f:7b9ba30c"
-        },
-        "live": "live:914799096397257",
-        "reason": "Eulen Noclip Detected",
-        "name": "rift",
-        "xbl": "Invalid",
-        "manual": false
-    },
-    "8": {
-        "ip": "149.102.38.231",
-        "license": "license:bf3cd464da840e07d5e92320eb047119c86f8d46",
-        "discord": "1009479813213458552",
-        "tokens": [
-            "3:042dd439bb0ddfb7d14e55ed021e82ebd53457656c9177e270e642d729aae74b",
-            "5:b03b91aa3c579c0b315a5f0dcf2efc75416c5535a498d225ee89d21fdd490252",
-            "4:c94897940e02b093c36ebd8c02fa8f1007f79d573f72e4bf2a453126cdebee55",
-            "4:8400f7c4552c7e8a74222bf32f8606d714ef3caff2c0a676cff55564d8683782",
-            "4:2e76b360cc3141a9e6559192e4285a1029b7975ca5e92bb39fd10925e203d35b"
-        ],
-        "steam": "Invalid",
-        "xbl": "xbl:2535405206996812",
-        "reason": "Cheat Detected (AI) (1)",
-        "live": "live:1055518311142092",
-        "name": "vekz fanboy",
-        "manual": false
-    },
-    "7": {
-        "ip": "80.43.242.224",
-        "license": "license:ad7262dc0a48f21aa78a97ce8b5c557b490bb96c",
-        "discord": "860179498590142464",
-        "tokens": [
-            "3:23660442fa5ac8aa1c8abc3a5cf43c6919877d9206b92a8b1aa89bede00aebaa",
-            "2:030e2b9c710655a80ede720f997144bcfe342caf0baa958f45b5a3a0abf4ea07",
-            "4:9b20c2544ed453e3843197403c3361f2ef32519b41aa048632a87b877903f564",
-            "4:244292715e6f34dcb2e0ccde55f0acd5345f2d1b8ad955a827ee230decdcc7dc",
-            "4:eec03f2e66d976c43e68cba856124188963b829085483a8df91422fc13148a28"
-        ],
-        "steam": "Invalid",
-        "fg_ts": {
-            "t1": "5fcfd065065942927a104fe212e7acf3c91b92daecfbc960ed9963fb62aaed0d",
-            "t3": "v8LOPKT0uLFHyshdzYIlV1ulwJtQMb6O",
-            "t4": "11802439401031963719",
-            "t2": "92be70c7:230be593:d55cf6d0:fea1a236:e4403317:9bfa0866:465f2c88"
-        },
-        "live": "Invalid",
-        "reason": "tranny",
-        "name": "Zarox",
+        "license": "license:d21ee01332f22400287cf689754c493175ba1dd4",
         "xbl": "Invalid",
         "manual": true
-    },
-    "1": {
-        "ip": "152.37.102.90",
-        "license": "license:5cd4dbd03768d5a42930d8d234315c1e0ea0f9bf",
-        "discord": "1127559986281725982",
-        "tokens": [
-            "3:3b2ccdd49dde5454cdb57e72b83334a5b774054e482c54550404263a5b72719f",
-            "4:bce8af5ab06f001be98132ba05d92600cb4c88a3433401ac66b93c1569eda5d8",
-            "4:b6ba0efdaba84d41987695707650f2d61b615ea276f1b70915d632d35cb0d862",
-            "4:229cf788ca81110b035e28a57e5bb0cbfc712f5d334238a46c1157dd06bf06ff"
-        ],
-        "steam": "Invalid",
-        "fg_ts": {
-            "t1": "3bf7294b801cb54e0d18b20e96aad7926a72a77f7fc9b0e19617b8cb47f17960",
-            "t3": "IhdselX1sOfSwMt4XaWPuShunIiw5KWa",
-            "t4": "17477026782095374947",
-            "t2": "e32ccb4c:a5effa75:7f9f2372:b65c6c65:1af75e9d:b6a63b91:c868e376:2082e36f:ef03506d:9037debf"
-        },
-        "live": "live:1829579074156624",
-        "reason": "Spoofed Bullet Shot Detected",
-        "name": "​",
-        "xbl": "xbl:2535445322779255",
-        "manual": false
     }
 }
