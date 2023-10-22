@@ -1,7 +1,7 @@
 local cfg = {}
 cfg.GunStores={
     ["policeLargeArms"]={
-        ["_config"]={{vector3(1840.6104736328,3691.4741210938,33.350730895996),vector3(461.43179321289,-982.66412353516,29.689668655396),vector3(-442.89114379883,5988.2124023438,31.716186523438),vector3(-1102.5059814453,-820.62091064453,13.282785415649)},110,5,"MET Police Large Arms",{"police.onduty.permission","police.loadshop2"},false,true}, 
+        ["_config"]={{vector3(1840.6104736328,3691.4741210938,33.350730895996),vector3(461.43179321289,-982.66412353516,29.689668655396),vector3(-443.42639160156,6017.134765625,36.995639801025),vector3(-442.89114379883,5988.2124023438,31.716186523438),vector3(-1102.5059814453,-820.62091064453,13.282785415649)},110,5,"MET Police Large Arms",{"police.onduty.permission","police.loadshop2"},false,true}, 
         ["WEAPON_FLASHBANG"]={"Flashbang",0,0,"N/A","w_me_flashbang"},
         ["WEAPON_G36KCMG"]={"G36K",0,0,"N/A","w_ar_g36k"}, 
         ["WEAPON_M4A1CMG"]={"M4 Carbine",0,0,"N/A","w_ar_m4a1"}, 
@@ -13,7 +13,7 @@ cfg.GunStores={
         ["WEAPON_STING"]={"Sting 9mm",0,0,"N/A","w_sb_sting"},
     },
     ["policeSmallArms"]={
-        ["_config"]={{vector3(461.53082275391,-979.35876464844,29.689668655396),vector3(1842.9096679688,3690.7692871094,33.267082214355),vector3(-441.31362915039,5986.71875,31.716171264648),vector3(-1104.5264892578,-821.70153808594,13.282785415649)},110,5,"MET Police Small Arms",{"police.onduty.permission"},false,true},
+        ["_config"]={{vector3(461.53082275391,-979.35876464844,29.689668655396),vector3(1842.9096679688,3690.7692871094,33.267082214355),vector3(-445.48034667969,6018.7172851562,36.995639801025),vector3(-441.31362915039,5986.71875,31.716171264648),vector3(-1104.5264892578,-821.70153808594,13.282785415649)},110,5,"MET Police Small Arms",{"police.onduty.permission"},false,true},
         ["WEAPON_FLASHLIGHT"]={"Flashlight",0,0,"N/A","w_me_flashlight"},
         ["WEAPON_PDGLOCK20VA5"]={"Glock",0,0,"N/A","w_pi_glock"},
         ["WEAPON_NIGHTSTICK"]={"Police Baton",0,0,"N/A","w_me_nightstick"},
@@ -61,7 +61,7 @@ cfg.GunStores={
         --w_ar_mosin,
     },
     ["Rebel"]={
-        ["_config"]={{vector3(1545.2521972656,6331.5615234375,23.07857131958),vector3(4925.6259765625,-5243.0908203125,1.524599313736)},110,5,"Rebel Gun Store",{"rebellicense.whitelisted"},true},
+        ["_config"]={{vector3(1545.2521972656,6331.5615234375,23.07857131958),vector3(4925.6259765625,-5243.0908203125,1.524599313736),vector3(1182.0738525391,-3267.5512695312,5.5286040306091)},110,5,"Rebel Gun Store",{"rebellicense.whitelisted"},true},
         ["GADGET_PARACHUTE"]={"Parachute",1000,0,"N/A","p_parachute_s"},
         ["WEAPON_AK47CURSEDANGEL"]={"AK-47 Cursed Angel",750000,0,"N/A","w_ar_ak47cursedangel"},
         ["WEAPON_AK47U"]={"AK-47U",700000,0,"N/A","w_ar_akm"},
@@ -77,7 +77,7 @@ cfg.GunStores={
         ["item|fillUpArmour"]={"Replenish Armour",100000,0,"N/A","prop_armour_pickup"},
     },
     ["LargeArmsDealer"]={
-        ["_config"]={{vector3(-1108.3199462891,4934.7392578125,217.35540771484),vector3(5065.6201171875,-4591.3857421875,1.8652405738831)},110,1,"Large Arms Dealer",{"gang.whitelisted"},false},
+        ["_config"]={{vector3(-1108.3199462891,4934.7392578125,217.35540771484),vector3(5065.6201171875,-4591.3857421875,1.8652405738831),vector3(696.26892089844,-1011.2525634766,22.793746948242)},110,1,"Large Arms Dealer",{"gang.whitelisted"},false},
         ["WEAPON_AK47U"]={"AK-47U",750000,0,"N/A","w_ar_goldak",nil,750000},
         ["WEAPON_NERFMOSIN"]={"Mosin Bolt-Action",900000,0,"N/A","w_ar_mosin",nil,900000},
         ["WEAPON_870SHOTGUN"]={"Fortnite Tac",900000,0,"N/A","w_sg_870shotgun",nil,900000},

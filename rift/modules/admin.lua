@@ -124,7 +124,6 @@ AddEventHandler("RIFT:spectatePlayer", function(id)
     local source = source
     local user_id = RIFT.getUserId(source)
     if RIFT.hasPermission(user_id, "admin.spectate") then
-        TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('spectate'))
         if playerssource ~= nil then
             spectatingPositions[user_id] = {coords = GetEntityCoords(GetPlayerPed(source)), bucket = GetPlayerRoutingBucket(source)}
             tRIFT.setBucket(source, GetPlayerRoutingBucket(playerssource))
@@ -193,7 +192,6 @@ AddEventHandler("RIFT:ForceClockOff", function(player_temp)
     local name = GetPlayerName(source)
     local player_perm = RIFT.getUserId(player_temp)
     if RIFT.hasPermission(user_id,"admin.tp2waypoint") then
-        TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('force-clock-off'))
         RIFT.removeAllJobs(player_perm)
         RIFTclient.notify(source,{'~g~User clocked off'})
         RIFTclient.notify(player_temp,{'~r~You have been force clocked off.'})
@@ -237,7 +235,6 @@ AddEventHandler("RIFT:AddGroup",function(perm, selgroup)
     local playerName = GetPlayerName(source)
     local povName = GetPlayerName(permsource)
     if RIFT.hasPermission(user_id, "group.add") then
-        TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('group'))
         if selgroup == "Founder" and not RIFT.hasPermission(user_id, "group.add.founder") then
             RIFTclient.notify(admin_temp, {"~r~You don't have permission to do that"}) 
         elseif selgroup == "Staff Manager" and not RIFT.hasPermission(user_id, "group.add.staffmanager") then
@@ -278,7 +275,6 @@ AddEventHandler("RIFT:RemoveGroup",function(perm, selgroup)
     local playerName = GetPlayerName(source)
     local povName = GetPlayerName(permsource)
     if RIFT.hasPermission(user_id, "group.remove") then
-        TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('group'))
         if selgroup == "Founder" and not RIFT.hasPermission(user_id, "group.remove.founder") then
             RIFTclient.notify(admin_temp, {"~r~You don't have permission to do that"}) 
         elseif selgroup == "Staff Manager" and not RIFT.hasPermission(user_id, "group.remove.staffmanager") then
@@ -464,7 +460,6 @@ AddEventHandler("RIFT:BanPlayer", function(PlayerID, Duration, BanMessage, BanPo
     local PlayerDiscordID = 0
     RIFT.prompt(source, "Extra Ban Information (Hidden)","",function(player, Evidence)
         if RIFT.hasPermission(AdminPermID, "admin.tickets") then
-            TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('ban-player'))
             if Evidence == "" then
                 RIFTclient.notify(source, {"~r~Evidence field was left empty, please fill this in via Discord."})
             end
@@ -537,7 +532,6 @@ AddEventHandler('RIFT:KickPlayer', function(admin, target, tempid)
     local admin_id = RIFT.getUserId(admin)
     local adminName = GetPlayerName(admin)
     if RIFT.hasPermission(admin_id, 'admin.kick') then
-        TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('kick-player'))
         RIFT.prompt(source,"Reason:","",function(source,Reason) 
             if Reason == "" then return end
             tRIFT.sendWebhook('kick-player', 'RIFT Kick Logs', "> Admin Name: **"..GetPlayerName(source).."**\n> Admin TempID: **"..source.."**\n> Admin PermID: **"..admin_id.."**\n> Player Name: **"..playerOtherName.."**\n> Player TempID: **"..target_id.."**\n> Player PermID: **"..target.."**\n> Kick Reason: **"..Reason.."**")
@@ -559,7 +553,6 @@ AddEventHandler('RIFT:RemoveWarning', function(warningid)
     local user_id = RIFT.getUserId(source)
     if user_id ~= nil then
         if RIFT.hasPermission(user_id, "admin.removewarn") then 
-            TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('remove-warning'))
             exports['ghmattimysql']:execute("SELECT * FROM rift_warnings WHERE warning_id = @warning_id", {warning_id = tonumber(warningid)}, function(result) 
                 if result ~= nil then
                     for k,v in pairs(result) do
@@ -587,7 +580,6 @@ AddEventHandler("RIFT:Unban",function()
     local admin_id = RIFT.getUserId(source)
     playerName = GetPlayerName(source)
     if RIFT.hasPermission(admin_id, 'admin.unban') then
-        TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('unban-player'))
         RIFT.prompt(source,"Perm ID:","",function(source,permid) 
             if permid == '' then return end
             permid = parseInt(permid)
@@ -637,7 +629,6 @@ AddEventHandler('RIFT:SlapPlayer', function(admin, target)
     local admin_id = RIFT.getUserId(admin)
     local player_id = RIFT.getUserId(target)
     if RIFT.hasPermission(admin_id, "admin.slap") then
-        TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('slap'))
         local playerName = GetPlayerName(source)
         local playerOtherName = GetPlayerName(target)
         tRIFT.sendWebhook('slap', 'RIFT Slap Logs', "> Admin Name: **"..GetPlayerName(source).."**\n> Admin TempID: **"..admin.."**\n> Admin PermID: **"..admin_id.."**\n> Player Name: **"..GetPlayerName(target).."**\n> Player TempID: **"..target.."**\n> Player PermID: **"..player_id.."**")
@@ -659,7 +650,6 @@ AddEventHandler('RIFT:RevivePlayer', function(admin, targetid, reviveall)
     local target = RIFT.getUserSource(player_id)
     if target ~= nil then
         if RIFT.hasPermission(admin_id, "admin.revive") then
-            TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('revive'))
             RIFTclient.RevivePlayer(target, {})
             RIFTclient.setPlayerCombatTimer(target, {0})
             if not reviveall then
@@ -970,7 +960,6 @@ AddEventHandler('RIFT:AddCar', function()
     local admin_id = RIFT.getUserId(source)
     local admin_name = GetPlayerName(source)
     if RIFT.hasPermission(admin_id, 'admin.addcar') then
-        TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('add-car'))
         RIFT.prompt(source,"Add to Perm ID:","",function(source, permid)
             if permid == "" then return end
             permid = tonumber(permid)
