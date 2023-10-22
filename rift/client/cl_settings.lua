@@ -3,7 +3,7 @@ RMenu.Add(
     "MainMenu",
     RageUI.CreateMenu(
         "",
-        "~b~RIFT Settings",
+        "~b~R~s~IFT Settings",
         tRIFT.getRageUIMenuWidth(),
         tRIFT.getRageUIMenuHeight(),
         "banners",
@@ -16,7 +16,7 @@ RMenu.Add(
     RageUI.CreateSubMenu(
         RMenu:Get("SettingsMenu", "MainMenu"),
         "",
-        "~b~Graphics Presets",
+        "~b~G~w~raphics Presets",
         tRIFT.getRageUIMenuWidth(),
         tRIFT.getRageUIMenuHeight(),
         "banners",
@@ -29,7 +29,20 @@ RMenu.Add(
     RageUI.CreateSubMenu(
         RMenu:Get("SettingsMenu", "MainMenu"),
         "",
-        "~b~Link Discord",
+        "~b~L~w~ink Discord",
+        tRIFT.getRageUIMenuWidth(),
+        tRIFT.getRageUIMenuHeight(),
+        "banners",
+        "settings"
+    )
+)
+RMenu.Add(
+    "SettingsMenu",
+    "compensation",
+    RageUI.CreateSubMenu(
+        RMenu:Get("SettingsMenu", "MainMenu"),
+        "",
+        "~b~C~w~ompensation",
         tRIFT.getRageUIMenuWidth(),
         tRIFT.getRageUIMenuHeight(),
         "banners",
@@ -42,7 +55,7 @@ RMenu.Add(
     RageUI.CreateSubMenu(
         RMenu:Get("SettingsMenu", "MainMenu"),
         "",
-        "~b~Kill Effects",
+        "~b~K~w~ill Effects",
         tRIFT.getRageUIMenuWidth(),
         tRIFT.getRageUIMenuHeight(),
         "banners",
@@ -55,7 +68,7 @@ RMenu.Add(
     RageUI.CreateSubMenu(
         RMenu:Get("SettingsMenu", "MainMenu"),
         "",
-        "~b~Blood Effects",
+        "~b~B~w~lood Effects",
         tRIFT.getRageUIMenuWidth(),
         tRIFT.getRageUIMenuHeight(),
         "banners",
@@ -68,7 +81,7 @@ RMenu.Add(
     RageUI.CreateSubMenu(
         RMenu:Get("SettingsMenu", "MainMenu"),
         "",
-        "~b~UI Related Settings",
+        "~b~U~w~I Related Settings",
         tRIFT.getRageUIMenuWidth(),
         tRIFT.getRageUIMenuHeight(),
         "banners",
@@ -81,7 +94,7 @@ RMenu.Add(
     RageUI.CreateSubMenu(
         RMenu:Get("SettingsMenu", "MainMenu"),
         "",
-        "~b~Weapon Related Settings",
+        "~b~W~w~eapon Related Settings",
         tRIFT.getRageUIMenuWidth(),
         tRIFT.getRageUIMenuHeight(),
         "banners",
@@ -92,9 +105,9 @@ RMenu.Add(
     "SettingsMenu",
     "weaponswhitelist",
     RageUI.CreateSubMenu(
-        RMenu:Get("SettingsMenu", "weaponsettings"),
+        RMenu:Get("SettingsMenu", "MainMenu"),
         "",
-        "~b~Custom Weapons Owned",
+        "~b~C~w~ustom Weapons Owned",
         tRIFT.getRageUIMenuWidth(),
         tRIFT.getRageUIMenuHeight(),
         "banners",
@@ -107,7 +120,7 @@ RMenu.Add(
     RageUI.CreateSubMenu(
         RMenu:Get("SettingsMenu", "weaponswhitelist"),
         "",
-        "~b~Generate Access Code",
+        "~b~G~w~enerate Access Code",
         tRIFT.getRageUIMenuWidth(),
         tRIFT.getRageUIMenuHeight(),
         "banners",
@@ -120,7 +133,7 @@ RMenu.Add(
     RageUI.CreateSubMenu(
         RMenu:Get("SettingsMenu", "generateaccesscode"),
         "",
-        "~b~View Whilelisted Users",
+        "~b~V~w~iew Whilelisted Users",
         tRIFT.getRageUIMenuWidth(),
         tRIFT.getRageUIMenuHeight(),
         "banners",
@@ -133,7 +146,7 @@ RMenu.Add(
     RageUI.CreateSubMenu(
         RMenu:Get("SettingsMenu", "MainMenu"),
         "",
-        "~b~Gang Related Settings",
+        "~b~G~w~ang Related Settings",
         tRIFT.getRageUIMenuWidth(),
         tRIFT.getRageUIMenuHeight(),
         "banners",
@@ -146,26 +159,13 @@ RMenu.Add(
     RageUI.CreateSubMenu(
         RMenu:Get("SettingsMenu", "MainMenu"),
         "",
-        "~b~Miscellaneous Settings",
+        "~b~M~w~iscellaneous Settings",
         tRIFT.getRageUIMenuWidth(),
         tRIFT.getRageUIMenuHeight(),
         "banners",
         "settings"
     )
 )
--- RMenu.Add(
---     "SettingsMenu",
---     "inventorysettings",
---     RageUI.CreateSubMenu(
---         RMenu:Get("SettingsMenu", "MainMenu"),
---         "",
---         "~b~RIFT Inventory Options",
---         tRIFT.getRageUIMenuWidth(),
---         tRIFT.getRageUIMenuHeight(),
---         "banners",
---         "settings"
---     )
--- )
 local a = module("cfg/cfg_settings")
 local b = 0
 local c = 0
@@ -175,168 +175,187 @@ local g = false
 local h = false
 local i = false
 local j = 1
-local s = {"1%"}
 local k = {30.0, 45.0, 60.0, 75.0, 90.0, 500.0}
 local l = {"30m", "45m", "60m", "75m", "90m", "500m"}
-local m = false
-local f = 3
+local m = 1
+local n = {"None", "1", "2", "3", "4", "5", "6", "7", "8"}
+local o = 1
+local p = {"10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"}
+local q = 3
+local DR = 3
+local r = 1
+local s = {"1%"}
+local t = 1
+local u = {"1%"}
+local v = {"Visible", "Muted", "Hidden"}
+local w = 1
+for x = 20, 500, 20 do
+    table.insert(s, string.format("%d%%", x))
+end
+for x = 5, 200, 5 do
+    table.insert(u, string.format("%d%%", x))
+end
 Citizen.CreateThread(
     function()
-        local o = GetResourceKvpString("rift_diagonalweapons") or "false"
-        if o == "false" then
+        local y = GetResourceKvpString("RIFT_diagonalweapons") or "false"
+        if y == "false" then
             b = false
             TriggerEvent("RIFT:setVerticalWeapons")
         else
             b = true
             TriggerEvent("RIFT:setDiagonalWeapons")
         end
-        local p = GetResourceKvpString("rift_frontars") or "false"
-        if p == "false" then
+        local z = GetResourceKvpString("RIFT_RIFTontars") or "false"
+        if z == "false" then
             c = false
             TriggerEvent("RIFT:setBackAR")
         else
             c = true
             TriggerEvent("RIFT:setFrontAR")
         end
-        local q = GetResourceKvpString("rift_hitmarkersounds") or "false"
-        if q == "false" then
+        local A = GetResourceKvpString("RIFT_hitmarkersounds") or "false"
+        if A == "false" then
             d = false
             TriggerEvent("RIFT:hsSoundsOff")
         else
             d = true
             TriggerEvent("RIFT:hsSoundsOn")
         end
-        local r = GetResourceKvpString("rift_reducedchatopacity") or "false"
-        if r == "false" then
+        local B = GetResourceKvpString("RIFT_reducedchatopacity") or "false"
+        if B == "false" then
             f = false
             TriggerEvent("RIFT:chatReduceOpacity", false)
         else
             f = true
             TriggerEvent("RIFT:chatReduceOpacity", true)
         end
-        local s = GetResourceKvpString("rift_hideeventannouncement") or "false"
-        if s == "false" then
+        local C = GetResourceKvpString("RIFT_hideeventannouncement") or "false"
+        if C == "false" then
             g = false
         else
             g = true
         end
-        local t = GetResourceKvpString("rift_healthpercentage") or "false"
-        if t == "false" then
+        local D = GetResourceKvpString("RIFT_healthpercentage") or "false"
+        if D == "false" then
             h = false
         else
             h = true
         end
-        local u = GetResourceKvpString("rift_flashlightnotaiming") or "false"
-        if u == "false" then
+        local E = GetResourceKvpString("RIFT_flashlightnotaiming") or "false"
+        if E == "false" then
             i = false
         else
             i = true
             SetFlashLightKeepOnWhileMoving(true)
         end
-        local v = GetResourceKvpInt("rift_gang_name_distance")
-        if v > 0 then
-            j = v
+        local F = GetResourceKvpInt("RIFT_gang_name_distance")
+        if F > 0 then
+            j = F
             if k[j] then
                 TriggerEvent("RIFT:setGangNameDistance", k[j])
             end
         end
-        local G = GetResourceKvpInt("rift_gang_ping_sound")
+        local G = GetResourceKvpInt("RIFT_gang_ping_sound")
         if G > 0 then
             m = G
         end
-        local H = GetResourceKvpInt("rift_gang_ping_volume")
+        local H = GetResourceKvpInt("RIFT_gang_ping_volume")
         if H > 0 then
             o = H
         end
-        local J = GetResourceKvpInt("rift_gang_position_x")
-        if J > 0 then
-            r = J
-            tRIFT.setGangUIXPos(s[r])
-        end
-        local K = GetResourceKvpInt("rift_gang_position_y")
-        if K > 0 then
-            t = K
-            tRIFT.setGangUIYPos(u[t])
-        end
-        local w = GetResourceKvpString("rift_gang_ping_sound") or "false"
-        if w == "false" then
-            m = false
-        else
-            m = true
-        end
-        local M = GetResourceKvpString("rift_gang_ping_minimap") or "false"
-        if M == "false" then
+        local N = GetResourceKvpString("RIFT_gang_ping_minimap") or "false"
+        if N == "false" then
             gangPingMinimap = false
         else
             gangPingMinimap = true
         end
-        local x = GetResourceKvpInt("rift_gang_ping_marker")
-        if x > 0 then
-            f = x
+        local I = GetResourceKvpInt("RIFT_gang_ping_marker")
+        if I > 0 then
+            q = I
+        end
+        local J = GetResourceKvpInt("RIFT_gang_position_x")
+        if J > 0 then
+            r = J
+            tRIFT.setGangUIXPos(s[r])
+        end
+        local K = GetResourceKvpInt("RIFT_gang_position_y")
+        if K > 0 then
+            t = K
+            tRIFT.setGangUIYPos(u[t])
+        end
+        local L = GetResourceKvpInt("RIFT_doorbell_index")
+        if L > 0 then
+            w = L
         end
     end
 )
 function tRIFT.setDiagonalWeaponSetting(i)
-    SetResourceKvp("rift_diagonalweapons", tostring(i))
+    SetResourceKvp("RIFT_diagonalweapons", tostring(i))
 end
 function tRIFT.setFrontARSetting(i)
-    SetResourceKvp("rift_frontars", tostring(i))
+    SetResourceKvp("RIFT_RIFTontars", tostring(i))
+end
+function tRIFT.setFrontSMGSetting(i)
+    SetResourceKvp("RIFT_frontsmg", tostring(i))
 end
 function tRIFT.setHitMarkerSetting(i)
-    SetResourceKvp("rift_hitmarkersounds", tostring(i))
+    SetResourceKvp("RIFT_hitmarkersounds", tostring(i))
 end
 function tRIFT.setCODHitMarkerSetting(i)
-    SetResourceKvp("rift_codhitmarkersounds", tostring(i))
+    SetResourceKvp("RIFT_codhitmarkersounds", tostring(i))
 end
-function tRIFT.setKillListSetting(u)
-    SetResourceKvp("rift_killlistsetting", tostring(u))
+function tRIFT.setKillListSetting(G)
+    SetResourceKvp("RIFT_killlistsetting", tostring(G))
 end
-function tRIFT.setOldKillfeed(u)
-    SetResourceKvp("rift_oldkillfeed", tostring(u))
+function tRIFT.setOldKillfeed(G)
+    SetResourceKvp("RIFT_oldkillfeed", tostring(G))
 end
 function tRIFT.setDamageIndicator(G)
-    SetResourceKvp("rift_damageindicator", tostring(G))
+    SetResourceKvp("RIFT_damageindicator", tostring(G))
 end
 function tRIFT.setDamageIndicatorColour(G)
-    SetResourceKvp("rift_damageindicatorcolour", tostring(G))
+    SetResourceKvp("RIFT_damageindicatorcolour", tostring(G))
 end
-function tRIFT.setReducedChatOpacity(q)
-    SetResourceKvp("rift_reducedchatopacity", tostring(q))
+function tRIFT.setReducedChatOpacity(A)
+    SetResourceKvp("RIFT_reducedchatopacity", tostring(A))
 end
-function tRIFT.setHideEventAnnouncementFlag(q)
-    SetResourceKvp("rift_hideeventannouncement", tostring(q))
+function tRIFT.setHideEventAnnouncementFlag(A)
+    SetResourceKvp("RIFT_hideeventannouncement", tostring(A))
 end
 function tRIFT.getHideEventAnnouncementFlag()
     return g
 end
-function tRIFT.setShowHealthPercentageFlag(q)
-    SetResourceKvp("rift_healthpercentage", tostring(q))
+function tRIFT.displayPingsOnMinimap()
+    return gangPingMinimap
 end
-function tRIFT.setFlashlightNotAimingFlag(x)
-    SetFlashLightKeepOnWhileMoving(x)
-    i = x
-    SetResourceKvp("rift_flashlightnotaiming", tostring(x))
+function tRIFT.setShowHealthPercentageFlag(A)
+    SetResourceKvp("RIFT_healthpercentage", tostring(A))
+end
+function tRIFT.setFlashlightNotAimingFlag(H)
+    SetFlashLightKeepOnWhileMoving(H)
+    i = H
+    SetResourceKvp("RIFT_flashlightnotaiming", tostring(H))
 end
 function tRIFT.getShowHealthPercentageFlag()
     return h
 end
-function tRIFT.setGangPingSoundEnabled(q)
-    SetResourceKvp("rift_gang_ping_sound", tostring(q))
-end
-function tRIFT.getGangPingSoundEnabled()
+function tRIFT.getGangPingSound()
     return m
 end
+function tRIFT.getGangPingVolume()
+    return o
+end
 function tRIFT.getGangPingMarkerIndex()
-    return f
+    return q
 end
-function tRIFT.displayPingsOnMinimap()
-    return gangPingMinimap
+function tRIFT.getDoorbellIndex()
+    return w
 end
-local function y(j)
-    RageUI.ActuallyCloseAll()
+local function M(j)
+    RageUI.CloseAll()
     RageUI.Visible(RMenu:Get("SettingsMenu", "settings"), j)
 end
-local z = {
+local x = {
     {"50%", 0.5},
     {"60%", 0.6},
     {"70%", 0.7},
@@ -347,67 +366,66 @@ local z = {
     {"200%", 2.0},
     {"1000%", 10.0}
 }
-local A = {"50%", "60%", "70%", "80%", "90%", "100%", "150%", "200%", "1000%"}
-local o = 6
-local p = {}
-local q
-local n = {"10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"}
-local r
-local s
-local t
+local N = {"50%", "60%", "70%", "80%", "90%", "100%", "150%", "200%", "1000%"}
+local y = 6
+local z = {}
+local A
+local B
+local C
+local D
 RegisterNetEvent(
     "RIFT:gotCustomWeaponsOwned",
-    function(u)
-        print("gotCustomWeaponsOwned", dump(u))
-        p = u
+    function(E)
+        print("gotCustomWeaponsOwned", dump(E))
+        z = E
     end
 )
 RegisterNetEvent(
     "RIFT:generatedAccessCode",
-    function(B)
-        print("got accessCode", B)
-        s = B
+    function(O)
+        print("got accessCode", O)
+        C = O
     end
 )
 RegisterNetEvent(
     "RIFT:getWhitelistedUsers",
-    function(v)
-        t = v
+    function(F)
+        D = F
     end
 )
-local w = {}
-local function x(C, D)
-    return w[C.name .. D.name]
+local G = {}
+local function H(I, J)
+    return G[I.name .. J.name]
 end
-local function E(C)
-    local F = false
-    for G, D in pairs(C.presets) do
-        if w[C.name .. D.name] then
-            F = true
-            w[C.name .. D.name] = nil
+local function K(I)
+    local L = false
+    for P, J in pairs(I.presets) do
+        if G[I.name .. J.name] then
+            L = true
+            G[I.name .. J.name] = nil
         end
     end
-    if F then
-        for H, I in pairs(C.default) do
-            SetVisualSettingFloat(H, I)
-        end
-    end
-end
-local function J(D)
-    for H, I in pairs(D.values) do
-        SetVisualSettingFloat(H, I)
-    end
-end
-local function K(C, D, L)
-    E(C)
     if L then
-        w[C.name .. D.name] = true
-        J(D)
+        for Q, R in pairs(I.default) do
+            SetVisualSettingFloat(Q, R)
+        end
     end
-    local M = json.encode(w)
-    SetResourceKvp("rift_graphic_presets", M)
 end
-local N = {
+local function S(J)
+    for Q, R in pairs(J.values) do
+        SetVisualSettingFloat(Q, R)
+    end
+end
+local function T(I, J, U)
+    K(I)
+    if U then
+        G[I.name .. J.name] = true
+        S(J)
+    end
+    local V = json.encode(G)
+    SetResourceKvp("RIFT_graphic_presets", V)
+end
+local W = {
     "0%",
     "5%",
     "10%",
@@ -430,7 +448,7 @@ local N = {
     "95%",
     "100%"
 }
-local O = {
+local X = {
     0.0,
     0.05,
     0.1,
@@ -453,7 +471,7 @@ local O = {
     0.95,
     1.0
 }
-local P = {
+local Y = {
     "25%",
     "50%",
     "75%",
@@ -471,8 +489,8 @@ local P = {
     "750%",
     "1000%"
 }
-local Q = {0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 7.5, 10.0}
-local R = {
+local Z = {0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 7.5, 10.0}
+local _ = {
     "0.1s",
     "0.2s",
     "0.3s",
@@ -488,8 +506,8 @@ local R = {
     "1.75s",
     "2.0s"
 }
-local S = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1250, 1500, 1750, 2000}
-local T = {
+local a0 = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1250, 1500, 1750, 2000}
+local a1 = {
     "Disabled",
     "Fireworks",
     "Celebration",
@@ -518,7 +536,7 @@ local T = {
     "Marbles",
     "Sparkles"
 }
-local U = {
+local a2 = {
     {"DISABLED", "DISABLED", 1.0},
     {"scr_indep_fireworks", "scr_indep_firework_shotburst", 0.2},
     {"scr_xs_celebration", "scr_xs_confetti_burst", 1.2},
@@ -540,14 +558,14 @@ local U = {
     {"des_fib_glass", "ent_ray_fbi2_window_break", 1.0},
     {"des_fib_glass", "ent_ray_fbi2_glass_drop", 2.5},
     {"des_stilthouse", "ent_ray_fam3_falling_leaves", 1.0},
-    {"des_stilthouse", "ent_ray_fam3_wood_frags", 1.0},
+    {"des_stilthouse", "ent_ray_fam3_wood_RIFTags", 1.0},
     {"des_train_crash", "ent_ray_train_smoke", 1.0},
     {"core", "ent_brk_banknotes", 2.0},
     {"core", "ent_dst_inflate_ball_clr", 1.0},
     {"core", "ent_dst_gen_gobstop", 1.0},
     {"core", "ent_sht_telegraph_pole", 1.0}
 }
-local V = {
+local a3 = {
     "Disabled",
     "BikerFilter",
     "CAMERA_BW",
@@ -559,7 +577,7 @@ local V = {
     "glasses_purple",
     "glasses_red",
     "helicamfirst",
-    "hud_def_Trevor",
+    "hud_def_TrRIFTr",
     "Kifflom",
     "LectroDark",
     "MP_corona_tournament_DOF",
@@ -567,7 +585,7 @@ local V = {
     "mugShot",
     "NG_filmic02",
     "REDMIST_blend",
-    "trevorspliff",
+    "trRIFTrspliff",
     "ufo",
     "underwater",
     "WATER_LAB",
@@ -575,7 +593,7 @@ local V = {
     "WATER_river",
     "WATER_salton"
 }
-local W = {
+local a4 = {
     lightning = false,
     pedFlash = false,
     pedFlashRGB = {11, 11, 11},
@@ -589,45 +607,45 @@ local W = {
     timecycle = 1,
     timecycleTime = 1
 }
-local X = 0
-local function Y()
-    local Z = json.encode(W)
-    SetResourceKvp("rift_kill_effects", Z)
+local a5 = 0
+local function a6()
+    local a7 = json.encode(a4)
+    SetResourceKvp("RIFT_kill_effects", a7)
 end
-local _ = {head = 1, body = 1, arms = 1, legs = 1}
-local function a0()
-    local a1 = json.encode(_)
-    SetResourceKvp("rift_blood_effects", a1)
+local a8 = {head = 1, body = 1, arms = 1, legs = 1}
+local function a9()
+    local aa = json.encode(a8)
+    SetResourceKvp("RIFT_blood_effects", aa)
 end
 Citizen.CreateThread(
     function()
         Citizen.Wait(1000)
-        local M = GetResourceKvpString("rift_graphic_presets")
-        if M and M ~= "" then
-            w = json.decode(M) or {}
+        local V = GetResourceKvpString("RIFT_graphic_presets")
+        if V and V ~= "" then
+            G = json.decode(V) or {}
         end
-        for G, C in pairs(a.presets) do
-            for G, D in pairs(C.presets) do
-                if x(C, D) then
-                    J(D)
+        for P, I in pairs(a.presets) do
+            for P, J in pairs(I.presets) do
+                if H(I, J) then
+                    S(J)
                 end
             end
         end
-        local Z = GetResourceKvpString("rift_kill_effects")
-        if Z and Z ~= "" then
-            local a2 = json.decode(Z)
-            for a3, L in pairs(a2) do
-                if W[a3] then
-                    W[a3] = L
+        local a7 = GetResourceKvpString("RIFT_kill_effects")
+        if a7 and a7 ~= "" then
+            local ab = json.decode(a7)
+            for ac, U in pairs(ab) do
+                if a4[ac] then
+                    a4[ac] = U
                 end
             end
         end
-        local a1 = GetResourceKvpString("rift_blood_effects")
-        if a1 and a1 ~= "" then
-            local a2 = json.decode(a1)
-            for a3, L in pairs(a2) do
-                if _[a3] then
-                    _[a3] = L
+        local aa = GetResourceKvpString("RIFT_blood_effects")
+        if aa and aa ~= "" then
+            local ab = json.decode(aa)
+            for ac, U in pairs(ab) do
+                if a8[ac] then
+                    a8[ac] = U
                 end
             end
         end
@@ -637,1046 +655,1101 @@ RageUI.CreateWhile(
     1.0,
     true,
     function()
-        if RageUI.Visible(RMenu:Get("SettingsMenu", "MainMenu")) then
-            RageUI.DrawContent(
-                {header = true, glare = false, instructionalButton = false},
-                function()
+        RageUI.IsVisible(
+            RMenu:Get("SettingsMenu", "MainMenu"),
+            true,
+            true,
+            true,
+            function()
+                RageUI.ButtonWithStyle(
+                    "Weapon Whitelists",
+                    "Sell your custom weapon whitelists here.",
+                    {RightLabel = "→→→"},
+                    true,
+                    function(ad, ae, af)
+                        if af then
+                            C = nil
+                            A = nil
+                            B = nil
+                            D = nil
+                            TriggerServerEvent("RIFT:getCustomWeaponsOwned")
+                        end
+                    end,
+                    RMenu:Get("SettingsMenu", "weaponswhitelist")
+                )
+                RageUI.ButtonWithStyle(
+                    "Weapon Options",
+                    "Toggle options to do with weapons and their placement.",
+                    {RightLabel = "→→→"},
+                    true,
+                    function(ad, ae, af)
+                    end,
+                    RMenu:Get("SettingsMenu", "weaponsettings")
+                )
+                if PlayerIsInGang then
                     RageUI.ButtonWithStyle(
-                        "UI Settings",
-                        "UI related settings.",
+                        "Gang Options",
+                        "Toggle settings which affect the gang UI.",
                         {RightLabel = "→→→"},
                         true,
-                        function(a4, a5, a6)
+                        function(ad, ae, af)
                         end,
-                        RMenu:Get("SettingsMenu", "uisettings")
+                        RMenu:Get("SettingsMenu", "gangsettings")
                     )
+                end
+                RageUI.ButtonWithStyle(
+                    "Graphic Presets",
+                    "View a list of preconfigured graphic settings.",
+                    {RightLabel = "→→→"},
+                    true,
+                    function()
+                    end,
+                    RMenu:Get("SettingsMenu", "graphicpresets")
+                )
+                RageUI.ButtonWithStyle(
+                    "Blood Effects",
+                    "Toggle effects that occur when damaging a player.",
+                    {RightLabel = "→→→"},
+                    true,
+                    function()
+                    end,
+                    RMenu:Get("SettingsMenu", "bloodeffects")
+                )
+                RageUI.ButtonWithStyle(
+                    "Kill Effects",
+                    "Toggle effects that occur on killing a player.",
+                    {RightLabel = "→→→"},
+                    true,
+                    function()
+                    end,
+                    RMenu:Get("SettingsMenu", "killeffects")
+                )
+                --RageUI.ButtonWithStyle("Inventory Customiser","Loads of settings to customize the players inventory.",{RightLabel = "→→→"},true,function(ad, ae, af)
+               -- end,RMenu:Get("inventorycolour", "main"))
+                RageUI.ButtonWithStyle(
+                    "UI Visibility",
+                    "Options to permanently disable certain UIs.",
+                    {RightLabel = "→→→"},
+                    true,
+                    function()
+                    end,
+                    RMenu:Get("uivisibility", "main")
+                )
+                RageUI.ButtonWithStyle(
+                    "Change Linked Discord",
+                    "Begins the process of changing your linked Discord. Your linked discord is used to sync roles with the server.",
+                    {RightLabel = "→→→"},
+                    true,
+                    function(a4, a5, a6)
+                        if a6 then
+                            TriggerServerEvent("RIFT:changeLinkedDiscord")
+                        end
+                    end
+                )
+                RageUI.ButtonWithStyle(
+                    "Compensation",
+                    "Vew any unclaimed compensations",
+                    {RightLabel = "→→→"},
+                    true,
+                    function()
+                    end,
+                    RMenu:Get("SettingsMenu", "compensation")
+                )
+                RageUI.ButtonWithStyle(
+                    "Miscellaneous",
+                    "Miscellaneous options.",
+                    {RightLabel = "→→→"},
+                    true,
+                    function(a4, a5, a6)
+                    end,
+                    RMenu:Get("SettingsMenu", "miscsettings")
+                )
+            end,
+            function()
+            end
+        )
+        RageUI.IsVisible(
+            RMenu:Get("SettingsMenu", "uisettings"),
+            true,
+            true,
+            true,
+            function()
+                RageUI.Checkbox(
+                    "Streetnames",
+                    "",
+                    tRIFT.isStreetnamesEnabled(),
+                    {Style = RageUI.CheckboxStyle.Car},
+                    function(ad, af, ae, ah)
+                    end,
+                    function()
+                        tRIFT.setStreetnamesEnabled(true)
+                    end,
+                    function()
+                        tRIFT.setStreetnamesEnabled(false)
+                    end
+                )
+                RageUI.Checkbox(
+                    "Compass",
+                    "",
+                    tRIFT.isCompassEnabled(),
+                    {Style = RageUI.CheckboxStyle.Car},
+                    function(ad, af, ae, ah)
+                    end,
+                    function()
+                        tRIFT.setCompassEnabled(true)
+                    end,
+                    function()
+                        tRIFT.setCompassEnabled(false)
+                    end
+                )
+                local function ai()
+                    tRIFT.hideUI()
+                    hideUI = true
+                end
+                local function aj()
+                    tRIFT.showUI()
+                    hideUI = false
+                end
+                RageUI.Checkbox(
+                    "Hide UI",
+                    "",
+                    hideUI,
+                    {Style = RageUI.CheckboxStyle.Car},
+                    function(ad, af, ae, ah)
+                    end,
+                    ai,
+                    aj
+                )
+                local function ai()
+                    tRIFT.toggleBlackBars()
+                    e = true
+                end
+                local function aj()
+                    tRIFT.toggleBlackBars()
+                    e = false
+                end
+                RageUI.Checkbox(
+                    "Cinematic Black Bars",
+                    "",
+                    e,
+                    {Style = RageUI.CheckboxStyle.Car},
+                    function(ad, af, ae, ah)
+                    end,
+                    ai,
+                    aj
+                )
+                RageUI.Checkbox(
+                    "Reduce Chat Opacity",
+                    "",
+                    f,
+                    {},
+                    function()
+                    end,
+                    function()
+                        f = true
+                        tRIFT.setReducedChatOpacity(true)
+                        TriggerEvent("RIFT:chatReduceOpacity", true)
+                    end,
+                    function()
+                        f = false
+                        tRIFT.setReducedChatOpacity(false)
+                        TriggerEvent("RIFT:chatReduceOpacity", false)
+                    end
+                )
+                RageUI.Checkbox(
+                    "Hide Event Announcements",
+                    "Hides the big messages across your screen. The event will still be shown in chat.",
+                    g,
+                    {},
+                    function()
+                    end,
+                    function()
+                        g = true
+                        tRIFT.setHideEventAnnouncementFlag(true)
+                    end,
+                    function()
+                        g = false
+                        tRIFT.setHideEventAnnouncementFlag(false)
+                    end
+                )
+                RageUI.Checkbox(
+                    "Show Health Percentage",
+                    "Displays the health and armour percentage on the bars.",
+                    h,
+                    {},
+                    function()
+                    end,
+                    function()
+                        h = true
+                        tRIFT.setShowHealthPercentageFlag(true)
+                    end,
+                    function()
+                        h = false
+                        tRIFT.setShowHealthPercentageFlag(false)
+                    end
+                )
+                RageUI.ButtonWithStyle(
+                    "Crosshair",
+                    "Create a custom built-in crosshair here.",
+                    {RightLabel = "→→→"},
+                    true,
+                    function(ad, ae, af)
+                    end,
+                    RMenu:Get("crosshair", "main")
+                )
+
+                RageUI.ButtonWithStyle(
+                    "Scope Settings",
+                    "Add a toggleable range finder when using sniper scopes.",
+                    {RightLabel = "→→→"},
+                    true,
+                    function(ad, ae, af)
+                    end,
+                    RMenu:Get("scope", "main")
+                )
+            end,
+            function()
+            end
+        )
+        RageUI.IsVisible(
+            RMenu:Get("SettingsMenu", "weaponsettings"),
+            true,
+            true,
+            true,
+            function()
+                local function ai()
+                    TriggerEvent("RIFT:setDiagonalWeapons")
+                    b = true
+                    tRIFT.setDiagonalWeaponSetting(b)
+                end
+                local function aj()
+                    TriggerEvent("RIFT:setVerticalWeapons")
+                    b = false
+                    tRIFT.setDiagonalWeaponSetting(b)
+                end
+                RageUI.Checkbox(
+                    "Enable Diagonal Weapons",
+                    "~g~This changes the way weapons look on your back from vertical to diagonal.",
+                    b,
+                    {Style = RageUI.CheckboxStyle.Car},
+                    function(ad, af, ae, ah)
+                    end,
+                    ai,
+                    aj
+                )
+                RageUI.Checkbox(
+                    "Enable Front Assault Rifles",
+                    "~g~This changes the positioning of Assault Rifles from back to front.",
+                    c,
+                    {Style = RageUI.CheckboxStyle.Car},
+                    function()
+                    end,
+                    function()
+                        TriggerEvent("RIFT:setFrontAR")
+                        c = true
+                        tRIFT.setFrontARSetting(c)
+                    end,
+                    function()
+                        TriggerEvent("RIFT:setBackAR")
+                        c = false
+                        tRIFT.setFrontARSetting(c)
+                    end
+                )
+                RageUI.Checkbox(
+                    "Enable Front SMGs",
+                    "~g~This changes the positioning of SMGs from back to front.",
+                    zz,
+                    {Style = RageUI.CheckboxStyle.Car},
+                    function()
+                    end,
+                    function()
+                        TriggerEvent("RIFT:setFrontSMG")
+                        zz = true
+                        tRIFT.setFrontSMGSetting(c)
+                    end,
+                    function()
+                        TriggerEvent("RIFT:setFrontSMG")
+                        zz = false
+                        tRIFT.setFrontSMGSetting(c)
+                    end
+                )
+                local function ai()
+                    TriggerEvent("RIFT:hsSoundsOn")
+                    d = true
+                    tRIFT.setHitMarkerSetting(d)
+                    tRIFT.notify("~y~Experimental Headshot sounds now set to " .. tostring(d))
+                end
+                local function aj()
+                    TriggerEvent("RIFT:hsSoundsOff")
+                    d = false
+                    tRIFT.setHitMarkerSetting(d)
+                    tRIFT.notify("~y~Experimental Headshot sounds now set to " .. tostring(d))
+                end
+                RageUI.Checkbox(
+                    "Enable Experimental Hit Marker Sounds",
+                    "~g~This adds 'hit marker' sounds when shooting another player, however it can be unreliable.",
+                    d,
+                    {Style = RageUI.CheckboxStyle.Car},
+                    function(ad, af, ae, ah)
+                    end,
+                    ai,
+                    aj
+                )
+                RageUI.Checkbox(
+                    "Keep Flashlight On Whilst Moving",
+                    "Makes weapon flashlight beams stay visible while moving.",
+                    i,
+                    {},
+                    function()
+                    end,
+                    function()
+                        tRIFT.setFlashlightNotAimingFlag(true)
+                    end,
+                    function()
+                        tRIFT.setFlashlightNotAimingFlag(false)
+                    end
+                )
+                RageUI.ButtonWithStyle(
+                    "Scope Settings",
+                    "Add a toggleable range finder when using sniper scopes.",
+                    {RightLabel = "→→→"},
+                    true,
+                    function(ad, ae, af)
+                    end,
+                    RMenu:Get("scope", "main")
+                )
+            end,
+            function()
+            end
+        )
+        RageUI.IsVisible(
+            RMenu:Get("SettingsMenu", "gangsettings"),
+            true,
+            true,
+            true,
+            function()
+                RageUI.List(
+                    "Gang Ping Marker",
+                    {"Only Text", "Marker", "Icon"},
+                    q,
+                    "Display of gang markers.",
+                    {},
+                    true,
+                    function(ak, al, am, an)
+                        if an ~= q then
+                            q = an
+                            SetResourceKvpInt("RIFT_gang_ping_marker", an)
+                        end
+                    end
+                )               
+                RageUI.List(
+                    "Gang Ping Volume",
+                    p,
+                    o,
+                    "Volume of the gang ping sound.",
+                    {},
+                    true,
+                    function(ak, al, am, an)
+                        if an ~= o then
+                            o = an
+                            SetResourceKvpInt("RIFT_gang_ping_volume", an)
+                        end
+                    end
+                )
+                RageUI.List(
+                    "Gang Ping Sound",
+                    n,
+                    m,
+                    "Sound to play when a gang member pings.",
+                    {},
+                    true,
+                    function(ak, al, am, an)
+                        if an ~= m then
+                            m = an
+                            SetResourceKvpInt("RIFT_gang_ping_sound", an)
+                        end
+                    end
+                )
+                RageUI.List(
+                    "Gang Name Distance",
+                    l,
+                    j,
+                    "Max distance to display gang member names.",
+                    {},
+                    true,
+                    function(ak, al, am, an)
+                        if an ~= j then
+                            j = an
+                            SetResourceKvpInt("RIFT_gang_name_distance", an)
+                            TriggerEvent("RIFT:setGangNameDistance", k[an])
+                        end
+                    end
+                )
+                RageUI.List(
+                    "Health UI X",
+                    s,
+                    r,
+                    "Change the X position of the gang health UI.",
+                    {},
+                    true,
+                    function(ak, al, am, an)
+                        if an ~= r then
+                            r = an
+                            tRIFT.setGangUIXPos(s[an])
+                            SetResourceKvpInt("RIFT_gang_position_x", r)
+                        end
+                    end
+                )
+                RageUI.List(
+                    "Health UI Y",
+                    u,
+                    t,
+                    "Change the Y position of the gang health UI.",
+                    {},
+                    true,
+                    function(ak, al, am, an)
+                        if an ~= t then
+                            t = an
+                            tRIFT.setGangUIYPos(u[an])
+                            SetResourceKvpInt("RIFT_gang_position_y", t)
+                        end
+                    end
+                )
+                RageUI.Checkbox(
+                    "Display Pings on Minimap",
+                    "Display gang pings on the minimap.",
+                    gangPingMinimap,
+                    {},
+                    function()
+                    end,
+                    function()
+                        gangPingMinimap = true
+                        SetResourceKvp("RIFT_gang_ping_minimap", tostring(true))
+                    end,
+                    function()
+                        gangPingMinimap = false
+                        SetResourceKvp("RIFT_gang_ping_minimap", tostring(false))
+                    end
+                )
+            end,
+            function()
+            end
+        )
+        RageUI.IsVisible(
+            RMenu:Get("SettingsMenu", "miscsettings"),
+            true,
+            true,
+            true,
+            function()
+                RageUI.ButtonWithStyle(
+                    "Store Inventory",
+                    "View your store inventory here.",
+                    {RightLabel = "→→→"},
+                    true,
+                    function()
+                    end,
+                    RMenu:Get("store", "mainmenu")
+                )
+                RageUI.ButtonWithStyle("Inventory Colour", "Set inventorys small bar colour with RGB values.", {RightLabel = "→→→"}, true, function(ad, ae, af)
+                    if af then
+                        tRIFT.setInventoryColour()
+                    end
+                end)
+                RageUI.List(
+                    "Doorbell Status",
+                    v,
+                    w,
+                    "Change the status of the doorbell.",
+                    {},
+                    true,
+                    function(ak, al, am, an)
+                        if an ~= w then
+                            w = an
+                            SetResourceKvpInt("RIFT_doorbell_index", an)
+                        end
+                    end
+                )
+            end,
+            function()
+            end
+        )
+        RageUI.IsVisible(
+            RMenu:Get("SettingsMenu", "changediscord"),
+            true,
+            true,
+            true,
+            function()
+                RageUI.Separator("~g~A code has been messaged to the Discord account")
+                RageUI.Separator("-----")
+                RageUI.Separator("~y~If you have not received a message verify:")
+                RageUI.Separator("~y~1. Your direct messages are open.")
+                RageUI.Separator("~y~2. The account you provided was correct.")
+                RageUI.Separator("-----")
+                RageUI.ButtonWithStyle(
+                    "Enter Code",
+                    "",
+                    {RightLabel = "→→→"},
+                    true,
+                    function(ad, ae, af)
+                        if af then
+                            TriggerServerEvent("RIFT:enterDiscordCode")
+                        end
+                    end
+                )
+            end,
+            function()
+            end
+        )
+        RageUI.IsVisible(
+            RMenu:Get("SettingsMenu", "weaponswhitelist"),
+            true,
+            true,
+            true,
+            function()
+                for ao, ap in pairs(z) do
                     RageUI.ButtonWithStyle(
-                        "Weapon Settings",
-                        "Weapon related settings.",
+                        ap,
+                        "",
                         {RightLabel = "→→→"},
                         true,
-                        function(a4, a5, a6)
+                        function(ad, ae, af)
+                            if af then
+                                A = ap
+                                B = ao
+                                D = nil
+                            end
                         end,
-                        RMenu:Get("SettingsMenu", "weaponsettings")
+                        RMenu:Get("SettingsMenu", "generateaccesscode")
                     )
-                    if PlayerIsInGang then
+                end
+                RageUI.Separator("~y~If you do not see your custom weapon here.")
+                RageUI.Separator("~y~Please open a ticket on our support discord.")
+            end,
+            function()
+            end
+        )
+        RageUI.IsVisible(
+            RMenu:Get("SettingsMenu", "generateaccesscode"),
+            true,
+            true,
+            true,
+            function()
+                RageUI.Separator("~g~Weapon Whitelist for " .. A)
+                RageUI.Separator("How it works:")
+                RageUI.Separator("You generate an access code for the player who wishes")
+                RageUI.Separator("to purchase your custom weapon whitelist, which they ")
+                RageUI.Separator("then enter on the store to receive their automated")
+                RageUI.Separator("weapon whitelist.")
+                RageUI.ButtonWithStyle(
+                    "Create access code",
+                    "",
+                    {RightLabel = "→→→"},
+                    true,
+                    function(ad, ae, af)
+                        if af then
+                            local aq = getGenericTextInput("User ID of player purchasing your weapon whitelist.")
+                            if tonumber(aq) then
+                                aq = tonumber(aq)
+                                if aq > 0 then
+                                    print("selling", B, "to", aq)
+                                    TriggerServerEvent("RIFT:generateWeaponAccessCode", B, aq)
+                                end
+                            end
+                        end
+                    end
+                )
+                RageUI.ButtonWithStyle(
+                    "View whitelisted users",
+                    "",
+                    {RightLabel = "→→→"},
+                    true,
+                    function(ad, ae, af)
+                        if af then
+                            TriggerServerEvent("RIFT:requestWhitelistedUsers", B)
+                        end
+                    end,
+                    RMenu:Get("SettingsMenu", "viewwhitelisted")
+                )
+                if C then
+                    RageUI.Separator("~g~Access code generated: " .. C)
+                end
+            end,
+            function()
+            end
+        )
+        RageUI.IsVisible(
+            RMenu:Get("SettingsMenu", "viewwhitelisted"),
+            true,
+            true,
+            true,
+            function()
+                RageUI.Separator("~g~Whitelisted users for " .. A)
+                if D == nil then
+                    RageUI.Separator("~r~Requesting whitelisted users...")
+                else
+                    for ar, as in pairs(D) do
                         RageUI.ButtonWithStyle(
-                            "Gang Settings",
-                            "Gang related settings.",
-                            {RightLabel = "→→→"},
+                            "ID: " .. tostring(ar),
+                            "",
+                            {RightLabel = as},
                             true,
-                            function(a4, a5, a6)
-                            end,
-                            RMenu:Get("SettingsMenu", "gangsettings")
+                            function()
+                            end
                         )
                     end
-                    RageUI.ButtonWithStyle(
-                        "Misc Settings",
-                        "Miscellaneous settings.",
-                        {RightLabel = "→→→"},
-                        true,
-                        function(a4, a5, a6)
-                        end,
-                        RMenu:Get("SettingsMenu", "miscsettings")
-                    )
-                    -- RageUI.ButtonWithStyle(
-                    --     "Inventory Options",
-                    --     "Inventory Customiser Options.",
-                    --     {RightLabel = "→→→"},
-                    --     true,
-                    --     function(a4, a5, a6)
-                    --     end,
-                    --     RMenu:Get("SettingsMenu", "inventorysettings")
-                    -- )
-                    RageUI.ButtonWithStyle(
-                        "Graphic Presets",
-                        "View a list of preconfigured graphic settings.",
-                        {RightLabel = "→→→"},
-                        true,
-                        function()
-                        end,
-                        RMenu:Get("SettingsMenu", "graphicpresets")
-                    )
-                    RageUI.ButtonWithStyle(
-                        "Kill Effects",
-                        "Toggle effects that occur on killing a player.",
-                        {RightLabel = "→→→"},
-                        true,
-                        function()
-                        end,
-                        RMenu:Get("SettingsMenu", "killeffects")
-                    )
-                    RageUI.ButtonWithStyle(
-                        "Blood Effects",
-                        "Toggle effects that occur when damaging a player.",
-                        {RightLabel = "→→→"},
-                        true,
-                        function()
-                        end,
-                        RMenu:Get("SettingsMenu", "bloodeffects")
-                    )
                 end
-            )
-        end
-        if RageUI.Visible(RMenu:Get("SettingsMenu", "uisettings")) then
-            RageUI.DrawContent(
-                {header = true, glare = false, instructionalButton = false},
-                function()
-                    -- RageUI.ButtonWithStyle("Store Inventory","View your store inventory here.",{RightLabel = "→→→"},true,function()
-                    -- end,RMenu:Get("store", "MainMenu"))
-                    RageUI.Checkbox(
-                        "Streetnames",
-                        "",
-                        tRIFT.isStreetnamesEnabled(),
-                        {RightBadge = RageUI.CheckboxStyle.Car},
-                        function(a4, a6, a5, a8)
-                        end,
-                        function()
-                            tRIFT.setStreetnamesEnabled(true)
-                        end,
-                        function()
-                            tRIFT.setStreetnamesEnabled(false)
-                        end
-                    )
-                    RageUI.Checkbox(
-                        "Compass",
-                        "",
-                        tRIFT.isCompassEnabled(),
-                        {RightBadge = RageUI.CheckboxStyle.Car},
-                        function(a4, a6, a5, a8)
-                        end,
-                        function()
-                            tRIFT.setCompassEnabled(true)
-                        end,
-                        function()
-                            tRIFT.setCompassEnabled(false)
-                        end
-                    )
-                    local function a9()
-                        tRIFT.hideUI()
-                        hideUI = true
-                    end
-                    local function aa()
-                        tRIFT.showUI()
-                        hideUI = false
-                    end
-                    RageUI.Checkbox(
-                        "Hide UI",
-                        "",
-                        hideUI,
-                        {RightBadge = RageUI.CheckboxStyle.Car},
-                        function(a4, a6, a5, a8)
-                        end,
-                        a9,
-                        aa
-                    )
-                    local function a9()
-                        tRIFT.toggleBlackBars()
-                        e = true
-                    end
-                    local function aa()
-                        tRIFT.toggleBlackBars()
-                        e = false
-                    end
-                    RageUI.Checkbox(
-                        "Cinematic Black Bars",
-                        "",
-                        e,
-                        {RightBadge = RageUI.CheckboxStyle.Car},
-                        function(a4, a6, a5, a8)
-                        end,
-                        a9,
-                        aa
-                    )
-                    RageUI.Checkbox(
-                        "Reduce Chat Opacity",
-                        "",
-                        f,
-                        {},
-                        function()
-                        end,
-                        function()
-                            f = true
-                            tRIFT.setReducedChatOpacity(true)
-                            TriggerEvent("RIFT:chatReduceOpacity", true)
-                        end,
-                        function()
-                            f = false
-                            tRIFT.setReducedChatOpacity(false)
-                            TriggerEvent("RIFT:chatReduceOpacity", false)
-                        end
-                    )
-                    RageUI.Checkbox(
-                        "Show Health Percentage",
-                        "Displays the health and armour percentage on the bars.",
-                        h,
-                        {},
-                        function()
-                        end,
-                        function()
-                            h = true
-                            tRIFT.setShowHealthPercentageFlag(true)
-                        end,
-                        function()
-                            h = false
-                            tRIFT.setShowHealthPercentageFlag(false)
-                        end
-                    )
-                    RageUI.ButtonWithStyle(
-                        "Crosshair",
-                        "Create a custom built-in crosshair here.",
-                        {RightLabel = "→→→"},
-                        true,
-                        function(a4, a5, a6)
-                        end,
-                        RMenu:Get("crosshair", "main")
-                    )               
-                    RageUI.ButtonWithStyle(
-                        "Scope Settings",
-                        "Add a toggleable range finder when using sniper scopes.",
-                        {RightLabel = "→→→"},
-                        true,
-                        function(a4, a5, a6)
-                        end,
-                        RMenu:Get("scope", "main")
-                    )
-                end
-            )
-        end
-        if RageUI.Visible(RMenu:Get("SettingsMenu", "weaponsettings")) then
-            RageUI.DrawContent(
-                {header = true, glare = false, instructionalButton = false},
-                function()
-                    local function a9()
-                        TriggerEvent("RIFT:setDiagonalWeapons")
-                        b = true
-                        tRIFT.setDiagonalWeaponSetting(b)
-                    end
-                    local function aa()
-                        TriggerEvent("RIFT:setVerticalWeapons")
-                        b = false
-                        tRIFT.setDiagonalWeaponSetting(b)
-                    end
-                    RageUI.Checkbox(
-                        "Enable Diagonal Weapons",
-                        "~g~This changes the way weapons look on your back from vertical to diagonal.",
-                        b,
-                        {RightBadge = RageUI.CheckboxStyle.Car},
-                        function(a4, a6, a5, a8)
-                        end,
-                        a9,
-                        aa
-                    )
-                    RageUI.Checkbox(
-                        "Enable Front Assault Rifles",
-                        "~g~This changes the positioning of Assault Rifles from back to front.",
-                        c,
-                        {RightBadge = RageUI.CheckboxStyle.Car},
-                        function()
-                        end,
-                        function()
-                            TriggerEvent("RIFT:setFrontAR")
-                            c = true
-                            tRIFT.setFrontARSetting(c)
-                        end,
-                        function()
-                            TriggerEvent("RIFT:setBackAR")
-                            c = false
-                            tRIFT.setFrontARSetting(c)
-                        end
-                    )
-                    local function a9()
-                        TriggerEvent("RIFT:hsSoundsOn")
-                        d = true
-                        tRIFT.setHitMarkerSetting(d)
-                        tRIFT.notify("~y~Experimental Headshot sounds now set to " .. tostring(d))
-                    end
-                    local function aa()
-                        TriggerEvent("RIFT:hsSoundsOff")
-                        d = false
-                        tRIFT.setHitMarkerSetting(d)
-                        tRIFT.notify("~y~Experimental Headshot sounds now set to " .. tostring(d))
-                    end
-                    RageUI.Checkbox(
-                        "Enable Experimental Hit Marker Sounds",
-                        "~y~This adds 'hit marker' sounds when shooting another player, however it can be unreliable.",
-                        d,
-                        {RightBadge = RageUI.CheckboxStyle.Car},
-                        function(a4, a6, a5, a8)
-                        end,
-                        a9,
-                        aa
-                    )
-                    RageUI.ButtonWithStyle(
-                        "Weapon Whitelists",
-                        "Sell your custom weapon whitelists here.",
-                        {RightLabel = "→→→"},
-                        true,
-                        function(a4, a5, a6)
-                            if a6 then
-                                s = nil
-                                q = nil
-                                r = nil
-                                t = nil
-                                TriggerServerEvent("RIFT:getCustomWeaponsOwned")
+            end,
+            function()
+            end
+        )
+        RageUI.IsVisible(
+            RMenu:Get("SettingsMenu", "compensation"),
+            true,
+            true,
+            true,
+            function()
+                --RageUI.Separator("~r~Request Data...") -- this needs to flash up for a split second before always
+                RageUI.Separator("~r~No compensation available.")
+            end,
+            function()
+            end
+        )
+        RageUI.IsVisible(
+            RMenu:Get("SettingsMenu", "graphicpresets"),
+            true,
+            true,
+            true,
+            function()
+                RageUI.List(
+                    "Render Distance Modifier",
+                    N,
+                    y,
+                    "~g~Lowering this will increase your FPS!",
+                    {},
+                    true,
+                    function(ad, ae, af, ag)
+                        y = ag
+                    end,
+                    function()
+                    end,
+                    nil
+                )
+                for P, I in pairs(a.presets) do
+                    RageUI.Separator(I.name)
+                    for P, J in pairs(I.presets) do
+                        local at = H(I, J)
+                        RageUI.Checkbox(
+                            J.name,
+                            nil,
+                            at,
+                            {},
+                            function(ad, af, ae, ah)
+                                if ah ~= at then
+                                    T(I, J, ah)
+                                end
+                            end,
+                            function()
+                            end,
+                            function()
                             end
-                        end,
-                        RMenu:Get("SettingsMenu", "weaponswhitelist")
-                    )
+                        )
+                    end
                 end
-            )
-        end
-        if RageUI.Visible(RMenu:Get("SettingsMenu", "gangsettings")) then
-            RageUI.DrawContent(
-                {header = true, glare = false, instructionalButton = false},
-                function()
+            end,
+            function()
+            end
+        )
+        RageUI.IsVisible(
+            RMenu:Get("SettingsMenu", "killeffects"),
+            true,
+            true,
+            true,
+            function()
+                RageUI.Checkbox(
+                    "Create Lightning",
+                    "",
+                    a4.lightning,
+                    {},
+                    function(ad, af, ae, ah)
+                        if af then
+                            a4.lightning = ah
+                            a6()
+                        end
+                    end
+                )
+                RageUI.Checkbox(
+                    "Ped Flash",
+                    "",
+                    a4.pedFlash,
+                    {},
+                    function(ad, af, ae, ah)
+                        if af then
+                            a4.pedFlash = ah
+                            a6()
+                        end
+                    end
+                )
+                if a4.pedFlash then
                     RageUI.List(
-                        "Gang Ping Marker ",
-                        {"Only Text", "Marker", "Icon"},
-                        f,
-                        "Max distance to display gang member names.",
+                        "Ped Flash Red",
+                        W,
+                        a4.pedFlashRGB[1],
+                        "",
                         {},
-                        true,
-                        function(ab, ac, ad, ae)
-                            if ae ~= f then
-                                f = ae
-                                SetResourceKvpInt("rift_gang_ping_marker", ae)
+                        a4.pedFlash,
+                        function(ad, ae, af, ag)
+                            if ae and a4.pedFlashRGB[1] ~= ag then
+                                a4.pedFlashRGB[1] = ag
+                                a6()
                             end
+                        end,
+                        function()
                         end
                     )
                     RageUI.List(
-                        "Gang Ping Volume",
-                        n,
-                        o,
-                        "Volume of the gang ping sound.",
+                        "Ped Flash Green",
+                        W,
+                        a4.pedFlashRGB[2],
+                        "",
                         {},
-                        true,
-                        function(ak, al, am, an)
-                            if an ~= o then
-                                o = an
-                                SetResourceKvpInt("rift_gang_ping_volume", an)
+                        a4.pedFlash,
+                        function(ad, ae, af, ag)
+                            if ae and a4.pedFlashRGB[2] ~= ag then
+                                a4.pedFlashRGB[2] = ag
+                                a6()
                             end
-                        end
-                    )
-                    RageUI.Checkbox(
-                        "Gang Ping Sound",
-                        "Play a sound when a gang member pings.",
-                        m,
-                        {},
-                        function()
                         end,
                         function()
-                            m = true
-                            tRIFT.setGangPingSoundEnabled(true)
-                        end,
-                        function()
-                            m = false
-                            tRIFT.setGangPingSoundEnabled(false)
-                        end
-                    )
-                    -- RageUI.List(
-                    --     "Health UI X",
-                    --     s,
-                    --     r,
-                    --     "Change the X position of the gang health UI.",
-                    --     {},
-                    --     true,
-                    --     function(ak, al, am, an)
-                    --         if an ~= r then
-                    --             r = an
-                    --             tRIFT.setGangUIXPos(s[an])
-                    --             SetResourceKvpInt("rift_gang_position_x", r)
-                    --         end
-                    --     end
-                    -- )
-                    -- RageUI.List(
-                    --     "Health UI Y",
-                    --     u,
-                    --     t,
-                    --     "Change the Y position of the gang health UI.",
-                    --     {},
-                    --     true,
-                    --     function(ak, al, am, an)
-                    --         if an ~= t then
-                    --             t = an
-                    --             tRIFT.setGangUIYPos(u[an])
-                    --             SetResourceKvpInt("rift_gang_position_y", t)
-                    --         end
-                    --     end
-                    -- )
-                    RageUI.Checkbox(
-                        "Display Pings on Minimap",
-                        "Display gang pings on the minimap.",
-                        gangPingMinimap,
-                        {},
-                        function()
-                        end,
-                        function()
-                            gangPingMinimap = true
-                            SetResourceKvp("rift_gang_ping_minimap", tostring(true))
-                        end,
-                        function()
-                            gangPingMinimap = false
-                            SetResourceKvp("rift_gang_ping_minimap", tostring(false))
                         end
                     )
                     RageUI.List(
-                        "Gang Name Distance",
-                        l,
-                        j,
-                        "Max distance to display gang member names.",
-                        {},
-                        true,
-                        function(ab, ac, ad, ae)
-                            if ae ~= j then
-                                j = ae
-                                SetResourceKvpInt("rift_gang_name_distance", ae)
-                                TriggerEvent("RIFT:setGangNameDistance", k[ae])
-                            end
-                        end
-                    )
-                end
-            )
-        end
-        if RageUI.Visible(RMenu:Get("SettingsMenu", "miscsettings")) then
-            RageUI.DrawContent(
-                {header = true, glare = false, instructionalButton = false},
-                function()
-                    RageUI.Checkbox(
-                        "Keep Flashlight On Whilst Moving",
-                        "Makes weapon flashlight beams stay visible while moving.",
-                        i,
-                        {},
-                        function()
-                        end,
-                        function()
-                            tRIFT.setFlashlightNotAimingFlag(true)
-                        end,
-                        function()
-                            tRIFT.setFlashlightNotAimingFlag(false)
-                        end
-                    )
-                    RageUI.ButtonWithStyle(
-                        "Change Linked Discord",
-                        "Begins the process of changing your linked Discord. Your linked discord is used to sync roles with the server.",
-                        {RightLabel = "→→→"},
-                        true,
-                        function(a4, a5, a6)
-                            if a6 then
-                                TriggerServerEvent("RIFT:changeLinkedDiscord")
-                            end
-                        end
-                    )
-                end
-            )
-        end
-        -- if RageUI.Visible(RMenu:Get("SettingsMenu", "inventorysettings")) then
-        --     RageUI.DrawContent(
-        --         {header = true, glare = false, instructionalButton = false},
-        --         function()
-        --             RageUI.ButtonWithStyle("Change Inventory Text","Set inventory text with a custom value.",{RightLabel = "→→→"},true,function(ad, ae, af)
-        --                 if af then
-        --                     tRIFT.setInventoryText()
-        --                 end
-        --             end)
-        --             RageUI.Separator("~y~Ramdomizer options")
-        --             RageUI.ButtonWithStyle("Randomize All Colours","Set all with a randomized Colour with custom RGB values.",{RightLabel = "→→→"},true,function(ad, ae, af)
-        --                 if af then
-        --                     tRIFT.setRandomInventoryColour()
-        --                 end
-        --             end)
-        --             RageUI.Separator("~y~Colour related options")
-        --             RageUI.ButtonWithStyle("Change Small Bar Colour","Set Small Bar Colour with custom RGB values.",{RightLabel = "→→→"},true,function(ad, ae, af)
-        --                 if af then
-        --                     tRIFT.setSmallBarColour()
-        --                 end
-        --             end)
-        --             RageUI.ButtonWithStyle("Change Header Colour","Set Header Colour with custom RGB values.",{RightLabel = "→→→"},true,function(ad, ae, af)
-        --                 if af then
-        --                     tRIFT.setHeaderColour()
-        --                 end
-        --             end)
-        --             RageUI.ButtonWithStyle("Change Background Colour","Set Background Colour with custom RGB values.",{RightLabel = "→→→"},true,function(ad, ae, af)
-        --                 if af then
-        --                     tRIFT.setBackgroundColour()
-        --                 end
-        --             end)
-        --             RageUI.Separator("~y~Reset Options")
-        --             RageUI.ButtonWithStyle("Reset All Colours","Reset Background, small bar & header to defualt RGB values.",{RightLabel = "→→→"},true,function(ad, ae, af)
-        --                 if af then
-        --                     tRIFT.ResetHeaderColour()
-        --                     tRIFT.ResetBackgroundColour()
-        --                     tRIFT.ResetSmallBarColour()
-        --                     tRIFT.notify("~g~Succesfully reset all colours to defualt.")
-        --                 end
-        --             end)
-        --             RageUI.ButtonWithStyle("Reset Inventory Text","Reset inventory text to defualt values.",{RightLabel = "→→→"},true,function(ad, ae, af)
-        --                 if af then
-        --                     tRIFT.ResetInventoryText()
-        --                     tRIFT.notify("~g~Inventory text reset.")
-        --                 end
-        --             end)
-        --             RageUI.ButtonWithStyle("Reset Small Bar Colour","Reset Small Bar Colour to defualt RGB values.",{RightLabel = "→→→"},true,function(ad, ae, af)
-        --                 if af then
-        --                 tRIFT.ResetSmallBarColour()
-        --                 tRIFT.notify("~g~Inventory Small Bar colour reset.")
-        --                 end
-        --             end)
-        --             RageUI.ButtonWithStyle("Reset Header Colour","Reset Header to defualt RGB values.",{RightLabel = "→→→"},true,function(ad, ae, af)
-        --                 if af then
-        --                     tRIFT.ResetHeaderColour()
-        --                 end
-        --             end)
-        --             RageUI.ButtonWithStyle("Reset Background Colour","Reset Background to defualt RGB values.",{RightLabel = "→→→"},true,function(ad, ae, af)
-        --                 if af then
-        --                     tRIFT.ResetBackgroundColour()
-        --                     tRIFT.notify("~g~Inventory background colour reset.")
-        --                 end
-        --             end)
-        --         end
-        --     )
-        -- end
-        if RageUI.Visible(RMenu:Get("SettingsMenu", "changediscord")) then
-            RageUI.DrawContent(
-                {header = true, glare = false, instructionalButton = false},
-                function()
-                    RageUI.Separator("~g~A code has been messaged to the Discord account")
-                    RageUI.Separator("-----")
-                    RageUI.Separator("~y~If you have not received a message verify:")
-                    RageUI.Separator("~y~1. Your direct messages are open.")
-                    RageUI.Separator("~y~2. The account you provided was correct.")
-                    RageUI.Separator("-----")
-                    RageUI.ButtonWithStyle(
-                        "Enter Code",
-                        "",
-                        {RightLabel = "→→→"},
-                        true,
-                        function(a4, a5, a6)
-                            if a6 then
-                                TriggerServerEvent("RIFT:enterDiscordCode")
-                            end
-                        end
-                    )
-                end
-            )
-        end
-        if RageUI.Visible(RMenu:Get("SettingsMenu", "weaponswhitelist")) then
-            RageUI.DrawContent(
-                {header = true, glare = false, instructionalButton = false},
-                function()
-                    for af, ag in pairs(p) do
-                        RageUI.ButtonWithStyle(
-                            ag,
-                            "",
-                            {RightLabel = "→→→"},
-                            true,
-                            function(a4, a5, a6)
-                                if a6 then
-                                    q = ag
-                                    r = af
-                                    t = nil
-                                end
-                            end,
-                            RMenu:Get("SettingsMenu", "generateaccesscode")
-                        )
-                    end
-                    RageUI.Separator("~y~If you do not see your custom weapon here.")
-                    RageUI.Separator("~y~Please open a ticket on our support discord.")
-                end
-            )
-        end
-        if RageUI.Visible(RMenu:Get("SettingsMenu", "generateaccesscode")) then
-            RageUI.DrawContent(
-                {header = true, glare = false, instructionalButton = false},
-                function()
-                    RageUI.Separator("~g~Weapon Whitelist for " .. q)
-                    RageUI.Separator("How it works:")
-                    RageUI.Separator("You generate an access code for the player who wishes")
-                    RageUI.Separator("to purchase your custom weapon whitelist, which they ")
-                    RageUI.Separator("then enter on the store to receive their automated")
-                    RageUI.Separator("weapon whitelist.")
-                    RageUI.ButtonWithStyle(
-                        "Create access code",
-                        "",
-                        {RightLabel = "→→→"},
-                        true,
-                        function(a4, a5, a6)
-                            if a6 then
-                                local ah = getGenericTextInput("User ID of player purchasing your weapon whitelist.")
-                                if tonumber(ah) then
-                                    ah = tonumber(ah)
-                                    if ah > 0 then
-                                        print("selling", r, "to", ah)
-                                        TriggerServerEvent("RIFT:generateWeaponAccessCode", r, ah)
-                                    end
-                                end
-                            end
-                        end
-                    )
-                    RageUI.ButtonWithStyle(
-                        "View whitelisted users",
-                        "",
-                        {RightLabel = "→→→"},
-                        true,
-                        function(a4, a5, a6)
-                            if a6 then
-                                TriggerServerEvent("RIFT:requestWhitelistedUsers", r)
-                            end
-                        end,
-                        RMenu:Get("SettingsMenu", "viewwhitelisted")
-                    )
-                    if s then
-                        RageUI.Separator("~g~Access code generated: " .. s)
-                    end
-                end
-            )
-        end
-        if RageUI.Visible(RMenu:Get("SettingsMenu", "viewwhitelisted")) then
-            RageUI.DrawContent(
-                {header = true, glare = false, instructionalButton = false},
-                function()
-                    RageUI.Separator("~g~Whitelisted users for " .. q)
-                    if t == nil then
-                        RageUI.Separator("~g~Requesting whitelisted users...")
-                    else
-                        for ai, aj in pairs(t) do
-                            RageUI.ButtonWithStyle(
-                                "ID: " .. tostring(ai),
-                                "",
-                                {RightLabel = aj},
-                                true,
-                                function()
-                                end
-                            )
-                        end
-                    end
-                end
-            )
-        end
-        if RageUI.Visible(RMenu:Get("SettingsMenu", "graphicpresets")) then
-            RageUI.DrawContent(
-                {header = true, glare = false, instructionalButton = false},
-                function()
-                    for G, C in pairs(a.presets) do
-                        RageUI.Separator(C.name)
-                        for G, D in pairs(C.presets) do
-                            local ak = x(C, D)
-                            RageUI.Checkbox(
-                                D.name,
-                                nil,
-                                ak,
-                                {},
-                                function(a4, a6, a5, a8)
-                                    if a8 ~= ak then
-                                        K(C, D, a8)
-                                    end
-                                end,
-                                function()
-                                end,
-                                function()
-                                end
-                            )
-                        end
-                    end
-                end
-            )
-        end
-        if RageUI.Visible(RMenu:Get("SettingsMenu", "killeffects")) then
-            RageUI.DrawContent(
-                {header = true, glare = false, instructionalButton = false},
-                function()
-                    RageUI.Checkbox(
-                        "Create Lightning",
-                        "",
-                        W.lightning,
-                        {},
-                        function(a4, a6, a5, a8)
-                            if a6 then
-                                W.lightning = a8
-                                Y()
-                            end
-                        end
-                    )
-                    RageUI.Checkbox(
-                        "Ped Flash",
-                        "",
-                        W.pedFlash,
-                        {},
-                        function(a4, a6, a5, a8)
-                            if a6 then
-                                W.pedFlash = a8
-                                Y()
-                            end
-                        end
-                    )
-                    if W.pedFlash then
-                        RageUI.List(
-                            "Ped Flash Red",
-                            N,
-                            W.pedFlashRGB[1],
-                            "",
-                            {},
-                            W.pedFlash,
-                            function(a4, a5, a6, a7)
-                                if a5 and W.pedFlashRGB[1] ~= a7 then
-                                    W.pedFlashRGB[1] = a7
-                                    Y()
-                                end
-                            end,
-                            function()
-                            end
-                        )
-                        RageUI.List(
-                            "Ped Flash Green",
-                            N,
-                            W.pedFlashRGB[2],
-                            "",
-                            {},
-                            W.pedFlash,
-                            function(a4, a5, a6, a7)
-                                if a5 and W.pedFlashRGB[2] ~= a7 then
-                                    W.pedFlashRGB[2] = a7
-                                    Y()
-                                end
-                            end,
-                            function()
-                            end
-                        )
-                        RageUI.List(
-                            "Ped Flash Blue",
-                            N,
-                            W.pedFlashRGB[3],
-                            "",
-                            {},
-                            W.pedFlash,
-                            function(a4, a5, a6, a7)
-                                if a5 and W.pedFlashRGB[3] ~= a7 then
-                                    W.pedFlashRGB[3] = a7
-                                    Y()
-                                end
-                            end,
-                            function()
-                            end
-                        )
-                        RageUI.List(
-                            "Ped Flash Intensity",
-                            P,
-                            W.pedFlashIntensity,
-                            "",
-                            {},
-                            W.pedFlash,
-                            function(a4, a5, a6, a7)
-                                if a5 and W.pedFlashIntensity ~= a7 then
-                                    W.pedFlashIntensity = a7
-                                    Y()
-                                end
-                            end,
-                            function()
-                            end
-                        )
-                        RageUI.List(
-                            "Ped Flash Time",
-                            R,
-                            W.pedFlashTime,
-                            "",
-                            {},
-                            W.pedFlash,
-                            function(a4, a5, a6, a7)
-                                if a5 and W.pedFlashTime ~= a7 then
-                                    W.pedFlashTime = a7
-                                    Y()
-                                end
-                            end,
-                            function()
-                            end
-                        )
-                    end
-                    RageUI.Checkbox(
-                        "Screen Flash",
-                        "",
-                        W.screenFlash,
-                        {},
-                        function(a4, a6, a5, a8)
-                            if a6 then
-                                W.screenFlash = a8
-                                Y()
-                            end
-                        end
-                    )
-                    if W.screenFlash then
-                        RageUI.List(
-                            "Screen Flash Red",
-                            N,
-                            W.screenFlashRGB[1],
-                            "",
-                            {},
-                            W.screenFlash,
-                            function(a4, a5, a6, a7)
-                                if a5 and W.screenFlashRGB[1] ~= a7 then
-                                    W.screenFlashRGB[1] = a7
-                                    Y()
-                                end
-                            end,
-                            function()
-                            end
-                        )
-                        RageUI.List(
-                            "Screen Flash Green",
-                            N,
-                            W.screenFlashRGB[2],
-                            "",
-                            {},
-                            W.screenFlash,
-                            function(a4, a5, a6, a7)
-                                if a5 and W.screenFlashRGB[2] ~= a7 then
-                                    W.screenFlashRGB[2] = a7
-                                    Y()
-                                end
-                            end,
-                            function()
-                            end
-                        )
-                        RageUI.List(
-                            "Screen Flash Blue",
-                            N,
-                            W.screenFlashRGB[3],
-                            "",
-                            {},
-                            W.screenFlash,
-                            function(a4, a5, a6, a7)
-                                if a5 and W.screenFlashRGB[3] ~= a7 then
-                                    W.screenFlashRGB[3] = a7
-                                    Y()
-                                end
-                            end,
-                            function()
-                            end
-                        )
-                        RageUI.List(
-                            "Screen Flash Intensity",
-                            P,
-                            W.screenFlashIntensity,
-                            "",
-                            {},
-                            W.screenFlash,
-                            function(a4, a5, a6, a7)
-                                if a5 and W.screenFlashIntensity ~= a7 then
-                                    W.screenFlashIntensity = a7
-                                    Y()
-                                end
-                            end,
-                            function()
-                            end
-                        )
-                        RageUI.List(
-                            "Screen Flash Time",
-                            R,
-                            W.screenFlashTime,
-                            "",
-                            {},
-                            W.screenFlash,
-                            function(a4, a5, a6, a7)
-                                if a5 and W.screenFlashTime ~= a7 then
-                                    W.screenFlashTime = a7
-                                    Y()
-                                end
-                            end,
-                            function()
-                            end
-                        )
-                    end
-                    RageUI.List(
-                        "Timecycle Flash",
-                        V,
-                        W.timecycle,
+                        "Ped Flash Blue",
+                        W,
+                        a4.pedFlashRGB[3],
                         "",
                         {},
-                        true,
-                        function(a4, a5, a6, a7)
-                            if a5 and W.timecycle ~= a7 then
-                                W.timecycle = a7
-                                Y()
+                        a4.pedFlash,
+                        function(ad, ae, af, ag)
+                            if ae and a4.pedFlashRGB[3] ~= ag then
+                                a4.pedFlashRGB[3] = ag
+                                a6()
                             end
                         end,
                         function()
                         end
                     )
-                    if W.timecycle ~= 1 then
-                        RageUI.List(
-                            "Timecycle Flash Time",
-                            R,
-                            W.timecycleTime,
-                            "",
-                            {},
-                            true,
-                            function(a4, a5, a6, a7)
-                                if a5 and W.timecycleTime ~= a7 then
-                                    W.timecycleTime = a7
-                                    Y()
-                                end
-                            end,
-                            function()
-                            end
-                        )
-                    end
                     RageUI.List(
-                        "~y~Particles~w~",
-                        T,
-                        W.particle,
+                        "Ped Flash Intensity",
+                        Y,
+                        a4.pedFlashIntensity,
                         "",
                         {},
-                        true,
-                        function(a4, a5, a6, a7)
-                            if a5 and W.particle ~= a7 then
-                                if not tRIFT.isPlusClub() and not tRIFT.isPlatClub() then
-                                    notify(
-                                        "~y~You need to be a subscriber of RIFT Plus or RIFT Platinum to use this feature."
-                                    )
-                                    notify("~y~Available @ store.riftstudios.uk")
-                                end
-                                W.particle = a7
-                                Y()
+                        a4.pedFlash,
+                        function(ad, ae, af, ag)
+                            if ae and a4.pedFlashIntensity ~= ag then
+                                a4.pedFlashIntensity = ag
+                                a6()
                             end
                         end,
                         function()
                         end
                     )
-                    local al = 0
-                    if W.lightning then
-                        al = math.max(al, 1000)
-                    end
-                    if W.pedFlash then
-                        al = math.max(al, S[W.pedFlashTime])
-                    end
-                    if W.screenFlash then
-                        al = math.max(al, S[W.screenFlashTime])
-                    end
-                    if W.timecycleTime ~= 1 then
-                        al = math.max(al, O[W.timecycleTime])
-                    end
-                    if W.particle ~= 1 then
-                        al = math.max(al, 1000)
-                    end
-                    if GetGameTimer() - X > al + 1000 then
-                        tRIFT.addKillEffect(PlayerPedId(), true)
-                        X = GetGameTimer()
-                    end
-                    DrawAdvancedTextNoOutline(0.59, 0.9, 0.005, 0.0028, 1.5, "PREVIEW", 255, 0, 0, 255, 2, 0)
-                end
-            )
-        end
-        if RageUI.Visible(RMenu:Get("SettingsMenu", "bloodeffects")) then
-            RageUI.DrawContent(
-                {header = true, glare = false, instructionalButton = false},
-                function()
                     RageUI.List(
-                        "~y~Head",
-                        T,
-                        _.head,
-                        "Effect that displays when you hit the head.",
+                        "Ped Flash Time",
+                        _,
+                        a4.pedFlashTime,
+                        "",
                         {},
-                        true,
-                        function(a4, a5, a6, a7)
-                            if _.head ~= a7 then
-                                if not tRIFT.isPlusClub() and not tRIFT.isPlatClub() then
-                                    notify(
-                                        "~y~You need to be a subscriber of RIFT Plus or RIFT Platinum to use this feature."
-                                    )
-                                    notify("~y~Available @ store.riftstudios.uk")
-                                end
-                                _.head = a7
-                                a0()
+                        a4.pedFlash,
+                        function(ad, ae, af, ag)
+                            if ae and a4.pedFlashTime ~= ag then
+                                a4.pedFlashTime = ag
+                                a6()
                             end
-                            if a6 then
-                                tRIFT.addBloodEffect("head", 0x796E, PlayerPedId())
-                            end
-                        end
-                    )
-                    RageUI.List(
-                        "~y~Body",
-                        T,
-                        _.body,
-                        "Effect that displays when you hit the body.",
-                        {},
-                        true,
-                        function(a4, a5, a6, a7)
-                            if _.body ~= a7 then
-                                if not tRIFT.isPlusClub() and not tRIFT.isPlatClub() then
-                                    notify(
-                                        "~y~You need to be a subscriber of RIFT Plus or RIFT Platinum to use this feature."
-                                    )
-                                    notify("~y~Available @ store.riftstudios.uk")
-                                end
-                                _.body = a7
-                                a0()
-                            end
-                            if a6 then
-                                tRIFT.addBloodEffect("body", 0x0, PlayerPedId())
-                            end
-                        end
-                    )
-                    RageUI.List(
-                        "~y~Arms",
-                        T,
-                        _.arms,
-                        "Effect that displays when you hit the arms.",
-                        {},
-                        true,
-                        function(a4, a5, a6, a7)
-                            if _.arms ~= a7 then
-                                if not tRIFT.isPlusClub() and not tRIFT.isPlatClub() then
-                                    notify(
-                                        "~y~You need to be a subscriber of RIFT Plus or RIFT Platinum to use this feature."
-                                    )
-                                    notify("~y~Available @ store.riftstudios.uk")
-                                end
-                                _.arms = a7
-                                a0()
-                            end
-                            if a6 then
-                                tRIFT.addBloodEffect("arms", 0xBB0, PlayerPedId())
-                                tRIFT.addBloodEffect("arms", 0x58B7, PlayerPedId())
-                            end
-                        end
-                    )
-                    RageUI.List(
-                        "~y~Legs",
-                        T,
-                        _.legs,
-                        "Effect that displays when you hit the legs.",
-                        {},
-                        true,
-                        function(a4, a5, a6, a7)
-                            if _.legs ~= a7 then
-                                if not tRIFT.isPlusClub() and not tRIFT.isPlatClub() then
-                                    notify(
-                                        "~y~You need to be a subscriber of RIFT Plus or RIFT Platinum to use this feature."
-                                    )
-                                    notify("~y~Available @ store.riftstudios.uk")
-                                end
-                                _.legs = a7
-                                a0()
-                            end
-                            if a6 then
-                                tRIFT.addBloodEffect("legs", 0x3FCF, PlayerPedId())
-                                tRIFT.addBloodEffect("legs", 0xB3FE, PlayerPedId())
-                            end
+                        end,
+                        function()
                         end
                     )
                 end
-            )
-        end
+                RageUI.Checkbox(
+                    "Screen Flash",
+                    "",
+                    a4.screenFlash,
+                    {},
+                    function(ad, af, ae, ah)
+                        if af then
+                            a4.screenFlash = ah
+                            a6()
+                        end
+                    end
+                )
+                if a4.screenFlash then
+                    RageUI.List(
+                        "Screen Flash Red",
+                        W,
+                        a4.screenFlashRGB[1],
+                        "",
+                        {},
+                        a4.screenFlash,
+                        function(ad, ae, af, ag)
+                            if ae and a4.screenFlashRGB[1] ~= ag then
+                                a4.screenFlashRGB[1] = ag
+                                a6()
+                            end
+                        end,
+                        function()
+                        end
+                    )
+                    RageUI.List(
+                        "Screen Flash Green",
+                        W,
+                        a4.screenFlashRGB[2],
+                        "",
+                        {},
+                        a4.screenFlash,
+                        function(ad, ae, af, ag)
+                            if ae and a4.screenFlashRGB[2] ~= ag then
+                                a4.screenFlashRGB[2] = ag
+                                a6()
+                            end
+                        end,
+                        function()
+                        end
+                    )
+                    RageUI.List(
+                        "Screen Flash Blue",
+                        W,
+                        a4.screenFlashRGB[3],
+                        "",
+                        {},
+                        a4.screenFlash,
+                        function(ad, ae, af, ag)
+                            if ae and a4.screenFlashRGB[3] ~= ag then
+                                a4.screenFlashRGB[3] = ag
+                                a6()
+                            end
+                        end,
+                        function()
+                        end
+                    )
+                    RageUI.List(
+                        "Screen Flash Intensity",
+                        Y,
+                        a4.screenFlashIntensity,
+                        "",
+                        {},
+                        a4.screenFlash,
+                        function(ad, ae, af, ag)
+                            if ae and a4.screenFlashIntensity ~= ag then
+                                a4.screenFlashIntensity = ag
+                                a6()
+                            end
+                        end,
+                        function()
+                        end
+                    )
+                    RageUI.List(
+                        "Screen Flash Time",
+                        _,
+                        a4.screenFlashTime,
+                        "",
+                        {},
+                        a4.screenFlash,
+                        function(ad, ae, af, ag)
+                            if ae and a4.screenFlashTime ~= ag then
+                                a4.screenFlashTime = ag
+                                a6()
+                            end
+                        end,
+                        function()
+                        end
+                    )
+                end
+                RageUI.List(
+                    "Timecycle Flash",
+                    a3,
+                    a4.timecycle,
+                    "",
+                    {},
+                    true,
+                    function(ad, ae, af, ag)
+                        if ae and a4.timecycle ~= ag then
+                            a4.timecycle = ag
+                            a6()
+                        end
+                    end,
+                    function()
+                    end
+                )
+                if a4.timecycle ~= 1 then
+                    RageUI.List(
+                        "Timecycle Flash Time",
+                        _,
+                        a4.timecycleTime,
+                        "",
+                        {},
+                        true,
+                        function(ad, ae, af, ag)
+                            if ae and a4.timecycleTime ~= ag then
+                                a4.timecycleTime = ag
+                                a6()
+                            end
+                        end,
+                        function()
+                        end
+                    )
+                end
+                RageUI.List(
+                    "~y~Particles~w~",
+                    a1,
+                    a4.particle,
+                    "",
+                    {},
+                    true,
+                    function(ad, ae, af, ag)
+                        if ae and a4.particle ~= ag then
+                            if not tRIFT.isPlusClub() and not tRIFT.isPlatClub() then
+                                notify("~y~You need to be a subscriber of RIFT Plus or RIFT Platinum to use this feature.")
+                                notify("~y~Available @ store.RIFTstudios.uk")
+                            end
+                            a4.particle = ag
+                            a6()
+                        end
+                    end,
+                    function()
+                    end
+                )
+                local au = 0
+                if a4.lightning then
+                    au = math.max(au, 1000)
+                end
+                if a4.pedFlash then
+                    au = math.max(au, a0[a4.pedFlashTime])
+                end
+                if a4.screenFlash then
+                    au = math.max(au, a0[a4.screenFlashTime])
+                end
+                if a4.timecycleTime ~= 1 then
+                    au = math.max(au, X[a4.timecycleTime])
+                end
+                if a4.particle ~= 1 then
+                    au = math.max(au, 1000)
+                end
+                if GetGameTimer() - a5 > au + 1000 then
+                    tRIFT.addKillEffect(PlayerPedId(), true)
+                    a5 = GetGameTimer()
+                end
+                DrawAdvancedTextNoOutline(0.59, 0.9, 0.005, 0.0028, 1.5, "PREVIEW", 255, 0, 0, 255, 2, 0)
+            end,
+            function()
+            end
+        )
+        RageUI.IsVisible(
+            RMenu:Get("SettingsMenu", "bloodeffects"),
+            true,
+            true,
+            true,
+            function()
+                RageUI.List(
+                    "~y~Head",
+                    a1,
+                    a8.head,
+                    "Effect that displays when you hit the head.",
+                    {},
+                    true,
+                    function(ad, ae, af, ag)
+                        if a8.head ~= ag then
+                            if not tRIFT.isPlusClub() and not tRIFT.isPlatClub() then
+                                notify("~y~You need to be a subscriber of RIFT Plus or RIFT Platinum to use this feature.")
+                                notify("~y~Available @ store.RIFTstudios.uk")
+                            end
+                            a8.head = ag
+                            a9()
+                        end
+                        if af then
+                            tRIFT.addBloodEffect("head", 0x796E, PlayerPedId())
+                        end
+                    end
+                )
+                RageUI.List(
+                    "~y~Body",
+                    a1,
+                    a8.body,
+                    "Effect that displays when you hit the body.",
+                    {},
+                    true,
+                    function(ad, ae, af, ag)
+                        if a8.body ~= ag then
+                            if not tRIFT.isPlusClub() and not tRIFT.isPlatClub() then
+                                notify("~y~You need to be a subscriber of RIFT Plus or RIFT Platinum to use this feature.")
+                                notify("~y~Available @ store.RIFTstudios.uk")
+                            end
+                            a8.body = ag
+                            a9()
+                        end
+                        if af then
+                            tRIFT.addBloodEffect("body", 0x0, PlayerPedId())
+                        end
+                    end
+                )
+                RageUI.List(
+                    "~y~Arms",
+                    a1,
+                    a8.arms,
+                    "Effect that displays when you hit the arms.",
+                    {},
+                    true,
+                    function(ad, ae, af, ag)
+                        if a8.arms ~= ag then
+                            if not tRIFT.isPlusClub() and not tRIFT.isPlatClub() then
+                                notify("~y~You need to be a subscriber of RIFT Plus or RIFT Platinum to use this feature.")
+                                notify("~y~Available @ store.RIFTstudios.uk")
+                            end
+                            a8.arms = ag
+                            a9()
+                        end
+                        if af then
+                            tRIFT.addBloodEffect("arms", 0xBB0, PlayerPedId())
+                            tRIFT.addBloodEffect("arms", 0x58B7, PlayerPedId())
+                        end
+                    end
+                )
+                RageUI.List(
+                    "~y~Legs",
+                    a1,
+                    a8.legs,
+                    "Effect that displays when you hit the legs.",
+                    {},
+                    true,
+                    function(ad, ae, af, ag)
+                        if a8.legs ~= ag then
+                            if not tRIFT.isPlusClub() and not tRIFT.isPlatClub() then
+                                notify("~y~You need to be a subscriber of RIFT Plus or RIFT Platinum to use this feature.")
+                                notify("~y~Available @ store.RIFTstudios.uk")
+                            end
+                            a8.legs = ag
+                            a9()
+                        end
+                        if af then
+                            tRIFT.addBloodEffect("legs", 0x3FCF, PlayerPedId())
+                            tRIFT.addBloodEffect("legs", 0xB3FE, PlayerPedId())
+                        end
+                    end
+                )
+            end,
+            function()
+            end
+        )
     end
 )
 RegisterNetEvent("RIFT:OpenSettingsMenu")
-AddEventHandler(
-    "RIFT:OpenSettingsMenu",
-    function(am)
-        if not am then
-            RageUI.Visible(RMenu:Get("SettingsMenu", "MainMenu"), true)
-        end
+AddEventHandler("RIFT:OpenSettingsMenu", function(av)
+    if not av then
+        RageUI.Visible(RMenu:Get("SettingsMenu", "MainMenu"), true)
+       -- drawNativeNotification("Press ~INPUT_REPLAY_START_STOP_RECORDING_SECONDARY~ to toggle the Settings Menu.")
     end
-)
+end)
+
 RegisterCommand(
     "opensettingsmenu",
     function()
@@ -1687,7 +1760,7 @@ RegisterKeyMapping("opensettingsmenu", "Opens the Settings menu", "keyboard", "F
 Citizen.CreateThread(
     function()
         while true do
-            OverrideLodscaleThisFrame(z[o][2])
+            OverrideLodscaleThisFrame(x[y][2])
             if not (tRIFT.getStaffLevel() > 0) then
                 if IsUsingKeyboard(2) and IsControlJustPressed(1, 289) then
                     RageUI.Visible(
@@ -1710,104 +1783,104 @@ AddEventHandler(
     function()
     end
 )
-local function ac(ad)
-    local ae = GetEntityCoords(ad, true)
-    local an = GetGameTimer()
-    local ao = math.floor(O[W.pedFlashRGB[1]] * 255)
-    local ap = math.floor(O[W.pedFlashRGB[2]] * 255)
-    local aq = math.floor(O[W.pedFlashRGB[3]] * 255)
-    local ar = Q[W.pedFlashIntensity]
-    local as = S[W.pedFlashTime]
-    while GetGameTimer() - an < as do
-        local at = (as - (GetGameTimer() - an)) / as
-        local au = ar * 25.0 * at
-        DrawLightWithRange(ae.x, ae.y, ae.z + 1.0, ao, ap, aq, 50.0, au)
+local function al(am)
+    local an = GetEntityCoords(am, true)
+    local aw = GetGameTimer()
+    local ax = math.floor(X[a4.pedFlashRGB[1]] * 255)
+    local ay = math.floor(X[a4.pedFlashRGB[2]] * 255)
+    local az = math.floor(X[a4.pedFlashRGB[3]] * 255)
+    local aA = Z[a4.pedFlashIntensity]
+    local aB = a0[a4.pedFlashTime]
+    while GetGameTimer() - aw < aB do
+        local aC = (aB - (GetGameTimer() - aw)) / aB
+        local aD = aA * 25.0 * aC
+        DrawLightWithRange(an.x, an.y, an.z + 1.0, ax, ay, az, 50.0, aD)
         Citizen.Wait(0)
     end
 end
-local function av()
-    local an = GetGameTimer()
-    local ao = math.floor(O[W.screenFlashRGB[1]] * 255)
-    local ap = math.floor(O[W.screenFlashRGB[2]] * 255)
-    local aq = math.floor(O[W.screenFlashRGB[3]] * 255)
-    local ar = Q[W.screenFlashIntensity]
-    local as = S[W.screenFlashTime]
-    while GetGameTimer() - an < as do
-        local at = (as - (GetGameTimer() - an)) / as
-        local au = math.floor(25.5 * ar * at)
-        DrawRect(0.0, 0.0, 2.0, 2.0, ao, ap, aq, au)
+local function aE()
+    local aw = GetGameTimer()
+    local ax = math.floor(X[a4.screenFlashRGB[1]] * 255)
+    local ay = math.floor(X[a4.screenFlashRGB[2]] * 255)
+    local az = math.floor(X[a4.screenFlashRGB[3]] * 255)
+    local aA = Z[a4.screenFlashIntensity]
+    local aB = a0[a4.screenFlashTime]
+    while GetGameTimer() - aw < aB do
+        local aC = (aB - (GetGameTimer() - aw)) / aB
+        local aD = math.floor(25.5 * aA * aC)
+        DrawRect(0.0, 0.0, 2.0, 2.0, ax, ay, az, aD)
         Citizen.Wait(0)
     end
 end
-local function aw(ad)
-    local ae = GetEntityCoords(ad, true)
-    local ax = U[W.particle]
-    tRIFT.loadPtfx(ax[1])
-    UseParticleFxAsset(ax[1])
-    StartParticleFxNonLoopedAtCoord(ax[2], ae.x, ae.y, ae.z, 0.0, 0.0, 0.0, ax[3], false, false, false)
-    RemoveNamedPtfxAsset(ax[1])
+local function aF(am)
+    local an = GetEntityCoords(am, true)
+    local aG = a2[a4.particle]
+    tRIFT.loadPtfx(aG[1])
+    UseParticleFxAsset(aG[1])
+    StartParticleFxNonLoopedAtCoord(aG[2], an.x, an.y, an.z, 0.0, 0.0, 0.0, aG[3], false, false, false)
+    RemoveNamedPtfxAsset(aG[1])
 end
-local function ay()
-    local an = GetGameTimer()
-    local as = S[W.timecycleTime]
-    SetTimecycleModifier(V[W.timecycle])
-    while GetGameTimer() - an < as do
-        local at = (as - (GetGameTimer() - an)) / as
-        SetTimecycleModifierStrength(1.0 * at)
+local function aH()
+    local aw = GetGameTimer()
+    local aB = a0[a4.timecycleTime]
+    SetTimecycleModifier(a3[a4.timecycle])
+    while GetGameTimer() - aw < aB do
+        local aC = (aB - (GetGameTimer() - aw)) / aB
+        SetTimecycleModifierStrength(1.0 * aC)
         Citizen.Wait(0)
     end
     ClearTimecycleModifier()
 end
-function tRIFT.addKillEffect(az, aA)
-    if W.lightning then
+function tRIFT.addKillEffect(aI, aJ)
+    if a4.lightning then
         ForceLightningFlash()
     end
-    if W.pedFlash then
+    if a4.pedFlash then
         Citizen.CreateThreadNow(
             function()
-                ac(az)
+                al(aI)
             end
         )
     end
-    if W.screenFlash then
+    if a4.screenFlash then
         Citizen.CreateThreadNow(
             function()
-                av()
+                aE()
             end
         )
     end
-    if W.particle ~= 1 and (tRIFT.isPlatClub() or aA) then
+    if a4.particle ~= 1 and (tRIFT.isPlatClub() or aJ) then
         Citizen.CreateThreadNow(
             function()
-                aw(az)
+                aF(aI)
             end
         )
     end
-    if W.timecycle ~= 1 then
+    if a4.timecycle ~= 1 then
         Citizen.CreateThreadNow(
             function()
-                ay()
+                aH()
             end
         )
     end
 end
-function tRIFT.addBloodEffect(aB, aC, ad)
-    local aD = _[aB]
-    if aD > 1 then
-        local ax = U[aD]
-        tRIFT.loadPtfx(ax[1])
-        UseParticleFxAsset(ax[1])
-        StartParticleFxNonLoopedOnPedBone(ax[2], ad, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, aC, ax[3], false, false, false)
-        RemoveNamedPtfxAsset(ax[1])
+function tRIFT.addBloodEffect(aK, aL, am)
+    local aM = a8[aK]
+    if aM > 1 then
+        local aG = a2[aM]
+        tRIFT.loadPtfx(aG[1])
+        UseParticleFxAsset(aG[1])
+        StartParticleFxNonLoopedOnPedBone(aG[2], am, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, aL, aG[3], false, false, false)
+        RemoveNamedPtfxAsset(aG[1])
     end
 end
 AddEventHandler(
     "RIFT:onPlayerKilledPed",
-    function(aE)
-        tRIFT.addKillEffect(aE, false)
+    function(aN)
+        tRIFT.addKillEffect(aN, false)
     end
 )
-local aF = {
+local aO = {
     [0x0] = "body",
     [0x2E28] = "body",
     [0xE39F] = "legs",
@@ -1871,33 +1944,33 @@ local aF = {
 }
 AddEventHandler(
     "RIFT:onPlayerDamagePed",
-    function(aE)
+    function(aN)
         if not tRIFT.isPlusClub() and not tRIFT.isPlatClub() then
             return
         end
-        local aG, aC = GetPedLastDamageBone(aE, 0)
-        if aG then
-            local aH = GetPedBoneIndex(aE, aC)
-            local aI = GetWorldPositionOfEntityBone(aE, aH)
-            local aJ = aF[aC]
-            if not aJ then
-                local aK = GetWorldPositionOfEntityBone(aE, GetPedBoneIndex(aE, 0x9995))
-                local aL = GetWorldPositionOfEntityBone(aE, GetPedBoneIndex(aE, 0x2E28))
-                if aI.z >= aK.z - 0.01 then
-                    aJ = "head"
-                elseif aI.z < aL.z then
-                    aJ = "legs"
+        local aP, aL = GetPedLastDamageBone(aN, 0)
+        if aP then
+            local aQ = GetPedBoneIndex(aN, aL)
+            local aR = GetWorldPositionOfEntityBone(aN, aQ)
+            local aS = aO[aL]
+            if not aS then
+                local aT = GetWorldPositionOfEntityBone(aN, GetPedBoneIndex(aN, 0x9995))
+                local aU = GetWorldPositionOfEntityBone(aN, GetPedBoneIndex(aN, 0x2E28))
+                if aR.z >= aT.z - 0.01 then
+                    aS = "head"
+                elseif aR.z < aU.z then
+                    aS = "legs"
                 else
-                    local aM = GetEntityCoords(aE, true)
-                    local aN = #(aM.xy - aI.xy)
-                    if aN > 0.075 then
-                        aJ = "arms"
+                    local aV = GetEntityCoords(aN, true)
+                    local aW = #(aV.xy - aR.xy)
+                    if aW > 0.075 then
+                        aS = "arms"
                     else
-                        aJ = "body"
+                        aS = "body"
                     end
                 end
             end
-            tRIFT.addBloodEffect(aJ, aC, aE)
+            tRIFT.addBloodEffect(aS, aL, aN)
         end
     end
 )

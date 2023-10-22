@@ -38,7 +38,7 @@ cfg.selectors = {
     --police
     {type="police", position=vector3(447.35137939453, -975.57592773438, 30.689584732056)}, -- mission row
     {type="police", position=vector3(1850.9689941406, 3690.8791503906,34.267063140869)}, -- sandy pd
-    {type="police", position=vector3(-449.63262939453, 6010.1459960938,31.716451644897)}, -- paleto pd
+    {type="police", position=vector3(-446.44900512695,6012.9233398438,32.288673400879)}, -- paleto pd
     {type="police", position=vector3(-1099.4694824219,-840.96234130859,19.001483917236)}, -- vespucci pd
 
     --nhs

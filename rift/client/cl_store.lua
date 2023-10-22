@@ -42,21 +42,14 @@ local y = nil
 local z = nil
 RMenu.Add(
     "store",
-    "MainMenu",
-    RageUI.CreateMenu(
-        "",
-        "Inventory",
-        tRIFT.getRageUIMenuWidth(),
-        tRIFT.getRageUIMenuHeight(),
-        "rift_storeui",
-        "rift_storeui"
-    )
+    "mainmenu",
+    RageUI.CreateMenu("", "Inventory", tRIFT.getRageUIMenuWidth(), tRIFT.getRageUIMenuHeight(), "menus", "store")
 )
 RMenu.Add(
     "store",
     "info",
     RageUI.CreateSubMenu(
-        RMenu:Get("store", "MainMenu"),
+        RMenu:Get("store", "mainmenu"),
         "",
         "Information",
         tRIFT.getRageUIMenuWidth(),
@@ -66,13 +59,7 @@ RMenu.Add(
 RMenu.Add(
     "store",
     "redeem",
-    RageUI.CreateSubMenu(
-        RMenu:Get("store", "info"),
-        "",
-        "Redeem",
-        tRIFT.getRageUIMenuWidth(),
-        tRIFT.getRageUIMenuHeight()
-    )
+    RageUI.CreateSubMenu(RMenu:Get("store", "info"), "", "Redeem", tRIFT.getRageUIMenuWidth(), tRIFT.getRageUIMenuHeight())
 )
 RMenu.Add(
     "store",
@@ -82,9 +69,7 @@ RMenu.Add(
         "",
         "Vehicles",
         tRIFT.getRageUIMenuWidth(),
-        tRIFT.getRageUIMenuHeight()
-    )
-)
+        tRIFT.getRageUIMenuHeight(), "menus", "RIFT_minigames_choosevehicle"))
 RMenu.Add(
     "store",
     "vehicleListInner",
@@ -93,9 +78,7 @@ RMenu.Add(
         "",
         "Vehicles",
         tRIFT.getRageUIMenuWidth(),
-        tRIFT.getRageUIMenuHeight()
-    )
-)
+        tRIFT.getRageUIMenuHeight(), "menus", "RIFT_minigames_choosevehicle"))
 RMenu.Add(
     "store",
     "vehicleSelection",
@@ -104,9 +87,7 @@ RMenu.Add(
         "",
         "Vehicle Options",
         tRIFT.getRageUIMenuWidth(),
-        tRIFT.getRageUIMenuHeight()
-    )
-)
+        tRIFT.getRageUIMenuHeight(), "menus", "RIFT_minigames_choosevehicle"))
 local function A(B, C)
     notify("~r~" .. B.name .. " " .. C)
 end
@@ -303,7 +284,7 @@ RageUI.CreateWhile(
     1.0,
     true,
     function()
-        if RageUI.Visible(RMenu:Get("store", "MainMenu")) then
+        if RageUI.Visible(RMenu:Get("store", "mainmenu")) then
             RageUI.DrawContent(
                 {header = true, glare = false, instructionalButton = false},
                 function()
@@ -366,6 +347,17 @@ RageUI.CreateWhile(
                             end,
                             nil
                         )
+                        RageUI.ButtonWithStyle(
+                            "Join Support Discord",
+                            "To open a ticket about this lock slot go to open-a-ticket, Then open a donation support ticket.",
+                            {RightLabel = "→→→"},
+                            true,
+                            function(X, Y, Z)
+                                if Z then
+                                    tRIFT.OpenUrl("https://discord.gg/vWMdBZ2ECZ")
+                                end
+                            end
+                        )
                     end
                     if U.canTransfer then
                         RageUI.ButtonWithStyle(
@@ -395,9 +387,8 @@ RageUI.CreateWhile(
                             nil
                         )
                     end
-                    local ai =
-                        j and string.format("~g~Copied %s into your clipboard!", d) or
-                        string.format("Copies %s into your clipboard.", d)
+                    local ai = j and string.format("~g~Copied %s into your clipboard!", d)
+                    string.format("Copies %s into your clipboard.", d)
                     RageUI.ButtonWithStyle(
                         "Copy Code to Clipboard",
                         ai,
@@ -405,7 +396,7 @@ RageUI.CreateWhile(
                         true,
                         function(X, Y, Z)
                             if Z then
-                                tRIFT.CopyToClipboard(d)
+                                tRIFT.CopyToClipBoard(d)
                                 j = true
                             end
                         end
@@ -459,10 +450,10 @@ RageUI.CreateWhile(
                         if type(F) == "table" then
                             local aj = not c[ag]
                             local ai = aj and "" or "You do not have access to this garage."
-                            RageUI.ButtonWithStyle(
+                            RageUI.Button(
                                 ag,
                                 ai,
-                                {RightLabel = "→→→"},
+                                aj and {RightLabel = "→→→"} or {RightLabel = ""},
                                 aj,
                                 function(X, Y, Z)
                                     if Z then
@@ -474,10 +465,10 @@ RageUI.CreateWhile(
                         else
                             local aj = J(ag)
                             local ai = aj and "" or "You can not own more than one of this vehicle."
-                            RageUI.ButtonWithStyle(
+                            RageUI.Button(
                                 F,
                                 ai,
-                                {RightLabel = "→→→"},
+                                aj and {RightLabel = "→→→"} or {RightLabel = ""},
                                 aj,
                                 function(X, Y, Z)
                                     if Z then
@@ -498,10 +489,10 @@ RageUI.CreateWhile(
                     for ag, F in ae(f.items[h], true) do
                         local aj = J(ag)
                         local ai = aj and "" or "You can not own more than one of this vehicle."
-                        RageUI.ButtonWithStyle(
+                        RageUI.Button(
                             F,
                             ai,
-                            {RightLabel = "→→→"},
+                            aj and {RightLabel = "→→→"} or {RightLabel = ""},
                             aj,
                             function(X, Y, Z)
                                 if Z then
@@ -538,8 +529,7 @@ RageUI.CreateWhile(
                         function(X, Y, Z)
                             if Z then
                                 if
-                                    tRIFT.canAnim() and tRIFT.getPlayerCombatTimer() == 0 and
-                                        tRIFT.getPlayerVehicle() == 0 and
+                                    tRIFT.canAnim() and tRIFT.getPlayerCombatTimer() == 0 and tRIFT.getPlayerVehicle() == 0 and
                                         not tRIFT.isPlayerInRedZone() and
                                         tRIFT.getPlayerBucket() == 0
                                  then
@@ -564,21 +554,14 @@ RegisterNetEvent(
 )
 RMenu.Add(
     "vehicletesting",
-    "MainMenu",
-    RageUI.CreateMenu(
-        "",
-        "Main Menu",
-        tRIFT.getRageUIMenuWidth(),
-        tRIFT.getRageUIMenuHeight(),
-        "rift_storeui",
-        "rift_storeui"
-    )
+    "mainmenu",
+    RageUI.CreateMenu("", "Main Menu", tRIFT.getRageUIMenuWidth(), tRIFT.getRageUIMenuHeight(), "menus", "store")
 )
 RMenu.Add(
     "vehicletesting",
     "extras",
     RageUI.CreateSubMenu(
-        RMenu:Get("vehicletesting", "MainMenu"),
+        RMenu:Get("vehicletesting", "mainmenu"),
         "",
         "Extras",
         tRIFT.getRageUIMenuWidth(),
@@ -634,7 +617,7 @@ RageUI.CreateWhile(
     1.0,
     true,
     function()
-        if RageUI.Visible(RMenu:Get("vehicletesting", "MainMenu")) then
+        if RageUI.Visible(RMenu:Get("vehicletesting", "mainmenu")) then
             RageUI.DrawContent(
                 {header = true, glare = false, instructionalButton = false},
                 function()
@@ -790,10 +773,10 @@ RageUI.CreateWhile(
 local function az()
     if l then
         if
-            not RageUI.Visible(RMenu:Get("vehicletesting", "MainMenu")) and
+            not RageUI.Visible(RMenu:Get("vehicletesting", "mainmenu")) and
                 not RageUI.Visible(RMenu:Get("vehicletesting", "extras"))
          then
-            RageUI.Visible(RMenu:Get("vehicletesting", "MainMenu"), true)
+            RageUI.Visible(RMenu:Get("vehicletesting", "mainmenu"), true)
         end
         DisableControlAction(0, 23, true)
         DisableControlAction(0, 75, true)
@@ -868,14 +851,18 @@ RegisterNetEvent(
         c = aB
     end
 )
+RegisterNetEvent("RIFT:OpenStoreMenu")
+AddEventHandler(
+    "RIFT:OpenStoreMenu",
+    function()
+        RageUI.Visible(RMenu:Get("store", "mainmenu"), true)
+    end
+)
 RegisterCommand(
     "store",
     function()
-        if tRIFT.getUserId() == 1 then
-            RageUI.Visible(RMenu:Get("store", "MainMenu"), true)
-        end
-    end,
-    false
+        TriggerServerEvent("RIFT:OpenStore")
+    end
 )
 RegisterNetEvent(
     "RIFT:setStoreRankName",
@@ -886,6 +873,7 @@ RegisterNetEvent(
 RegisterNetEvent(
     "RIFT:storeCloseMenu",
     function()
-        RageUI.Visible(RMenu:Get("store", "MainMenu"), false)
+        RageUI.ActuallyCloseAll()
+        RageUI.Visible(RMenu:Get("store", "mainmenu"), false)
     end
 )

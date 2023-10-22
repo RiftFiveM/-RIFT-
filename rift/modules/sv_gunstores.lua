@@ -61,7 +61,7 @@ cfg.GunStores={
         --w_ar_mosin,
     },
     ["Rebel"]={
-        ["_config"]={{vector3(1545.2521972656,6331.5615234375,23.07857131958),vector3(4925.6259765625,-5243.0908203125,1.524599313736)},110,5,"Rebel Gun Store",{"rebellicense.whitelisted"},true},
+        ["_config"]={{vector3(1545.2521972656,6331.5615234375,23.07857131958),vector3(4925.6259765625,-5243.0908203125,1.524599313736),vector3(1182.0738525391,-3267.5512695312,5.5286040306091)},110,5,"Rebel Gun Store",{"rebellicense.whitelisted"},true},
         ["GADGET_PARACHUTE"]={"Parachute",1000,0,"N/A","p_parachute_s"},
         ["WEAPON_AK47CURSEDANGEL"]={"AK-47 Cursed Angel",750000,0,"N/A","w_ar_ak47cursedangel"},
         ["WEAPON_AK47U"]={"AK-47U",700000,0,"N/A","w_ar_akm"},
@@ -77,7 +77,7 @@ cfg.GunStores={
         ["item|fillUpArmour"]={"Replenish Armour",100000,0,"N/A","prop_armour_pickup"},
     },
     ["LargeArmsDealer"]={
-        ["_config"]={{vector3(-1108.3199462891,4934.7392578125,217.35540771484),vector3(5065.6201171875,-4591.3857421875,1.8652405738831)},110,1,"Large Arms Dealer",{"gang.whitelisted"},false},
+        ["_config"]={{vector3(-1108.3199462891,4934.7392578125,217.35540771484),vector3(5065.6201171875,-4591.3857421875,1.8652405738831),vector3(696.26892089844,-1011.2525634766,22.793746948242)},110,1,"Large Arms Dealer",{"gang.whitelisted"},false},
         ["WEAPON_AK47U"]={"AK-47U",750000,0,"N/A","w_ar_goldak",nil,750000},
         ["WEAPON_NERFMOSIN"]={"Mosin Bolt-Action",900000,0,"N/A","w_ar_mosin",nil,900000},
         ["WEAPON_870SHOTGUN"]={"Fortnite Tac",900000,0,"N/A","w_sg_870shotgun",nil,900000},
