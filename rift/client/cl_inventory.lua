@@ -121,19 +121,23 @@ RegisterNetEvent(
         end
     end
 )
-RegisterNetEvent("RIFT:CloseToRestart", function(x)
-    CloseToRestart = true 
-    TriggerServerEvent("RIFT:CloseToRestarting")
-    Citizen.CreateThread(function()
-        while true do
-            RIFTSecondItemList = {}
-            c = false
-            drawInventoryUI = false
-            setCursor(0)
-            Wait(50)
-        end
-    end)
-end)
+RegisterNetEvent(
+    "RIFT:closeToRestart",
+    function(x)
+        i = true
+        Citizen.CreateThread(
+            function()
+                while true do
+                    RIFTSecondItemList = {}
+                    c = false
+                    drawInventoryUI = false
+                    setCursor(0)
+                    Wait(50)
+                end
+            end
+        )
+    end
+)
 RegisterNetEvent(
     "RIFT:closeSecondInventory",
     function()
@@ -204,7 +208,7 @@ Citizen.CreateThread(
             end
             if l ~= 0 and c then
                 local I = GetEntityCoords(tRIFT.getPlayerPed())
-                local J = GetEntityCoords(GetPlayerPed(GetPlayerFromServerId(tonumber(l))))
+                local J = GetEntityCoords(GetPlayerPed(GetPlayerRIFTomServerId(tonumber(l))))
                 local K = #(I - J)
                 if K > 5.0 then
                     TriggerEvent("RIFT:clCloseTrunk")
@@ -234,15 +238,25 @@ Citizen.CreateThread(
         while true do
             if drawInventoryUI then
                 DrawRect(0.5, 0.53, 0.572, 0.508, 0, 0, 0, 150)
-                DrawAdvancedText(0.593, 0.242, 0.005, 0.0028, 0.66, "Rift Inventory", 255, 255, 255, 255, 7, 0)
+                DrawAdvancedText(
+                    0.593,
+                    0.242,
+                    0.005,
+                    0.0028,
+                    0.66,
+                    "RIFT INVENTORY",
+                    255,
+                    255,
+                    255,
+                    255,
+                    7,
+                    0
+                )
                 DrawRect(0.5, 0.24, 0.572, 0.058, 0, 0, 0, 225)
                 DrawRect(0.342, 0.536, 0.215, 0.436, 0, 0, 0, 150)
                 DrawRect(0.652, 0.537, 0.215, 0.436, 0, 0, 0, 150)
                 if s then
                     DrawAdvancedText(0.664, 0.305, 0.005, 0.0028, 0.325, "Loot All", 255, 255, 255, 255, 6, 0)
-                end
-                if c then
-                    DrawAdvancedText(0.440, 0.305, 0.005, 0.0028, 0.325, "Transfer All", 255, 255, 255, 255, 6, 0)
                 end
                 if next(v) then
                     DrawAdvancedText(0.355, 0.305, 0.005, 0.0028, 0.325, "Equip All", 255, 255, 255, 255, 6, 0)
@@ -250,13 +264,28 @@ Citizen.CreateThread(
                 if m then
                     DrawAdvancedText(0.575, 0.364, 0.005, 0.0028, 0.325, "Use", 255, 255, 255, 255, 6, 0)
                     DrawAdvancedText(0.615, 0.364, 0.005, 0.0028, 0.325, "Use All", 255, 255, 255, 255, 6, 0)
+                    DrawAdvancedText(0.575, 0.634, 0.005, 0.0028, 0.35, "Give X", 255, 255, 255, 255, 6, 0)
+                    DrawAdvancedText(0.615, 0.634, 0.005, 0.0028, 0.35, "Give All", 255, 255, 255, 255, 6, 0)
                 else
+                    DrawAdvancedText(
+                        0.595,
+                        0.634,
+                        0.005,
+                        0.0028,
+                        0.35,
+                        "Give to Nearest Player",
+                        255,
+                        255,
+                        255,
+                        255,
+                        6,
+                        0
+                    )
                     DrawAdvancedText(0.594, 0.364, 0.005, 0.0028, 0.4, "Use", 255, 255, 255, 255, 6, 0)
                 end
                 DrawAdvancedText(0.594, 0.454, 0.005, 0.0028, 0.4, "Move", 255, 255, 255, 255, 6, 0)
                 DrawAdvancedText(0.575, 0.545, 0.005, 0.0028, 0.325, "Move X", 255, 255, 255, 255, 6, 0)
                 DrawAdvancedText(0.615, 0.545, 0.005, 0.0028, 0.325, "Move All", 255, 255, 255, 255, 6, 0)
-                DrawAdvancedText(0.595, 0.634, 0.005, 0.0028, 0.35, "Give to Nearest Player", 255, 255, 255, 255, 6, 0)
                 DrawAdvancedText(0.594, 0.722, 0.005, 0.0028, 0.4, "Trash", 255, 255, 255, 255, 6, 0)
                 DrawAdvancedText(0.488, 0.335, 0.005, 0.0028, 0.366, "Amount", 255, 255, 255, 255, 4, 0)
                 DrawAdvancedText(0.404, 0.335, 0.005, 0.0028, 0.366, "Item Name", 255, 255, 255, 255, 4, 0)
@@ -335,7 +364,7 @@ Citizen.CreateThread(
                         if CursorInArea(0.5443, 0.7584, 0.3435 + W * V, 0.3690 + W * V) then
                             DrawRect(0.652, 0.331 + U * (W + 1), 0.215, 0.026, o.r, o.g, o.b, 150)
                             if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
-                                PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                                PlaySound(-1, "SELECT", "HUD_RIFTONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                                 if not lockInventorySoUserNoSpam then
                                     b = a0
                                     a = false
@@ -425,7 +454,7 @@ Citizen.CreateThread(
                     if CursorInArea(0.46, 0.496, 0.33, 0.383) then
                         DrawRect(0.48, 0.359, 0.0375, 0.056, o.r, o.g, o.b, 150)
                         if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
-                            PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                            PlaySound(-1, "SELECT", "HUD_RIFTONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                             if not lockInventorySoUserNoSpam then
                                 if a then
                                     TriggerServerEvent("RIFT:UseItem", a, "Plr")
@@ -449,7 +478,7 @@ Citizen.CreateThread(
                     if CursorInArea(0.501, 0.536, 0.329, 0.381) then
                         DrawRect(0.52, 0.359, 0.0375, 0.056, o.r, o.g, o.b, 150)
                         if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
-                            PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                            PlaySound(-1, "SELECT", "HUD_RIFTONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                             if not lockInventorySoUserNoSpam then
                                 if a then
                                     TriggerServerEvent("RIFT:UseAllItem", a, "Plr")
@@ -474,7 +503,7 @@ Citizen.CreateThread(
                     if CursorInArea(0.4598, 0.5333, 0.3283, 0.3848) then
                         DrawRect(0.5, 0.36, 0.075, 0.056, o.r, o.g, o.b, 150)
                         if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
-                            PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                            PlaySound(-1, "SELECT", "HUD_RIFTONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                             if not lockInventorySoUserNoSpam then
                                 if a then
                                     TriggerServerEvent("RIFT:UseItem", a, "Plr")
@@ -495,10 +524,36 @@ Citizen.CreateThread(
                         DrawRect(0.5, 0.36, 0.075, 0.056, 0, 0, 0, 150)
                     end
                 end
+                if not m then
+                    if CursorInArea(0.4598, 0.5333, 0.5931, 0.6477) then
+                        DrawRect(0.5, 0.63, 0.075, 0.056, o.r, o.g, o.b, 150)
+                        if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
+                            PlaySound(-1, "SELECT", "HUD_RIFTONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                            if not lockInventorySoUserNoSpam then
+                                if a then
+                                    TriggerServerEvent("RIFT:GiveItem", a, "Plr")
+                                elseif b then
+                                    RIFTserver.giveToNearestPlayer({b})
+                                else
+                                    tRIFT.notify("~r~No item selected!")
+                                end
+                            end
+                            lockInventorySoUserNoSpam = true
+                            Citizen.CreateThread(
+                                function()
+                                    Wait(250)
+                                    lockInventorySoUserNoSpam = false
+                                end
+                            )
+                        end
+                    else
+                        DrawRect(0.5, 0.63, 0.075, 0.056, 0, 0, 0, 150)
+                    end
+                end
                 if CursorInArea(0.4598, 0.5333, 0.418, 0.4709) then
                     DrawRect(0.5, 0.45, 0.075, 0.056, o.r, o.g, o.b, 150)
                     if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
-                        PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                        PlaySound(-1, "SELECT", "HUD_RIFTONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                         if not lockInventorySoUserNoSpam then
                             if c then
                                 if a and g ~= nil and c then
@@ -546,7 +601,7 @@ Citizen.CreateThread(
                 if CursorInArea(0.4598, 0.498, 0.5042, 0.5666) then
                     DrawRect(0.48, 0.54, 0.0375, 0.056, o.r, o.g, o.b, 150)
                     if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
-                        PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                        PlaySound(-1, "SELECT", "HUD_RIFTONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                         local a4 = tonumber(GetInvAmountText()) or 1
                         if not lockInventorySoUserNoSpam then
                             if c then
@@ -595,7 +650,7 @@ Citizen.CreateThread(
                 if CursorInArea(0.5004, 0.5333, 0.5042, 0.5666) then
                     DrawRect(0.52, 0.54, 0.0375, 0.056, o.r, o.g, o.b, 150)
                     if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
-                        PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                        PlaySound(-1, "SELECT", "HUD_RIFTONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                         if not lockInventorySoUserNoSpam then
                             if c then
                                 if a and g ~= nil and c then
@@ -614,13 +669,13 @@ Citizen.CreateThread(
                                                     "Plr",
                                                     a,
                                                     r,
-                                                    NetworkGetNetworkIdFromEntity(tRIFT.getNearestVehicle(3))
+                                                    NetworkGetNetworkIdRIFTomEntity(tRIFT.getNearestVehicle(3))
                                                 )
                                             elseif inventoryType == "Housing" then
                                                 TriggerServerEvent("RIFT:MoveItemAll", "Plr", a, "home")
                                             elseif inventoryType == "Crate" then
                                                 TriggerServerEvent("RIFT:MoveItemAll", "Plr", a, "crate")
-                                            elseif inventoryType == "LootBag" then
+                                            elseif s then
                                                 TriggerServerEvent("RIFT:MoveItemAll", "Plr", a, "LootBag")
                                             end
                                         end
@@ -640,7 +695,7 @@ Citizen.CreateThread(
                                                 inventoryType,
                                                 b,
                                                 r,
-                                                NetworkGetNetworkIdFromEntity(tRIFT.getNearestVehicle(3))
+                                                NetworkGetNetworkIdRIFTomEntity(tRIFT.getNearestVehicle(3))
                                             )
                                         elseif inventoryType == "Housing" then
                                             TriggerServerEvent("RIFT:MoveItemAll", inventoryType, b, "home")
@@ -670,37 +725,65 @@ Citizen.CreateThread(
                 else
                     DrawRect(0.52, 0.54, 0.0375, 0.056, 0, 0, 0, 150)
                 end
-                if CursorInArea(0.4598, 0.5333, 0.5931, 0.6477) then
-                    DrawRect(0.5, 0.63, 0.075, 0.056, o.r, o.g, o.b, 150)
-                    if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
-                        PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
-                        if not lockInventorySoUserNoSpam then
-                            if a then
-                                TriggerServerEvent("RIFT:GiveItem", a, "Plr")
-                            elseif b then
-                                RIFTserver.giveToNearestPlayer({b})
-                            else
-                                tRIFT.notify("~r~No item selected!")
+                if m then
+                    if CursorInArea(0.4598, 0.498, 0.5931, 0.6477) then
+                        DrawRect(0.48, 0.63, 0.0375, 0.056, o.r, o.g, o.b, 150)
+                        if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
+                            PlaySound(-1, "SELECT", "HUD_RIFTONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                            if not lockInventorySoUserNoSpam then
+                                if a then
+                                    TriggerServerEvent("RIFT:GiveItem", a, "Plr")
+                                elseif b then
+                                    RIFTserver.giveToNearestPlayer({b})
+                                else
+                                    tRIFT.notify("~r~No item selected!")
+                                end
                             end
+                            lockInventorySoUserNoSpam = true
+                            Citizen.CreateThread(
+                                function()
+                                    Wait(250)
+                                    lockInventorySoUserNoSpam = false
+                                end
+                            )
                         end
-                        lockInventorySoUserNoSpam = true
-                        Citizen.CreateThread(
-                            function()
-                                Wait(250)
-                                lockInventorySoUserNoSpam = false
-                            end
-                        )
+                    else
+                        DrawRect(0.48, 0.63, 0.0375, 0.056, 0, 0, 0, 150)
                     end
-                else
-                    DrawRect(0.5, 0.63, 0.075, 0.056, 0, 0, 0, 150)
+                end
+                if m then
+                    if CursorInArea(0.5004, 0.5333, 0.5931, 0.6477) then
+                        DrawRect(0.52, 0.63, 0.0375, 0.056, o.r, o.g, o.b, 150)
+                        if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
+                            PlaySound(-1, "SELECT", "HUD_RIFTONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                            if not lockInventorySoUserNoSpam then
+                                if a then
+                                    TriggerServerEvent("RIFT:GiveItemAll", a, "Plr")
+                                elseif b then
+                                    RIFTserver.giveToNearestPlayer({b})
+                                else
+                                    tRIFT.notify("~r~No item selected!")
+                                end
+                            end
+                            lockInventorySoUserNoSpam = true
+                            Citizen.CreateThread(
+                                function()
+                                    Wait(250)
+                                    lockInventorySoUserNoSpam = false
+                                end
+                            )
+                        end
+                    else
+                        DrawRect(0.52, 0.63, 0.0375, 0.056, 0, 0, 0, 150)
+                    end
                 end
                 if s then
                     if CursorInArea(0.5428, 0.5952, 0.2879, 0.3111) then
                         DrawRect(0.5695, 0.3, 0.05, 0.025, o.r, o.g, o.b, 150)
                         if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
-                            PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                            PlaySound(-1, "SELECT", "HUD_RIFTONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                             if not lockInventorySoUserNoSpam then
-                                TriggerServerEvent("RIFT:LootItemAll", LootBagIDNew, CarBoot)
+                                TriggerServerEvent("RIFT:LootItemAll", LootBagIDNew)
                             end
                             lockInventorySoUserNoSpam = true
                             Citizen.CreateThread(
@@ -718,7 +801,7 @@ Citizen.CreateThread(
                     if CursorInArea(0.233854, 0.282813, 0.287037, 0.308333) then
                         DrawRect(0.2600, 0.3, 0.05, 0.025, o.r, o.g, o.b, 150)
                         if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
-                            PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                            PlaySound(-1, "SELECT", "HUD_RIFTONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                             if not lockInventorySoUserNoSpam then
                                 TriggerServerEvent("RIFT:EquipAll")
                             end
@@ -734,31 +817,10 @@ Citizen.CreateThread(
                         DrawRect(0.2600, 0.3, 0.05, 0.025, 0, 0, 0, 150)
                     end
                 end
-                if c then
-                    if CursorInArea(0.32000, 0.37000, 0.287037, 0.308333) then
-                        DrawRect(0.3453, 0.3, 0.05, 0.025, o.r, o.g, o.b, 150)
-                        if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
-                            PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
-                            if not lockInventorySoUserNoSpam then
-                                tRIFT.notify("~r~This feature is currently in development")
-                                TriggerServerEvent("RIFT:TransferAll")
-                            end
-                            lockInventorySoUserNoSpam = true
-                            Citizen.CreateThread(
-                                function()
-                                    Wait(250)
-                                    lockInventorySoUserNoSpam = false
-                                end
-                            )
-                        end
-                    else
-                        DrawRect(0.3453, 0.3, 0.05, 0.025, 0, 0, 0, 150)
-                    end
-                end
                 if CursorInArea(0.4598, 0.5333, 0.6831, 0.7377) then
                     DrawRect(0.5, 0.72, 0.075, 0.056, o.r, o.g, o.b, 150)
                     if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
-                        PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                        PlaySound(-1, "SELECT", "HUD_RIFTONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                         if not lockInventorySoUserNoSpam then
                             if a then
                                 TriggerServerEvent("RIFT:TrashItem", a, "Plr")
@@ -808,7 +870,7 @@ Citizen.CreateThread(
                     if CursorInArea(0.2343, 0.4484, 0.3435 + W * V, 0.3690 + W * V) then
                         DrawRect(0.342, 0.331 + U * (W + 1), 0.215, 0.026, o.r, o.g, o.b, 150)
                         if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
-                            PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                            PlaySound(-1, "SELECT", "HUD_RIFTONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                             a = a0
                             if n[a] then
                                 m = true
