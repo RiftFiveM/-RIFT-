@@ -291,7 +291,7 @@ RageUI.CreateWhile(1.0, true, function()
                     end
                 end, RMenu:Get('adminmenu', 'notespreviewban'))
             end
-            if tRIFT.getStaffLevel() >= 5 then
+            if tRIFT.getStaffLevel() >= 10 then
                 RageUI.ButtonWithStyle("TP To Waypoint", "", {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
                         local WaypointHandle = GetFirstBlipInfoId(8)
@@ -748,6 +748,14 @@ RageUI.CreateWhile(1.0, true, function()
                     end
                 end, RMenu:Get('adminmenu', 'submenu'))
             end
+            if tRIFT.getStaffLevel() >= 10 then
+                RageUI.ButtonWithStyle("Armour", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
+                    if Selected then
+                        local uid = GetPlayerServerId(PlayerId())
+                        TriggerServerEvent('RIFT:ArmourPlayer', uid, SelectedPlayer[3])
+                    end
+                end, RMenu:Get('adminmenu', 'submenu'))
+            end
             if tRIFT.getStaffLevel() >= 1 then
                 RageUI.ButtonWithStyle("Teleport to Player", "Name: " .. SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
@@ -775,11 +783,6 @@ RageUI.CreateWhile(1.0, true, function()
                 RageUI.ButtonWithStyle("Teleport to Legion", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
                         TriggerServerEvent("RIFT:Teleport2Legion", SelectedPlayer[2])
-                    end
-                end, RMenu:Get('adminmenu', 'submenu'))
-                RageUI.ButtonWithStyle("Give Player Mosin", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
-                    if Selected then
-                        TriggerServerEvent("RIFT:EditzgiveMosin", SelectedPlayer[2])
                     end
                 end, RMenu:Get('adminmenu', 'submenu'))
                 RageUI.ButtonWithStyle("Teleport to Arena", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)

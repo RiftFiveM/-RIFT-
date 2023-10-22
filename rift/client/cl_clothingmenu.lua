@@ -232,6 +232,7 @@ RageUI.CreateWhile(1.0, true, function()
                     if N then 
                         if GetEntityHealth(PlayerPedId()) > 102 then
                             tRIFT.loadCustomisationPreset("DefaultMale")
+                            RIFTclient.RevivePlayer(target, {})
                         else
                             tRIFT.notify("~r~Cannot change gender, you're dead.")
                         end

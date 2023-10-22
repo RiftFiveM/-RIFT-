@@ -124,7 +124,6 @@ AddEventHandler("RIFT:spectatePlayer", function(id)
     local source = source
     local user_id = RIFT.getUserId(source)
     if RIFT.hasPermission(user_id, "admin.spectate") then
-        TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('spectate'))
         if playerssource ~= nil then
             spectatingPositions[user_id] = {coords = GetEntityCoords(GetPlayerPed(source)), bucket = GetPlayerRoutingBucket(source)}
             tRIFT.setBucket(source, GetPlayerRoutingBucket(playerssource))
@@ -193,7 +192,6 @@ AddEventHandler("RIFT:ForceClockOff", function(player_temp)
     local name = GetPlayerName(source)
     local player_perm = RIFT.getUserId(player_temp)
     if RIFT.hasPermission(user_id,"admin.tp2waypoint") then
-        TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('force-clock-off'))
         RIFT.removeAllJobs(player_perm)
         RIFTclient.notify(source,{'~g~User clocked off'})
         RIFTclient.notify(player_temp,{'~r~You have been force clocked off.'})
@@ -237,7 +235,6 @@ AddEventHandler("RIFT:AddGroup",function(perm, selgroup)
     local playerName = GetPlayerName(source)
     local povName = GetPlayerName(permsource)
     if RIFT.hasPermission(user_id, "group.add") then
-        TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('group'))
         if selgroup == "Founder" and not RIFT.hasPermission(user_id, "group.add.founder") then
             RIFTclient.notify(admin_temp, {"~r~You don't have permission to do that"}) 
         elseif selgroup == "Staff Manager" and not RIFT.hasPermission(user_id, "group.add.staffmanager") then
@@ -464,7 +461,6 @@ AddEventHandler("RIFT:BanPlayer", function(PlayerID, Duration, BanMessage, BanPo
     local PlayerDiscordID = 0
     RIFT.prompt(source, "Extra Ban Information (Hidden)","",function(player, Evidence)
         if RIFT.hasPermission(AdminPermID, "admin.tickets") then
-            TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('ban-player'))
             if Evidence == "" then
                 RIFTclient.notify(source, {"~r~Evidence field was left empty, please fill this in via Discord."})
             end
@@ -679,6 +675,37 @@ AddEventHandler('RIFT:RevivePlayer', function(admin, targetid, reviveall)
     end
 end)
 
+RegisterServerEvent('RIFT:ArmourPlayer')
+AddEventHandler('RIFT:ArmourPlayer', function(admin, targetid, reviveall)
+    local source = source
+    local admin_id = RIFT.getUserId(admin)
+    local player_id = targetid
+    local target = RIFT.getUserSource(player_id)
+    if target ~= nil then
+        if RIFT.hasPermission(admin_id, "admin.revive") then
+            TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('revive'))
+            RIFTclient.RevivePlayer(target, {})
+            RIFTclient.setArmour(target, {100})
+            RIFTclient.setPlayerCombatTimer(target, {0})
+            if not reviveall then
+                local playerName = GetPlayerName(source)
+                local playerOtherName = GetPlayerName(target)
+                tRIFT.sendWebhook('revive', 'RIFT Revive Logs', "> Admin Name: **"..GetPlayerName(admin).."**\n> Admin TempID: **"..admin.."**\n> Admin PermID: **"..admin_id.."**\n> Player Name: **"..GetPlayerName(target).."**\n> Player TempID: **"..target.."**\n> Player PermID: **"..player_id.."**")
+                RIFTclient.notify(admin, {'~g~Revived Player.'})
+                return
+            end
+            RIFTclient.notify(admin, {'~g~Revived all Nearby.'})
+        else
+            local player = RIFT.getUserSource(admin_id)
+            local name = GetPlayerName(source)
+            Wait(500)
+            TriggerEvent("RIFT:acBan", admin_id, 11, name, player, 'Attempted to Revive Someone')
+        end
+    end
+end)
+
+
+
 frozenplayers = {}
 
 RegisterServerEvent('RIFT:FreezeSV')
@@ -751,23 +778,6 @@ AddEventHandler('RIFT:Teleport2Legion', function(newtarget)
     end
 end)
 
-RegisterServerEvent('RIFT:EditzgiveMosin')
-AddEventHandler('RIFT:EditzgiveMosin', function(newtarget)
-    local source = source
-    local user_id = RIFT.getUserId(source)
-    if RIFT.hasPermission(user_id, 'admin.mosin') then
-        RIFTclient.giveWeapons(source, {{["WEAPON_NERFMOSIN"] = {ammo = 250}}})
-        RIFTclient.setArmour(source, {100})
-        RIFTclient.notify(newtarget, {'~g~You have been given a Mosin and 100% Armour'})
-        RIFTclient.setPlayerCombatTimer(newtarget, {0})
-        tRIFT.sendWebhook('tp-to-legion', 'RIFT Teleport Legion Logs', "> Admin Name: **"..GetPlayerName(source).."**\n> Admin TempID: **"..source.."**\n> Admin PermID: **"..user_id.."**\n> Player Name: **"..GetPlayerName(newtarget).."**\n> Player TempID: **"..newtarget.."**\n> Player PermID: **"..RIFT.getUserId(newtarget).."**")
-    else
-        local player = RIFT.getUserSource(user_id)
-        local name = GetPlayerName(source)
-        Wait(500)
-        TriggerEvent("RIFT:acBan", user_id, 20, name, player, 'Well i did Warn you')
-    end
-end)
 
 RegisterServerEvent('RIFT:Teleport2simeons')
 AddEventHandler('RIFT:Teleport2simeons', function(newtarget)
@@ -778,6 +788,23 @@ AddEventHandler('RIFT:Teleport2simeons', function(newtarget)
         RIFTclient.notify(newtarget, {'~g~You have been teleported to simeons by an admin.'})
         RIFTclient.setPlayerCombatTimer(newtarget, {0})
         tRIFT.sendWebhook('tp-to-simeons', 'RIFT Teleport Simeons Logs', "> Admin Name: **"..GetPlayerName(source).."**\n> Admin TempID: **"..source.."**\n> Admin PermID: **"..user_id.."**\n> Player Name: **"..GetPlayerName(newtarget).."**\n> Player TempID: **"..newtarget.."**\n> Player PermID: **"..RIFT.getUserId(newtarget).."**")
+    else
+        local player = RIFT.getUserSource(user_id)
+        local name = GetPlayerName(source)
+        Wait(500)
+        TriggerEvent("RIFT:acBan", user_id, 11, name, player, 'Attempted to Teleport someone to Legion')
+    end
+end)
+
+RegisterServerEvent('RIFT:Teleport2arena')
+AddEventHandler('RIFT:Teleport2arena', function(newtarget)
+    local source = source
+    local user_id = RIFT.getUserId(source)
+    if RIFT.hasPermission(user_id, 'admin.tp2player') then
+        RIFTclient.teleport(newtarget, vector3(-1418.1452636719,-2824.044921875,431.12649536133))
+        RIFTclient.notify(newtarget, {'~g~You have been teleported to the arena by an admin.'})
+        RIFTclient.setPlayerCombatTimer(newtarget, {0})
+        tRIFT.sendWebhook('tp-to-simeons', 'RIFT Teleport arena Logs', "> Admin Name: **"..GetPlayerName(source).."**\n> Admin TempID: **"..source.."**\n> Admin PermID: **"..user_id.."**\n> Player Name: **"..GetPlayerName(newtarget).."**\n> Player TempID: **"..newtarget.."**\n> Player PermID: **"..RIFT.getUserId(newtarget).."**")
     else
         local player = RIFT.getUserSource(user_id)
         local name = GetPlayerName(source)
@@ -825,7 +852,7 @@ AddEventHandler('RIFT:Teleport2Paleto', function(newtarget)
     local source = source
     local user_id = RIFT.getUserId(source)
     if RIFT.hasPermission(user_id, 'admin.tp2player') then
-        RIFTclient.teleport(newtarget, vector3(-437.32363891602,6021.2114257812,31.46319770813))
+        RIFTclient.teleport(newtarget, vector3(-115.12171936035,6458.7109375,31.468461990356))
         RIFTclient.notify(newtarget, {'~g~You have been teleported to Paleto by an admin.'})
         RIFTclient.setPlayerCombatTimer(newtarget, {0})
         tRIFT.sendWebhook('tp-to-Paleto', 'RIFT Teleport Paleto Logs', "> Admin Name: **"..GetPlayerName(source).."**\n> Admin TempID: **"..source.."**\n> Admin PermID: **"..user_id.."**\n> Player Name: **"..GetPlayerName(newtarget).."**\n> Player TempID: **"..newtarget.."**\n> Player PermID: **"..RIFT.getUserId(newtarget).."**")

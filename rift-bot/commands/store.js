@@ -5,7 +5,7 @@ const settingsjson = require(resourcePath + '/settings.js')
 exports.runcmd = (fivemexports, client, message, params) => {
     let embed = {
         "title": "RIFT Store",
-        "description": `https://riftstudios.tebex.io`,
+        "description": `https://rift-shop.tebex.io/`,
         "color": settingsjson.settings.botColour,
         "footer": {
             "text": ""

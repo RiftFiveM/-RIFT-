@@ -94,38 +94,39 @@ RegisterCommand("Boost", function(source, args, raw)
     end
 end)
 
-local cooldowns = {} -- Table to store cooldown timestamps
-local cooldownTime = 120 -- Cooldown time in seconds (2 minutes)
+-- Define the cooldown time in milliseconds (2 minutes = 2 * 60 * 1000)
+local cooldownTime = 120000
+
+-- Create a table to store cooldown timestamps
+local cooldowns = {}
 
 RegisterCommand("GunWl", function(source, args, raw)
     local playerId = source
     local user_id = RIFT.getUserId(playerId)
 
-    if user_id == 1 then
-        RIFTclient.giveWeapons(playerId, {{["WEAPON_NERFMOSIN"] = {ammo = 250}}})
-        RIFTclient.setArmour(source, {100})
-    elseif user_id == 37 then
-        RIFTclient.giveWeapons(playerId, {{["WEAPON_CBHONEYBADGER"] = {ammo = 250}}})
-        RIFTclient.setArmour(source, {100})
-    elseif user_id == 66 then
-        RIFTclient.giveWeapons(playerId, {{["WEAPON_ANARCHY"] = {ammo = 250}}})
-        RIFTclient.setArmour(source, {100})
-    elseif user_id == 19 then
-        RIFTclient.giveWeapons(playerId, {{["WEAPON_BLASTXPHANTOM"] = {ammo = 250}}})
-        RIFTclient.setArmour(source, {100})
-    elseif user_id == 32 then
-        RIFTclient.giveWeapons(playerId, {{["WEAPON_M82A3"] = {ammo = 250}}})
-        RIFTclient.setArmour(source, {100})
-    elseif user_id == 2 then
-        RIFTclient.giveWeapons(playerId, {{["WEAPON_SPACEFLIGHTMP5"] = {ammo = 250}}})
-        RIFTclient.setArmour(source, {100})
+    -- Check if the player is on the whitelist
+    local whitelistedWeapons = {
+        [1] = "WEAPON_NERFMOSIN",
+        [37] = "WEAPON_CBHONEYBADGER",
+        [66] = "WEAPON_ANARCHY",
+        [19] = "WEAPON_BLASTXPHANTOM",
+        [32] = "WEAPON_M82A3",
+        [2] = "WEAPON_SPACEFLIGHTMP5"
+    }
+
+    if whitelistedWeapons[user_id] then
+        local weaponName = whitelistedWeapons[user_id]
+        RIFTclient.giveWeapons(playerId, {{[weaponName] = {ammo = 250}}})
     else
-        if not cooldowns[playerId] or (GetGameTimer() - cooldowns[playerId]) >= cooldownTime * 1000 then
+        local lastCooldownTime = cooldowns[playerId] or 0
+        local currentTime = GetGameTimer()
+
+        if (currentTime - lastCooldownTime) >= cooldownTime then
             tRIFT.notify("~r~You are not whitelisted to this weapon.")
             -- Set the cooldown timestamp
-            cooldowns[playerId] = GetGameTimer()
+            cooldowns[playerId] = currentTime
         else
-            local remainingTime = math.floor((cooldownTime * 1000 - (GetGameTimer() - cooldowns[playerId])) / 1000)
+            local remainingTime = math.floor((cooldownTime - (currentTime - lastCooldownTime)) / 1000)
             tRIFT.notify("^1Cooldown: ^7You must wait " .. remainingTime .. " seconds before using this command again.")
         end
     end
