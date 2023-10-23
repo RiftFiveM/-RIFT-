@@ -17,25 +17,25 @@ cfg = {
 cfg.Guild_Roles = {
 	['Main'] = {
 		['Founder'] = 1162343507780964399, -- 12
-		['Lead Developer'] = 1162343507780964397, -- 11
-		['Developer'] = 1162343507780964396, -- 10
-		['Community Manager'] = 1162343507780964395, -- 9
-		['Staff Manager'] = 1162343507780964394, -- 8
-		['Head Administrator'] = 1162343507780964393, -- 7
-		['Senior Administrator'] = 1162343507764203529, -- 6
-		['Administrator'] = 1162343507764203528, -- 5
-		['Senior Moderator'] = 1162343507764203527, -- 4
-		['Moderator'] = 1162343507764203525, -- 3
-		['Support Team'] = 1162343507764203524, -- 2
-		['Trial Staff'] = 1162343507764203523, -- 1
-		['cardev'] = 1162343507579654222,
-		['Cinematic'] = 1162343507579654219,
-		['Supporter'] = 1162343507642552341,
-		['Premium'] = 1162343507642552342,
-		['Supreme'] = 1162343507642552343,
-		['Kingpin'] = 1162343507642552344,
-		['Rainmaker'] = 1162343507642552345,
-		['Baller'] = 1162343507642552346,
+		['Lead Developer'] = 1165759097707167844, -- 11
+		['Developer'] = 1165759271405883392, -- 10
+		['Community Manager'] = 1165750931850268702, -- 9
+		['Staff Manager'] = 1165751122523340850, -- 8
+		['Head Administrator'] = 1165751337942782053, -- 7
+		['Senior Administrator'] = 1165751640788316260, -- 6
+		['Administrator'] = 1165751811685236907, -- 5
+		['Senior Moderator'] = 1165751962751488050, -- 4
+		['Moderator'] = 1165752126685847622, -- 3
+		['Support Team'] = 1165752306864771132, -- 2
+		['Trial Staff'] = 1165752415522398339, -- 1
+		['cardev'] = 1165761064814784582,
+		['Cinematic'] = 1165762157175128168,
+		['Supporter'] = 1165762084747886672,
+		['Premium'] = 1165762013805416458,
+		['Supreme'] = 1165761947904516156,
+		['Kingpin'] = 1165761887263268874,
+		['Rainmaker'] = 1165761822398353599,
+		['Baller'] = 1165761779075387626,
 		['Booster'] = 1162482745499471883,
 	},
 
@@ -116,6 +116,6 @@ for faction_name, faction_roles in pairs(cfg.Guild_Roles) do
 	end
 end
 
-cfg.Bot_Token = 'MTE2MzU4NDU4NzU2MjI0MjE3OA.Gc4m_-.RW6XbfCTfT_NovVx_SlCXN-BMd9WTSIXjwknYc'
+cfg.Bot_Token = 'MTE2MzU4NDU4NzU2MjI0MjE3OA.Gp2wFX.Rohi2yETMiEK57AcV7mJHJ2_YpYLlK0PDQvm9M'
 
 return cfg
