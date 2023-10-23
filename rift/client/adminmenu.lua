@@ -81,6 +81,7 @@ RMenu:Get('adminmenu', 'main')
 local groups = {
 	["Founder"] = "Founder",
     ["Staff Manager"] = "Staff Manager",
+    ["Operations Manager"] = "Operations Manager",
     ["Community Manager"] = "Community Manager",
     ["Head Admin"] = "Head Administrator",
     ["Senior Admin"] = "Senior Administrator",

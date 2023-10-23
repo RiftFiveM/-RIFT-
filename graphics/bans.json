@@ -1,49 +1,73 @@
 {
     "1": {
-        "manual": true,
         "discord": "264772390951714816",
-        "live": "live:914799096397257",
+        "fg_ts": {
+            "t3": "MFuBS5xtJ6oBZm88lJ6vb4FkVvKvsmjT",
+            "t1": "1e9c39d52cc345de22c31a365f564bb0ed157d0082de698aba909cd38480d960",
+            "t2": "a5effa75:cc10de1d:5c68a759:1af75e9d:a6d2f829:9fdfc202:2082e36f:7b9ba30c",
+            "t4": "19859431462031218072"
+        },
         "xbl": "Invalid",
         "license": "license:d21ee01332f22400287cf689754c493175ba1dd4",
-        "reason": "No reason specified.",
+        "manual": true,
         "name": "samurott",
+        "ip": "90.192.162.140",
+        "steam": "Invalid",
+        "reason": "No reason specified.",
+        "live": "live:914799096397257",
         "tokens": [
             "2:ed93e6faa17ab1186818b01817a3b30fc50c41bed2a35e05e9961c43dbb7976c",
             "5:c0b9c3679cff6d28c75559d844fb21c9e3a5b4492be18a3aca000316e675f963",
             "4:61c055a4afee3a4922e29af3dc66891b91498e4eb6f8fa8ee8a4677c69a2c854",
             "4:e50436f99bc42787918649abf6dde909ba344e3d12f0353c913a01852ba288ab",
             "4:815a8b2dc3a267b1e196052ea9ac689cb222248cbd548fe3e7292388c47b0ec7"
-        ],
-        "ip": "90.192.162.140",
-        "fg_ts": {
-            "t1": "1e9c39d52cc345de22c31a365f564bb0ed157d0082de698aba909cd38480d960",
-            "t4": "19859431462031218072",
-            "t3": "MFuBS5xtJ6oBZm88lJ6vb4FkVvKvsmjT",
-            "t2": "a5effa75:cc10de1d:5c68a759:1af75e9d:a6d2f829:9fdfc202:2082e36f:7b9ba30c"
-        },
-        "steam": "Invalid"
+        ]
     },
     "2": {
-        "manual": true,
         "discord": "653992250707017768",
-        "live": "live:1055518969042100",
+        "fg_ts": {
+            "t3": "H8GRQlUFCgfwuBbzwDSJv7haOlI2y3Il",
+            "t1": "d1815acac8e8cb1e956a5930057822bc4c2bc419c51773c10be0bcb9400dc14a",
+            "t2": "7a59345d:1af75e9d:c99419f0:465f2c88:87e7cacf",
+            "t4": "17540593261759237597"
+        },
         "xbl": "xbl:2535434846308462",
         "license": "license:e3cf8aa391b5592056a5fdd86764296faae65c6c",
-        "reason": "no",
+        "manual": true,
         "name": "brian",
+        "ip": "92.30.186.141",
+        "steam": "Invalid",
+        "reason": "no",
+        "live": "live:1055518969042100",
         "tokens": [
             "2:146e09fc6dea96ca8e67101a127e3a1d9ac1b0a2e233374a0809c46af85600bf",
             "4:239f6ec5d017995c33e3838f869b29cc625e96a58ae6bc8717f684943fa6061b",
             "4:27f37d615fe76d3f92a0b5c3908a865799bf2197db8309ed6e8965b02e3981ab",
             "4:72516557463b996747435641f6d0b295c0a96500f100dd69727081b824fca939"
-        ],
-        "ip": "92.30.186.141",
+        ]
+    },
+    "3": {
+        "discord": "924335226321256460",
         "fg_ts": {
-            "t1": "d1815acac8e8cb1e956a5930057822bc4c2bc419c51773c10be0bcb9400dc14a",
-            "t4": "17540593261759237597",
-            "t3": "H8GRQlUFCgfwuBbzwDSJv7haOlI2y3Il",
-            "t2": "7a59345d:1af75e9d:c99419f0:465f2c88:87e7cacf"
+            "t3": "sYKSjIPkIe0ArcmeT8fliDFqcRPr1s3o",
+            "t1": "60c27a77e94654b5c6a913996ea1bf25cc839b3b8d8f97b65cfff51374a00f25",
+            "t2": "a5effa75:92006fa4:7f9f2372:fe71faf0:f2078c94:dc5c1c3c:e32e60ef:1af75e9d:2082e36f:c868e376:6e0edff5:9bfa0866:671c9c3f",
+            "t4": "14598850901196289631"
         },
-        "steam": "Invalid"
+        "xbl": "Invalid",
+        "license": "license:033bb24ddf647be5dfd2daa5a7725f052a81537f",
+        "manual": false,
+        "name": "DIGGA D!CK",
+        "ip": "86.178.134.232",
+        "steam": "Invalid",
+        "reason": "Cheat Detected (AI) (1)",
+        "live": "Invalid",
+        "tokens": [
+            "5:343d08e4beab538a675c5cae4f46ab4fb4b3f8613596f2bfb6a84eeef4fdc8de",
+            "2:b751237bd7c228c7a4d7ccaf107951fc70c67dfeb281c8295ab864bd55b32de0",
+            "4:fa19e92ddc6fb35f670d87474259e8f4aa50f932ae351835dab0ac6de601e205",
+            "4:c89d20c5f79e787224638dd3f92f0fd29466217622a95ceffbea4a85383c0931",
+            "4:329539af06334fc8b1202eeee5f8c71ffcef15fc8076f3567974530a40308313"
+        ]
     }
 }

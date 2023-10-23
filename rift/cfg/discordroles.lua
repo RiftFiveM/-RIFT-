@@ -20,6 +20,7 @@ cfg.Guild_Roles = {
 		['Lead Developer'] = 1165759097707167844, -- 11
 		['Developer'] = 1165759271405883392, -- 10
 		['Community Manager'] = 1165750931850268702, -- 9
+		['Operations Manager'] = 1165759799749787738, -- 8
 		['Staff Manager'] = 1165751122523340850, -- 8
 		['Head Administrator'] = 1165751337942782053, -- 7
 		['Senior Administrator'] = 1165751640788316260, -- 6

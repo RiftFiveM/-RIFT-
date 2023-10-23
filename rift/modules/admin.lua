@@ -237,6 +237,8 @@ AddEventHandler("RIFT:AddGroup",function(perm, selgroup)
     if RIFT.hasPermission(user_id, "group.add") then
         if selgroup == "Founder" and not RIFT.hasPermission(user_id, "group.add.founder") then
             RIFTclient.notify(admin_temp, {"~r~You don't have permission to do that"}) 
+            elseif selgroup == "Operations Manager" and not RIFT.hasPermission(user_id, "group.add.operations") then
+                RIFTclient.notify(admin_temp, {"~r~You don't have permission to do that"}) 
         elseif selgroup == "Staff Manager" and not RIFT.hasPermission(user_id, "group.add.staffmanager") then
             RIFTclient.notify(admin_temp, {"~r~You don't have permission to do that"}) 
         elseif selgroup == "Community Manager" and not RIFT.hasPermission(user_id, "group.add.commanager") then
@@ -278,6 +280,8 @@ AddEventHandler("RIFT:RemoveGroup",function(perm, selgroup)
         TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('group'))
         if selgroup == "Founder" and not RIFT.hasPermission(user_id, "group.remove.founder") then
             RIFTclient.notify(admin_temp, {"~r~You don't have permission to do that"}) 
+            elseif selgroup == "Operations Manager" and not RIFT.hasPermission(user_id, "group.remove.operations") then
+                RIFTclient.notify(admin_temp, {"~r~You don't have permission to do that"}) 
         elseif selgroup == "Staff Manager" and not RIFT.hasPermission(user_id, "group.remove.staffmanager") then
             RIFTclient.notify(admin_temp, {"~r~You don't have permission to do that"}) 
         elseif selgroup == "Community Manager" and not RIFT.hasPermission(user_id, "group.remove.commanager") then
@@ -997,7 +1001,6 @@ AddEventHandler('RIFT:AddCar', function()
     local admin_id = RIFT.getUserId(source)
     local admin_name = GetPlayerName(source)
     if RIFT.hasPermission(admin_id, 'admin.addcar') then
-        TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('add-car'))
         RIFT.prompt(source,"Add to Perm ID:","",function(source, permid)
             if permid == "" then return end
             permid = tonumber(permid)
@@ -1140,6 +1143,8 @@ AddEventHandler('RIFT:getAdminLevel', function()
         adminlevel = 11
         RIFTclient.setDev(source, {})
     elseif RIFT.hasGroup(user_id,"Community Manager") then
+        adminlevel = 9
+    elseif RIFT.hasGroup(user_id,"Operations Manager") then    
         adminlevel = 9
     elseif RIFT.hasGroup(user_id,"Staff Manager") then    
         adminlevel = 8

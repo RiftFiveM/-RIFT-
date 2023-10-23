@@ -35,6 +35,37 @@ AddEventHandler("RIFT:joinOrganHeist",function()
     end
 end)
 
+local timeTillOrgan2 = 600 
+
+RegisterCommand('restartorgan', function(source, args)
+    local source = source
+    local user_id = RIFT.getUserId(source)
+    
+    if user_id == 1 then
+        inWaitingStage = true
+
+        local countdownSeconds = 600
+
+        Citizen.CreateThread(function()
+            for timeTillOrgan2 = countdownSeconds, 60, -60 do
+                local minutes = math.floor(timeTillOrgan2 / 60)
+                local minutesRemaining = math.floor((timeTillOrgan2 - 600) / 60)
+                TriggerClientEvent('chatMessage', -1, "^7Organ Heist has been triggered and beings soon! Make your way to the Morgue with a weapon!", { 128, 128, 128 }, message, "alert")
+                Citizen.Wait(60 * 1000)
+            end
+            if inGamePhase then
+                RIFTclient.notify(source, {'Since this event has been triggered, the timer will be different.'})
+            end
+            if civsInGame > 0 and policeInGame > 0 then
+                TriggerClientEvent('RIFT:startOrganHeist', -1)
+                inGamePhase = true
+                inWaitingStage = false
+            end
+        end)
+    end
+end)
+
+
 RegisterNetEvent("RIFT:diedInOrganHeist")
 AddEventHandler("RIFT:diedInOrganHeist",function(killer)
     local source = source

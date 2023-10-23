@@ -85,6 +85,9 @@ function tRIFT.ooc(source, args, raw)
 		elseif RIFT.hasGroup(user_id, "Community Manager") then
 			TriggerClientEvent('chatMessage', -1, "^7OOC ^7^r |^1 Community Manager ^7" .. GetPlayerName(source) .."^7 : " , { 128, 128, 128 }, message, "ooc")
 			chatCooldown[source] = true
+		elseif RIFT.hasGroup(user_id, "Operations Manager") then
+			TriggerClientEvent('chatMessage', -1, "^7OOC ^7^r |^6 Operations Manager ^7" .. GetPlayerName(source) .."^7 : " , { 128, 128, 128 }, message, "ooc")
+			chatCooldown[source] = true
 		elseif RIFT.hasGroup(user_id, "Staff Manager") then
 			TriggerClientEvent('chatMessage', -1, "^7OOC ^7^r |^6 Staff Manager ^7" .. GetPlayerName(source) .."^7 : " , { 128, 128, 128 }, message, "ooc")
 			chatCooldown[source] = true
