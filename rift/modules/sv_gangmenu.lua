@@ -303,42 +303,41 @@ end)
 
 local gangWithdraw = {}
 RegisterServerEvent("RIFT:withdrawGangBalance")
-AddEventHandler("RIFT:withdrawGangBalance", function(amount)
+AddEventHandler("RIFT:withdrawGangBalance", function(gangname, amount)
     local source = source
     local user_id = RIFT.getUserId(source)
     local name = GetPlayerName(source)
     local date = os.date("%d/%m/%Y at %X")
-    if not gangWithdraw[source] then
-        gangWithdraw[source] = true
-        exports['ghmattimysql']:execute('SELECT * FROM rift_gangs', function(gotGangs)
-            for K,V in pairs(gotGangs) do
-                local array = json.decode(V.gangmembers)
-                for I,L in pairs(array) do
-                    if tostring(user_id) == I then
-                        local funds = V.funds
-                        local gangname = V.gangname
-                        local amount = V.funds
-                        if tonumber(amount) < 0 then
-                            RIFTclient.notify(source,{"~r~Invalid Amount"})
-                            return
-                        end
-                        if tonumber(funds) < tonumber(amount) then
-                            RIFTclient.notify(source,{"~r~Invalid Amount."})
-                        else
-                            RIFT.setBankMoney(user_id, (RIFT.getBankMoney(user_id))+tonumber(amount))
-                            RIFTclient.notify(source,{"~g~Withdrew £"..getMoneyStringFormatted(amount)})
-                            local newamount = tonumber(amount)-tonumber(funds)
-                            addGangLog(name, user_id, date, 'Withdrew', '£'..getMoneyStringFormatted(amount))
-                            exports['ghmattimysql']:execute("UPDATE rift_gangs SET funds = @funds WHERE gangname=@gangname", {funds = tostring(newamount), gangname = gangname}, function()
-                                TriggerClientEvent('RIFT:ForceRefreshData', -1)
-                            end)
-                        end
+
+    if tonumber(amount) <= 0 then
+        RIFTclient.notify(source, {"~r~Invalid Amount"})
+        return
+    end
+
+    exports['ghmattimysql']:execute('SELECT * FROM rift_gangs WHERE gangname = @gangname', {gangname = gangname}, function(gotGangs)
+        for K,V in pairs(gotGangs) do
+            local array = json.decode(V.gangmembers)
+            for I,L in pairs(array) do
+                if tostring(user_id) == I then
+                    local funds = V.funds
+                    local gangname = V.gangname
+
+                    if tonumber(funds) < tonumber(amount) then
+                        RIFTclient.notify(source, {"~r~Insufficient gang funds."})
+                    else
+                        RIFT.setBankMoney(user_id, RIFT.getBankMoney(user_id) + tonumber(amount))
+                        RIFTclient.notify(source, {"~g~Withdrew £" .. getMoneyStringFormatted(amount)})
+                        local newamount = tonumber(funds) - tonumber(amount)
+                        addGangLog(name, user_id, date, 'Withdrew', '£' .. getMoneyStringFormatted(amount))
+                        exports['ghmattimysql']:execute("UPDATE rift_gangs SET funds = @funds WHERE gangname = @gangname", {funds = tostring(newamount), gangname = gangname}, function()
+                            TriggerClientEvent('RIFT:ForceRefreshData', -1)
+                        end)
                     end
                 end
             end
-            gangWithdraw[source] = nil
-        end)
-    end
+        end
+    end)
+
     TriggerClientEvent('RIFT:ForceRefreshData', source)
 end)
 
