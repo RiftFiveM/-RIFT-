@@ -47,10 +47,9 @@ RegisterCommand('restartorgan', function(source, args)
         local countdownSeconds = 600
 
         Citizen.CreateThread(function()
-            for timeTillOrgan2 = countdownSeconds, 60, -60 do
+            for timeTillOrgan2 = countdownSeconds, 0, -60 do
                 local minutes = math.floor(timeTillOrgan2 / 60)
-                local minutesRemaining = math.floor((timeTillOrgan2 - 600) / 60)
-                TriggerClientEvent('chatMessage', -1, "^7Organ Heist has been triggered and beings soon! Make your way to the Morgue with a weapon!", { 128, 128, 128 }, message, "alert")
+                TriggerClientEvent('chatMessage', -1, "^7Organ Heist starts in ^1".. minutes .." minutes! Make your way over to the Morgue with a weapon", { 128, 128, 128 }, message, "alert")
                 Citizen.Wait(60 * 1000)
             end
             if inGamePhase then
