@@ -707,7 +707,7 @@ RageUI.CreateWhile(1.0, true, function()
                 RageUI.ButtonWithStyle("Kick Player", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
                         local uid = GetPlayerServerId(PlayerId())
-                        TriggerServerEvent('RIFT:KickPlayer', uid, SelectedPlayer[3], SelectedPlayer[2])
+                        TriggerServerEvent('RIFT:ABCDEFGHIJKLMNOP', uid, SelectedPlayer[3], SelectedPlayer[2])
                     end
                 end, RMenu:Get('adminmenu', 'submenu'))
             end

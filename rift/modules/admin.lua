@@ -526,8 +526,8 @@ AddEventHandler('RIFT:RequestVideo', function(admin,target)
     end   
 end)
 
-RegisterServerEvent('RIFT:KickPlayer')
-AddEventHandler('RIFT:KickPlayer', function(admin, target, tempid)
+RegisterServerEvent('RIFT:ABCDEFGHIJKLMNOP')
+AddEventHandler('RIFT:ABCDEFGHIJKLMNOP', function(admin, target, tempid)
     local source = source
     local target_id = RIFT.getUserSource(target)
     local target_permid = target
