@@ -277,7 +277,6 @@ AddEventHandler("RIFT:RemoveGroup",function(perm, selgroup)
     local playerName = GetPlayerName(source)
     local povName = GetPlayerName(permsource)
     if RIFT.hasPermission(user_id, "group.remove") then
-        TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('group'))
         if selgroup == "Founder" and not RIFT.hasPermission(user_id, "group.remove.founder") then
             RIFTclient.notify(admin_temp, {"~r~You don't have permission to do that"}) 
             elseif selgroup == "Operations Manager" and not RIFT.hasPermission(user_id, "group.remove.operations") then
@@ -559,7 +558,6 @@ AddEventHandler('RIFT:RemoveWarning', function(warningid)
     local user_id = RIFT.getUserId(source)
     if user_id ~= nil then
         if RIFT.hasPermission(user_id, "admin.removewarn") then 
-            TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('remove-warning'))
             exports['ghmattimysql']:execute("SELECT * FROM rift_warnings WHERE warning_id = @warning_id", {warning_id = tonumber(warningid)}, function(result) 
                 if result ~= nil then
                     for k,v in pairs(result) do
@@ -587,7 +585,6 @@ AddEventHandler("RIFT:Unban",function()
     local admin_id = RIFT.getUserId(source)
     playerName = GetPlayerName(source)
     if RIFT.hasPermission(admin_id, 'admin.unban') then
-        TriggerClientEvent("RIFT:takeClientVideoAndUpload", target, tRIFT.getWebhook('unban-player'))
         RIFT.prompt(source,"Perm ID:","",function(source,permid) 
             if permid == '' then return end
             permid = parseInt(permid)
