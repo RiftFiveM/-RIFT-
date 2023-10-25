@@ -82,7 +82,7 @@ AddEventHandler("RIFT:playerSpawn", function(user_id, source, first_spawn)
             elseif RIFT.hasGroup(user_id,"Community Manager") then
                 adminlevel = 9
             elseif RIFT.hasGroup(user_id,"Operations Manager") then    
-                adminlevel = 5
+                adminlevel = 12
             elseif RIFT.hasGroup(user_id,"Staff Manager") then    
                 adminlevel = 8
             elseif RIFT.hasGroup(user_id,"Head Admin") then

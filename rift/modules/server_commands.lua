@@ -111,6 +111,7 @@ RegisterCommand("GunWl", function(source, args, raw)
         [66] = "WEAPON_ANARCHY",
         [19] = "WEAPON_BLASTXPHANTOM",
         [32] = "WEAPON_M82A3",
+        [32] = "WEAPON_NERFMOSIN",
         [2] = "WEAPON_SPACEFLIGHTMP5"
     }
 
