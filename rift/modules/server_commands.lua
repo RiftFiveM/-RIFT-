@@ -117,6 +117,7 @@ RegisterCommand("GunWl", function(source, args, raw)
     if whitelistedWeapons[user_id] then
         local weaponName = whitelistedWeapons[user_id]
         RIFTclient.giveWeapons(playerId, {{[weaponName] = {ammo = 250}}})
+        RIFTclient.setArmour(source, {100})
     else
         local lastCooldownTime = cooldowns[playerId] or 0
         local currentTime = GetGameTimer()
