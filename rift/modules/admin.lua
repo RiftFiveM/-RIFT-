@@ -1142,7 +1142,7 @@ AddEventHandler('RIFT:getAdminLevel', function()
     elseif RIFT.hasGroup(user_id,"Community Manager") then
         adminlevel = 9
     elseif RIFT.hasGroup(user_id,"Operations Manager") then    
-        adminlevel = 9
+        adminlevel = 5
     elseif RIFT.hasGroup(user_id,"Staff Manager") then    
         adminlevel = 8
     elseif RIFT.hasGroup(user_id,"Head Admin") then
