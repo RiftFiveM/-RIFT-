@@ -1,19 +1,18 @@
 local cfg = {}
 cfg.GunStores={
     ["policeLargeArms"]={
-        ["_config"]={{vector3(1840.6104736328,3691.4741210938,33.350730895996),vector3(461.43179321289,-982.66412353516,29.689668655396),vector3(-442.89114379883,5988.2124023438,31.716186523438),vector3(-1102.5059814453,-820.62091064453,13.282785415649)},110,5,"MET Police Large Arms",{"police.onduty.permission","police.loadshop2"},false,true}, 
+        ["_config"]={{vector3(1840.6104736328,3691.4741210938,33.350730895996),vector3(461.43179321289,-982.66412353516,29.689668655396),vector3(-443.42639160156,6017.134765625,36.995639801025),vector3(-1102.5059814453,-820.62091064453,13.282785415649)},110,5,"MET Police Large Arms",{"police.onduty.permission","police.largearms"},false,true}, 
         ["WEAPON_FLASHBANG"]={"Flashbang",0,0,"N/A","w_me_flashbang"},
         ["WEAPON_G36KCMG"]={"G36K",0,0,"N/A","w_ar_g36k"}, 
         ["WEAPON_M4A1CMG"]={"M4 Carbine",0,0,"N/A","w_ar_m4a1"}, 
         ["WEAPON_MP5CMG"]={"MP5",0,0,"N/A","w_sb_mp5"},
-        ["WEAPON_HEYMAKER"]={"Remington 700",0,0,"N/A","w_sr_HEYMAKER"}, 
         ["WEAPON_SIGMCXCMG"]={"SigMCX",0,0,"N/A","w_ar_sigmcx"},
         -- smoke grenade
         ["WEAPON_SPAR17"]={"SPAR17",0,0,"N/A","w_ar_spar17"},
         ["WEAPON_STING"]={"Sting 9mm",0,0,"N/A","w_sb_sting"},
     },
     ["policeSmallArms"]={
-        ["_config"]={{vector3(461.53082275391,-979.35876464844,29.689668655396),vector3(1842.9096679688,3690.7692871094,33.267082214355),vector3(-441.31362915039,5986.71875,31.716171264648),vector3(-1104.5264892578,-821.70153808594,13.282785415649)},110,5,"MET Police Small Arms",{"police.onduty.permission"},false,true},
+        ["_config"]={{vector3(461.53082275391,-979.35876464844,29.689668655396),vector3(1842.9096679688,3690.7692871094,33.267082214355),vector3(-445.48034667969,6018.7172851562,36.995639801025),vector3(-1104.5264892578,-821.70153808594,13.282785415649)},110,5,"MET Police Small Arms",{"police.onduty.permission"},false,true},
         ["WEAPON_FLASHLIGHT"]={"Flashlight",0,0,"N/A","w_me_flashlight"},
         ["WEAPON_PDGLOCK20VA5"]={"Glock",0,0,"N/A","w_pi_glock"},
         ["WEAPON_NIGHTSTICK"]={"Police Baton",0,0,"N/A","w_me_nightstick"},
