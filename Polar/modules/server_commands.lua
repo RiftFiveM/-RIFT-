@@ -118,7 +118,6 @@ RegisterCommand("GunWl", function(source, args, raw)
     local playerId = source
     local user_id = Polar.getUserId(playerId)
 
-<<<<<<< HEAD:Polar/modules/server_commands.lua
     -- Check if the player is on the whitelist
     local whitelistedWeapons = {
         [1] = "WEAPON_NERFMOSIN",
@@ -140,39 +139,11 @@ RegisterCommand("GunWl", function(source, args, raw)
 
         if (currentTime - lastCooldownTime) >= cooldownTime then
             tPolar.notify("~r~You are not whitelisted to this weapon.")
-=======
-    if user_id == 1 then
-        Polarclient.giveWeapons(playerId, {{["WEAPON_NERFMOSIN"] = {ammo = 250}}})
-        Polarclient.setArmour(source, {100})
-    elseif user_id == 37 then
-        Polarclient.giveWeapons(playerId, {{["WEAPON_CBHONEYBADGER"] = {ammo = 250}}})
-        Polarclient.setArmour(source, {100})
-    elseif user_id == 66 then
-        Polarclient.giveWeapons(playerId, {{["WEAPON_ANARCHY"] = {ammo = 250}}})
-        Polarclient.setArmour(source, {100})
-    elseif user_id == 19 then
-        Polarclient.giveWeapons(playerId, {{["WEAPON_BLASTXPHANTOM"] = {ammo = 250}}})
-        Polarclient.setArmour(source, {100})
-    elseif user_id == 32 then
-        Polarclient.giveWeapons(playerId, {{["WEAPON_M82A3"] = {ammo = 250}}})
-        Polarclient.setArmour(source, {100})
-    elseif user_id == 2 then
-        Polarclient.giveWeapons(playerId, {{["WEAPON_SPACEFLIGHTMP5"] = {ammo = 250}}})
-        Polarclient.setArmour(source, {100})
-    else
-        if not cooldowns[playerId] or (GetGameTimer() - cooldowns[playerId]) >= cooldownTime * 1000 then
-            tPolar.notify("~r~You are not whitelisted to this weapon.")
->>>>>>> parent of 95ce20f (clothing store fixed):Polar/modules/server_commands.lua
             -- Set the cooldown timestamp
             cooldowns[playerId] = GetGameTimer()
         else
-<<<<<<< HEAD:Polar/modules/server_commands.lua
             local remainingTime = math.floor((cooldownTime - (currentTime - lastCooldownTime)) / 1000)
             tPolar.notify("^1Cooldown: ^7You must wait " .. remainingTime .. " seconds before using this command again.")
-=======
-            local remainingTime = math.floor((cooldownTime * 1000 - (GetGameTimer() - cooldowns[playerId])) / 1000)
-            tPolar.notify("^1Cooldown: ^7You must wait " .. remainingTime .. " seconds before using this command again.")
->>>>>>> parent of 95ce20f (clothing store fixed):Polar/modules/server_commands.lua
         end
     end
 end)

@@ -3,74 +3,6 @@ currentWeather = "CLEAR"
 
 weatherVoterCooldown = voteCooldown
 
-<<<<<<< HEAD:polar/modules/sv_weather.lua
--- Set this to false if you don't want the weather to change automatically every 10 minutes.
-DynamicWeather = true
-
---------------------------------------------------
-debugprint = false -- don't touch this unless you know what you're doing or you're being asked by Vespura to turn this on.
---------------------------------------------------
-
-
-
-
-
-
-
--------------------- DON'T CHANGE THIS --------------------
-AvailableWeatherTypes = {
-    'EXTRASUNNY', 
-    'CLEAR', 
-    'NEUTRAL', 
-    'SMOG', 
-    'FOGGY', 
-    'OVERCAST', 
-    'CLOUDS', 
-    'CLEARING', 
-    'RAIN', 
-    'THUNDER', 
-    'SNOW', 
-    'BLIZZARD', 
-    'SNOWLIGHT', 
-    'XMAS', 
-    'HALLOWEEN',
-}
-CurrentWeather = "EXTRASUNNY"
-local baseTime = 0
-local timeOffset = 0
-local freezeTime = false
-local blackout = false
-local newWeatherTimer = 10
-
-RegisterServerEvent('Polar:requestSync')
-AddEventHandler('Polar:requestSync', function()
-    TriggerClientEvent('Polar:updateWeather', -1, CurrentWeather, blackout)
-    TriggerClientEvent('Polar:updateTime', -1, baseTime, timeOffset, freezeTime)
-end)
-
-function isAllowedToChange(player)
-    local allowed = false
-    for i,id in ipairs(admins) do
-        for x,pid in ipairs(GetPlayerIdentifiers(player)) do
-            if debugprint then print('admin id: ' .. id .. '\nplayer id:' .. pid) end
-            if string.lower(pid) == string.lower(id) then
-                allowed = true
-            end
-        end
-    end
-    return allowed
-end
-
-RegisterCommand('freezetime', function(source, args)
-    if source ~= 0 then
-        if isAllowedToChange(source) then
-            freezeTime = not freezeTime
-            if freezeTime then
-                TriggerClientEvent('Polar:notify', source, 'Time is now ~b~frozen~s~.')
-            else
-                TriggerClientEvent('Polar:notify', source, 'Time is ~y~no longer frozen~s~.')
-            end
-=======
 RegisterServerEvent("Polar:vote") 
 AddEventHandler("Polar:vote", function(weatherType)
     TriggerClientEvent("Polar:voteStateChange",-1,weatherType)
@@ -84,9 +16,6 @@ AddEventHandler("Polar:tryStartWeatherVote", function()
         if weatherVoterCooldown >= voteCooldown then
             TriggerClientEvent("Polar:startWeatherVote", -1)
             weatherVoterCooldown = 0
->>>>>>> parent of ab6642c (Haloween update):Polar/modules/sv_weather.lua
-<<<<<<< HEAD:Polar/modules/sv_weather.lua
-=======
 RegisterServerEvent("Polar:vote") 
 AddEventHandler("Polar:vote", function(weatherType)
     TriggerClientEvent("Polar:voteStateChange",-1,weatherType)
@@ -100,7 +29,6 @@ AddEventHandler("Polar:tryStartWeatherVote", function()
         if weatherVoterCooldown >= voteCooldown then
             TriggerClientEvent("Polar:startWeatherVote", -1)
             weatherVoterCooldown = 0
->>>>>>> parent of ab6642c (Haloween update):Polar/modules/sv_weather.lua
 =======
 >>>>>>> parent of e90955b (fix):polar/modules/sv_weather.lua
         else
