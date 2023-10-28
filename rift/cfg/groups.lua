@@ -339,8 +339,6 @@ cfg.groups = {
         "admin.tp2player",
         "admin.freeze",
         "admin.spectate",
-        "admin.noclip",
-        "admin.revive",
         "admin.screenshot",
         "admin.video",
         "admin.slap",
