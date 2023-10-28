@@ -110,32 +110,32 @@ local function d(e)
         SetForcePedFootstepsTracks(false)
     end
 end
-function tRIFT.setTime(f, g, h)
+function tPolar.setTime(f, g, h)
     b = {h = f, m = g, s = h}
 end
-function tRIFT.overrideTime(f, g, h)
+function tPolar.overrideTime(f, g, h)
     b.h = f
     b.m = g
     b.s = h
     c = true
 end
-function tRIFT.cancelOverrideTimeWeather()
+function tPolar.cancelOverrideTimeWeather()
     c = false
 end
-function tRIFT.setWeather(i)
+function tPolar.setWeather(i)
     a = i
 end
 function func_manageTimeAndWeather()
     NetworkOverrideClockTime(b.h, b.m, b.s)
     d(a)
 end
-tRIFT.createThreadOnTick(func_manageTimeAndWeather)
-RegisterNetEvent("RIFT:setTime",function(f, g, h)
-    tRIFT.setTime(f, g, h)
->>>>>>> parent of ab6642c (Haloween update):rift/client/cl_weather.lua
+tPolar.createThreadOnTick(func_manageTimeAndWeather)
+RegisterNetEvent("Polar:setTime",function(f, g, h)
+    tPolar.setTime(f, g, h)
+>>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_weather.lua
 end)
-RegisterNetEvent("RIFT:setWeather",function(i)
-    tRIFT.setWeather(i)
+RegisterNetEvent("Polar:setWeather",function(i)
+    tPolar.setWeather(i)
 end)
 Citizen.CreateThread(function()
     while true do
@@ -153,7 +153,7 @@ Citizen.CreateThread(function()
             b.h = 0
         end
         if not c then
-            tRIFT.setTime(b.h, b.m, b.s)
+            tPolar.setTime(b.h, b.m, b.s)
         end
     end
 end)
@@ -237,14 +237,14 @@ end)
 function voteWeather(C)
     if j then
         if not k then
-            TriggerServerEvent("RIFT:vote", C)
+            TriggerServerEvent("Polar:vote", C)
             k = true
-            tRIFT.notify("~g~Vote sent!")
+            tPolar.notify("~g~Vote sent!")
         else
-            tRIFT.notify("~r~You have already voted!")
+            tPolar.notify("~r~You have already voted!")
         end
     else
-        tRIFT.notify("~r~Vote not in progress, start a vote with /voteweather!")
+        tPolar.notify("~r~Vote not in progress, start a vote with /voteweather!")
     end
 end
 function resetVotes()
@@ -263,16 +263,16 @@ function resetVotes()
         ["BLIZZARD"] = 0
     }
 end
-RegisterNetEvent("RIFT:startWeatherVote",function()
+RegisterNetEvent("Polar:startWeatherVote",function()
     j = true
     TriggerEvent("chatMessage","Weather vote has started! Type /[weather] e.g /snow or /rain to vote.",{0, 250, 50})
     TriggerEvent("chatMessage", "Weather types are in bottom left & /voteweather to start a vote", {0, 250, 50})
 end)
-RegisterNetEvent("RIFT:voteStateChange",function(D)
+RegisterNetEvent("Polar:voteStateChange",function(D)
     m[D] = m[D] + 1
 end)
 RegisterCommand("voteweather",function()
-    TriggerServerEvent("RIFT:tryStartWeatherVote")
+    TriggerServerEvent("Polar:tryStartWeatherVote")
 end,false)
 RegisterCommand("clear",function()
     voteWeather("CLEAR")

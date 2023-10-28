@@ -71,25 +71,25 @@ RegisterCommand('freezetime', function(source, args)
                 TriggerClientEvent('Polar:notify', source, 'Time is ~y~no longer frozen~s~.')
             end
 =======
-RegisterServerEvent("RIFT:vote") 
-AddEventHandler("RIFT:vote", function(weatherType)
-    TriggerClientEvent("RIFT:voteStateChange",-1,weatherType)
+RegisterServerEvent("Polar:vote") 
+AddEventHandler("Polar:vote", function(weatherType)
+    TriggerClientEvent("Polar:voteStateChange",-1,weatherType)
 end)
 
-RegisterServerEvent("RIFT:tryStartWeatherVote") 
-AddEventHandler("RIFT:tryStartWeatherVote", function()
+RegisterServerEvent("Polar:tryStartWeatherVote") 
+AddEventHandler("Polar:tryStartWeatherVote", function()
 	local source = source
-    local user_id = RIFT.getUserId(source)
-    if RIFT.hasPermission(user_id, 'admin.managecommunitypot') then
+    local user_id = Polar.getUserId(source)
+    if Polar.hasPermission(user_id, 'admin.managecommunitypot') then
         if weatherVoterCooldown >= voteCooldown then
-            TriggerClientEvent("RIFT:startWeatherVote", -1)
+            TriggerClientEvent("Polar:startWeatherVote", -1)
             weatherVoterCooldown = 0
->>>>>>> parent of ab6642c (Haloween update):rift/modules/sv_weather.lua
+>>>>>>> parent of ab6642c (Haloween update):Polar/modules/sv_weather.lua
         else
             TriggerClientEvent("chatMessage", source, "Another vote can be started in " .. tostring(voteCooldown-weatherVoterCooldown) .. " seconds!", {255, 0, 0})
         end
     else
-        RIFTclient.notify(source, {'~r~You do not have permission for this.'})
+        Polarclient.notify(source, {'~r~You do not have permission for this.'})
     end
 end)
 
@@ -370,14 +370,14 @@ function NextWeatherStage()
 end
 
 =======
-RegisterServerEvent("RIFT:getCurrentWeather") 
-AddEventHandler("RIFT:getCurrentWeather", function()
+RegisterServerEvent("Polar:getCurrentWeather") 
+AddEventHandler("Polar:getCurrentWeather", function()
     local source = source
-    TriggerClientEvent("RIFT:voteFinished",source,currentWeather)
+    TriggerClientEvent("Polar:voteFinished",source,currentWeather)
 end)
 
-RegisterServerEvent("RIFT:setCurrentWeather")
-AddEventHandler("RIFT:setCurrentWeather", function(newWeather)
+RegisterServerEvent("Polar:setCurrentWeather")
+AddEventHandler("Polar:setCurrentWeather", function(newWeather)
 	currentWeather = newWeather
 end)
 
@@ -387,4 +387,4 @@ Citizen.CreateThread(function()
 		Citizen.Wait(1000)
 	end
 end)
->>>>>>> parent of ab6642c (Haloween update):rift/modules/sv_weather.lua
+>>>>>>> parent of ab6642c (Haloween update):Polar/modules/sv_weather.lua
