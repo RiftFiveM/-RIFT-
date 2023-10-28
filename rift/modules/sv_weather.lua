@@ -4,6 +4,7 @@ currentWeather = "CLEAR"
 weatherVoterCooldown = voteCooldown
 
 <<<<<<< HEAD:polar/modules/sv_weather.lua
+<<<<<<< HEAD:polar/modules/sv_weather.lua
 -- Set this to false if you don't want the weather to change automatically every 10 minutes.
 DynamicWeather = true
 
@@ -85,10 +86,26 @@ AddEventHandler("Polar:tryStartWeatherVote", function()
             TriggerClientEvent("Polar:startWeatherVote", -1)
             weatherVoterCooldown = 0
 >>>>>>> parent of ab6642c (Haloween update):Polar/modules/sv_weather.lua
+=======
+RegisterServerEvent("RIFT:vote") 
+AddEventHandler("RIFT:vote", function(weatherType)
+    TriggerClientEvent("RIFT:voteStateChange",-1,weatherType)
+end)
+
+RegisterServerEvent("RIFT:tryStartWeatherVote") 
+AddEventHandler("RIFT:tryStartWeatherVote", function()
+	local source = source
+    local user_id = RIFT.getUserId(source)
+    if RIFT.hasPermission(user_id, 'admin.managecommunitypot') then
+        if weatherVoterCooldown >= voteCooldown then
+            TriggerClientEvent("RIFT:startWeatherVote", -1)
+            weatherVoterCooldown = 0
+>>>>>>> parent of ab6642c (Haloween update):rift/modules/sv_weather.lua
         else
             TriggerClientEvent("chatMessage", source, "Another vote can be started in " .. tostring(voteCooldown-weatherVoterCooldown) .. " seconds!", {255, 0, 0})
         end
     else
+<<<<<<< HEAD:polar/modules/sv_weather.lua
         Polarclient.notify(source, {'~r~You do not have permission for this.'})
     end
 end)
@@ -382,9 +399,31 @@ AddEventHandler("Polar:setCurrentWeather", function(newWeather)
 end)
 
 Citizen.CreateThread(function()
+=======
+        RIFTclient.notify(source, {'~r~You do not have permission for this.'})
+    end
+end)
+
+RegisterServerEvent("RIFT:getCurrentWeather") 
+AddEventHandler("RIFT:getCurrentWeather", function()
+    local source = source
+    TriggerClientEvent("RIFT:voteFinished",source,currentWeather)
+end)
+
+RegisterServerEvent("RIFT:setCurrentWeather")
+AddEventHandler("RIFT:setCurrentWeather", function(newWeather)
+	currentWeather = newWeather
+end)
+
+Citizen.CreateThread(function()
+>>>>>>> parent of ab6642c (Haloween update):rift/modules/sv_weather.lua
 	while true do
 		weatherVoterCooldown = weatherVoterCooldown + 1
 		Citizen.Wait(1000)
 	end
+<<<<<<< HEAD:polar/modules/sv_weather.lua
 end)
 >>>>>>> parent of ab6642c (Haloween update):Polar/modules/sv_weather.lua
+=======
+end)
+>>>>>>> parent of ab6642c (Haloween update):rift/modules/sv_weather.lua
