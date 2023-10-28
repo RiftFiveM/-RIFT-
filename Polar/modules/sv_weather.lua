@@ -4,7 +4,6 @@ currentWeather = "CLEAR"
 weatherVoterCooldown = voteCooldown
 
 <<<<<<< HEAD:polar/modules/sv_weather.lua
-<<<<<<< HEAD:polar/modules/sv_weather.lua
 -- Set this to false if you don't want the weather to change automatically every 10 minutes.
 DynamicWeather = true
 
@@ -86,6 +85,7 @@ AddEventHandler("Polar:tryStartWeatherVote", function()
             TriggerClientEvent("Polar:startWeatherVote", -1)
             weatherVoterCooldown = 0
 >>>>>>> parent of ab6642c (Haloween update):Polar/modules/sv_weather.lua
+<<<<<<< HEAD:Polar/modules/sv_weather.lua
 =======
 RegisterServerEvent("Polar:vote") 
 AddEventHandler("Polar:vote", function(weatherType)
@@ -101,11 +101,12 @@ AddEventHandler("Polar:tryStartWeatherVote", function()
             TriggerClientEvent("Polar:startWeatherVote", -1)
             weatherVoterCooldown = 0
 >>>>>>> parent of ab6642c (Haloween update):Polar/modules/sv_weather.lua
+=======
+>>>>>>> parent of e90955b (fix):polar/modules/sv_weather.lua
         else
             TriggerClientEvent("chatMessage", source, "Another vote can be started in " .. tostring(voteCooldown-weatherVoterCooldown) .. " seconds!", {255, 0, 0})
         end
     else
-<<<<<<< HEAD:polar/modules/sv_weather.lua
         Polarclient.notify(source, {'~r~You do not have permission for this.'})
     end
 end)
@@ -399,6 +400,7 @@ AddEventHandler("Polar:setCurrentWeather", function(newWeather)
 end)
 
 Citizen.CreateThread(function()
+<<<<<<< HEAD:Polar/modules/sv_weather.lua
 =======
         Polarclient.notify(source, {'~r~You do not have permission for this.'})
     end
@@ -417,13 +419,17 @@ end)
 
 Citizen.CreateThread(function()
 >>>>>>> parent of ab6642c (Haloween update):Polar/modules/sv_weather.lua
+=======
+>>>>>>> parent of e90955b (fix):polar/modules/sv_weather.lua
 	while true do
 		weatherVoterCooldown = weatherVoterCooldown + 1
 		Citizen.Wait(1000)
 	end
-<<<<<<< HEAD:polar/modules/sv_weather.lua
 end)
 >>>>>>> parent of ab6642c (Haloween update):Polar/modules/sv_weather.lua
+<<<<<<< HEAD:Polar/modules/sv_weather.lua
 =======
 end)
 >>>>>>> parent of ab6642c (Haloween update):Polar/modules/sv_weather.lua
+=======
+>>>>>>> parent of e90955b (fix):polar/modules/sv_weather.lua
