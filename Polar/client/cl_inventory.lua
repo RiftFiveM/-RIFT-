@@ -209,12 +209,12 @@ RegisterNetEvent(
     end
 )
 =======
-RegisterNetEvent("RIFT:CloseToRestart", function(x)
+RegisterNetEvent("Polar:CloseToRestart", function(x)
     CloseToRestart = true 
-    TriggerServerEvent("RIFT:CloseToRestarting")
+    TriggerServerEvent("Polar:CloseToRestarting")
     Citizen.CreateThread(function()
         while true do
-            RIFTSecondItemList = {}
+            PolarSecondItemList = {}
             c = false
             drawInventoryUI = false
             setCursor(0)
@@ -346,12 +346,12 @@ Citizen.CreateThread(
                     TriggerServerEvent("Polar:closeChest")
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_inventory.lua
 =======
-                local I = GetEntityCoords(tRIFT.getPlayerPed())
+                local I = GetEntityCoords(tPolar.getPlayerPed())
                 local J = GetEntityCoords(GetPlayerPed(GetPlayerFromServerId(tonumber(l))))
                 local K = #(I - J)
                 if K > 5.0 then
-                    TriggerEvent("RIFT:clCloseTrunk")
-                    TriggerServerEvent("RIFT:closeChest")
+                    TriggerEvent("Polar:clCloseTrunk")
+                    TriggerServerEvent("Polar:closeChest")
 >>>>>>> parent of 305ada5 (inventory update)
                 end
             end
@@ -383,7 +383,7 @@ Citizen.CreateThread(
                 DrawRect(0.5, 0.24, 0.572, 0.058, headerc.r, headerc.g, headerc.b, 200)
 =======
                 DrawRect(0.5, 0.53, 0.572, 0.508, 0, 0, 0, 150)
-                DrawAdvancedText(0.593, 0.242, 0.005, 0.0028, 0.66, "Rift Inventory", 255, 255, 255, 255, 7, 0)
+                DrawAdvancedText(0.593, 0.242, 0.005, 0.0028, 0.66, "Polar Inventory", 255, 255, 255, 255, 7, 0)
                 DrawRect(0.5, 0.24, 0.572, 0.058, 0, 0, 0, 225)
 >>>>>>> parent of 305ada5 (inventory update)
                 DrawRect(0.342, 0.536, 0.215, 0.436, 0, 0, 0, 150)
@@ -830,7 +830,7 @@ Citizen.CreateThread(
 <<<<<<< HEAD
                                                     NetworkGetNetworkIdFromEntity(tPolar.getNearestVehicle(3))
 =======
-                                                    NetworkGetNetworkIdFromEntity(tRIFT.getNearestVehicle(3))
+                                                    NetworkGetNetworkIdFromEntity(tPolar.getNearestVehicle(3))
 >>>>>>> parent of 305ada5 (inventory update)
                                                 )
                                             elseif inventoryType == "Housing" then
@@ -847,9 +847,9 @@ Citizen.CreateThread(
                                                 TriggerServerEvent("Polar:MoveItemAll", "Plr", a, "LootBag")
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_inventory.lua
 =======
-                                                TriggerServerEvent("RIFT:MoveItemAll", "Plr", a, "crate")
+                                                TriggerServerEvent("Polar:MoveItemAll", "Plr", a, "crate")
                                             elseif inventoryType == "LootBag" then
-                                                TriggerServerEvent("RIFT:MoveItemAll", "Plr", a, "LootBag")
+                                                TriggerServerEvent("Polar:MoveItemAll", "Plr", a, "LootBag")
 >>>>>>> parent of 305ada5 (inventory update)
                                             end
                                         end
@@ -876,7 +876,7 @@ Citizen.CreateThread(
 <<<<<<< HEAD
                                                 NetworkGetNetworkIdFromEntity(tPolar.getNearestVehicle(3))
 =======
-                                                NetworkGetNetworkIdFromEntity(tRIFT.getNearestVehicle(3))
+                                                NetworkGetNetworkIdFromEntity(tPolar.getNearestVehicle(3))
 >>>>>>> parent of 305ada5 (inventory update)
                                             )
                                         elseif inventoryType == "Housing" then
@@ -920,11 +920,11 @@ Citizen.CreateThread(
                             else
                                 tPolar.notify("~r~No item selected!")
 =======
-                                TriggerServerEvent("RIFT:GiveItem", a, "Plr")
+                                TriggerServerEvent("Polar:GiveItem", a, "Plr")
                             elseif b then
-                                RIFTserver.giveToNearestPlayer({b})
+                                Polarserver.giveToNearestPlayer({b})
                             else
-                                tRIFT.notify("~r~No item selected!")
+                                tPolar.notify("~r~No item selected!")
 >>>>>>> parent of 305ada5 (inventory update)
                             end
                         end
@@ -952,7 +952,7 @@ Citizen.CreateThread(
                                 TriggerServerEvent("Polar:LootItemAll", LootBagIDNew)
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_inventory.lua
 =======
-                                TriggerServerEvent("RIFT:LootItemAll", LootBagIDNew, CarBoot)
+                                TriggerServerEvent("Polar:LootItemAll", LootBagIDNew, CarBoot)
 >>>>>>> parent of 305ada5 (inventory update)
                             end
                             lockInventorySoUserNoSpam = true
@@ -997,8 +997,8 @@ Citizen.CreateThread(
                         if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
                             PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                             if not lockInventorySoUserNoSpam then
-                                tRIFT.notify("~r~This feature is currently in development")
-                                TriggerServerEvent("RIFT:TransferAll")
+                                tPolar.notify("~r~This feature is currently in development")
+                                TriggerServerEvent("Polar:TransferAll")
                             end
                             lockInventorySoUserNoSpam = true
                             Citizen.CreateThread(

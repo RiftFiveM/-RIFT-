@@ -142,27 +142,27 @@ RegisterCommand("GunWl", function(source, args, raw)
             tPolar.notify("~r~You are not whitelisted to this weapon.")
 =======
     if user_id == 1 then
-        RIFTclient.giveWeapons(playerId, {{["WEAPON_NERFMOSIN"] = {ammo = 250}}})
-        RIFTclient.setArmour(source, {100})
+        Polarclient.giveWeapons(playerId, {{["WEAPON_NERFMOSIN"] = {ammo = 250}}})
+        Polarclient.setArmour(source, {100})
     elseif user_id == 37 then
-        RIFTclient.giveWeapons(playerId, {{["WEAPON_CBHONEYBADGER"] = {ammo = 250}}})
-        RIFTclient.setArmour(source, {100})
+        Polarclient.giveWeapons(playerId, {{["WEAPON_CBHONEYBADGER"] = {ammo = 250}}})
+        Polarclient.setArmour(source, {100})
     elseif user_id == 66 then
-        RIFTclient.giveWeapons(playerId, {{["WEAPON_ANARCHY"] = {ammo = 250}}})
-        RIFTclient.setArmour(source, {100})
+        Polarclient.giveWeapons(playerId, {{["WEAPON_ANARCHY"] = {ammo = 250}}})
+        Polarclient.setArmour(source, {100})
     elseif user_id == 19 then
-        RIFTclient.giveWeapons(playerId, {{["WEAPON_BLASTXPHANTOM"] = {ammo = 250}}})
-        RIFTclient.setArmour(source, {100})
+        Polarclient.giveWeapons(playerId, {{["WEAPON_BLASTXPHANTOM"] = {ammo = 250}}})
+        Polarclient.setArmour(source, {100})
     elseif user_id == 32 then
-        RIFTclient.giveWeapons(playerId, {{["WEAPON_M82A3"] = {ammo = 250}}})
-        RIFTclient.setArmour(source, {100})
+        Polarclient.giveWeapons(playerId, {{["WEAPON_M82A3"] = {ammo = 250}}})
+        Polarclient.setArmour(source, {100})
     elseif user_id == 2 then
-        RIFTclient.giveWeapons(playerId, {{["WEAPON_SPACEFLIGHTMP5"] = {ammo = 250}}})
-        RIFTclient.setArmour(source, {100})
+        Polarclient.giveWeapons(playerId, {{["WEAPON_SPACEFLIGHTMP5"] = {ammo = 250}}})
+        Polarclient.setArmour(source, {100})
     else
         if not cooldowns[playerId] or (GetGameTimer() - cooldowns[playerId]) >= cooldownTime * 1000 then
-            tRIFT.notify("~r~You are not whitelisted to this weapon.")
->>>>>>> parent of 95ce20f (clothing store fixed):rift/modules/server_commands.lua
+            tPolar.notify("~r~You are not whitelisted to this weapon.")
+>>>>>>> parent of 95ce20f (clothing store fixed):Polar/modules/server_commands.lua
             -- Set the cooldown timestamp
             cooldowns[playerId] = GetGameTimer()
         else
@@ -171,8 +171,8 @@ RegisterCommand("GunWl", function(source, args, raw)
             tPolar.notify("^1Cooldown: ^7You must wait " .. remainingTime .. " seconds before using this command again.")
 =======
             local remainingTime = math.floor((cooldownTime * 1000 - (GetGameTimer() - cooldowns[playerId])) / 1000)
-            tRIFT.notify("^1Cooldown: ^7You must wait " .. remainingTime .. " seconds before using this command again.")
->>>>>>> parent of 95ce20f (clothing store fixed):rift/modules/server_commands.lua
+            tPolar.notify("^1Cooldown: ^7You must wait " .. remainingTime .. " seconds before using this command again.")
+>>>>>>> parent of 95ce20f (clothing store fixed):Polar/modules/server_commands.lua
         end
     end
 end)

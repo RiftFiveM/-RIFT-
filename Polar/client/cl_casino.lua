@@ -5,14 +5,12 @@ AddEventHandler("Polar:onClientSpawn",function(a, b)
         local d = function(e)
             insideDiamondCasino = true
             tPolar.setCanAnim(false)
-            tPolar.overrideTime(12, 0, 0)
             TriggerEvent("Polar:enteredDiamondCasino")
             TriggerServerEvent('Polar:getChips')
         end
         local f = function(e)
             insideDiamondCasino = false
             tPolar.setCanAnim(true)
-            tPolar.cancelOverrideTimeWeather()
             TriggerEvent("Polar:exitedDiamondCasino")
         end
         local g = function(e)

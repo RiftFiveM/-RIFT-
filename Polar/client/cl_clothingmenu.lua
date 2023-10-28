@@ -235,8 +235,8 @@ RageUI.CreateWhile(1.0, true, function()
                             tPolar.loadCustomisationPreset("DefaultMale")
                             Polarclient.RevivePlayer(target, {})
 =======
-                            tRIFT.loadCustomisationPreset("DefaultMale")
->>>>>>> parent of 95ce20f (clothing store fixed):rift/client/cl_clothingmenu.lua
+                            tPolar.loadCustomisationPreset("DefaultMale")
+>>>>>>> parent of 95ce20f (clothing store fixed):Polar/client/cl_clothingmenu.lua
                         else
                             tPolar.notify("~r~Cannot change gender, you're dead.")
                         end
