@@ -170,6 +170,7 @@ RegisterNetEvent(
         end
     end
 )
+<<<<<<< HEAD
 <<<<<<< HEAD:polar/client/cl_inventory.lua
 =======
 RegisterNetEvent(
@@ -207,6 +208,21 @@ RegisterNetEvent(
         )
     end
 )
+=======
+RegisterNetEvent("RIFT:CloseToRestart", function(x)
+    CloseToRestart = true 
+    TriggerServerEvent("RIFT:CloseToRestarting")
+    Citizen.CreateThread(function()
+        while true do
+            RIFTSecondItemList = {}
+            c = false
+            drawInventoryUI = false
+            setCursor(0)
+            Wait(50)
+        end
+    end)
+end)
+>>>>>>> parent of 305ada5 (inventory update)
 RegisterNetEvent(
     "Polar:closeSecondInventory",
     function()
@@ -287,6 +303,7 @@ Citizen.CreateThread(
                 end
             end
             if l ~= 0 and c then
+<<<<<<< HEAD
                 local H = GetEntityCoords(tPolar.getPlayerPed())
                 local I = GetEntityCoords(GetPlayerPed(GetPlayerFromServerId(tonumber(l))))
                 local J = #(H - I)
@@ -328,6 +345,14 @@ Citizen.CreateThread(
                     TriggerEvent("Polar:clCloseTrunk")
                     TriggerServerEvent("Polar:closeChest")
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_inventory.lua
+=======
+                local I = GetEntityCoords(tRIFT.getPlayerPed())
+                local J = GetEntityCoords(GetPlayerPed(GetPlayerFromServerId(tonumber(l))))
+                local K = #(I - J)
+                if K > 5.0 then
+                    TriggerEvent("RIFT:clCloseTrunk")
+                    TriggerServerEvent("RIFT:closeChest")
+>>>>>>> parent of 305ada5 (inventory update)
                 end
             end
             if f == nil and g == "trunk" then
@@ -352,19 +377,32 @@ Citizen.CreateThread(
     function()
         while true do
             if drawInventoryUI then
+<<<<<<< HEAD
                 DrawRect(0.5, 0.53, 0.572, 0.508, backgroundc.r, backgroundc.g, backgroundc.b, 150)
                 DrawAdvancedText(0.593, 0.242, 0.005, 0.0028, 0.66, y5.." Inventory", 255, 255, 255, 255, 7, 0)
                 DrawRect(0.5, 0.24, 0.572, 0.058, headerc.r, headerc.g, headerc.b, 200)
+=======
+                DrawRect(0.5, 0.53, 0.572, 0.508, 0, 0, 0, 150)
+                DrawAdvancedText(0.593, 0.242, 0.005, 0.0028, 0.66, "Rift Inventory", 255, 255, 255, 255, 7, 0)
+                DrawRect(0.5, 0.24, 0.572, 0.058, 0, 0, 0, 225)
+>>>>>>> parent of 305ada5 (inventory update)
                 DrawRect(0.342, 0.536, 0.215, 0.436, 0, 0, 0, 150)
                 DrawRect(0.652, 0.537, 0.215, 0.436, 0, 0, 0, 150)
                 if s and not inventoryType then
                     DrawAdvancedText(0.664, 0.305, 0.005, 0.0028, 0.325, "Loot All", 255, 255, 255, 255, 6, 0)
                 end
+<<<<<<< HEAD
 <<<<<<< HEAD:polar/client/cl_inventory.lua
                 if next(PolarItemList) then
 =======
                 if next(PolarItemList) then
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_inventory.lua
+=======
+                if c then
+                    DrawAdvancedText(0.440, 0.305, 0.005, 0.0028, 0.325, "Transfer All", 255, 255, 255, 255, 6, 0)
+                end
+                if next(v) then
+>>>>>>> parent of 305ada5 (inventory update)
                     DrawAdvancedText(0.355, 0.305, 0.005, 0.0028, 0.325, "Equip All", 255, 255, 255, 255, 6, 0)
                 end
                 if m then
@@ -690,7 +728,11 @@ Citizen.CreateThread(
                     DrawRect(0.48, 0.54, 0.0375, 0.056, o.r, o.g, o.b, 150)
                     if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
                         PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+<<<<<<< HEAD
                         local a3 = tonumber(GetInvAmountText()) or 1
+=======
+                        local a4 = tonumber(GetInvAmountText()) or 1
+>>>>>>> parent of 305ada5 (inventory update)
                         if not lockInventorySoUserNoSpam then
                             if c then
                                 if a and g ~= nil and c then
@@ -785,11 +827,16 @@ Citizen.CreateThread(
                                                     "Plr",
                                                     a,
                                                     r,
+<<<<<<< HEAD
                                                     NetworkGetNetworkIdFromEntity(tPolar.getNearestVehicle(3))
+=======
+                                                    NetworkGetNetworkIdFromEntity(tRIFT.getNearestVehicle(3))
+>>>>>>> parent of 305ada5 (inventory update)
                                                 )
                                             elseif inventoryType == "Housing" then
                                                 TriggerServerEvent("Polar:MoveItemAll", "Plr", a, "home")
                                             elseif inventoryType == "Crate" then
+<<<<<<< HEAD
 <<<<<<< HEAD:polar/client/cl_inventory.lua
                                                 TriggerServerEvent("Polar:MoveItemAll", "Plr", a, "crate")
                                             elseif s then
@@ -799,6 +846,11 @@ Citizen.CreateThread(
                                             elseif s then
                                                 TriggerServerEvent("Polar:MoveItemAll", "Plr", a, "LootBag")
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_inventory.lua
+=======
+                                                TriggerServerEvent("RIFT:MoveItemAll", "Plr", a, "crate")
+                                            elseif inventoryType == "LootBag" then
+                                                TriggerServerEvent("RIFT:MoveItemAll", "Plr", a, "LootBag")
+>>>>>>> parent of 305ada5 (inventory update)
                                             end
                                         end
                                     else
@@ -821,7 +873,11 @@ Citizen.CreateThread(
                                                 inventoryType,
                                                 b,
                                                 r,
+<<<<<<< HEAD
                                                 NetworkGetNetworkIdFromEntity(tPolar.getNearestVehicle(3))
+=======
+                                                NetworkGetNetworkIdFromEntity(tRIFT.getNearestVehicle(3))
+>>>>>>> parent of 305ada5 (inventory update)
                                             )
                                         elseif inventoryType == "Housing" then
                                             TriggerServerEvent("Polar:MoveItemAll", inventoryType, b, "home")
@@ -857,11 +913,19 @@ Citizen.CreateThread(
                         PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                         if not lockInventorySoUserNoSpam then
                             if a then
+<<<<<<< HEAD
                                 TriggerServerEvent("Polar:GiveItem", a, "Plr")
                             elseif b then
                                 Polarserver.giveToNearestPlayer({b})
                             else
                                 tPolar.notify("~r~No item selected!")
+=======
+                                TriggerServerEvent("RIFT:GiveItem", a, "Plr")
+                            elseif b then
+                                RIFTserver.giveToNearestPlayer({b})
+                            else
+                                tRIFT.notify("~r~No item selected!")
+>>>>>>> parent of 305ada5 (inventory update)
                             end
                         end
                         lockInventorySoUserNoSpam = true
@@ -881,11 +945,15 @@ Citizen.CreateThread(
                         if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
                             PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
                             if not lockInventorySoUserNoSpam then
+<<<<<<< HEAD
 <<<<<<< HEAD:polar/client/cl_inventory.lua
                                 TriggerServerEvent("Polar:LootItemAll", LootBagIDNew)
 =======
                                 TriggerServerEvent("Polar:LootItemAll", LootBagIDNew)
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_inventory.lua
+=======
+                                TriggerServerEvent("RIFT:LootItemAll", LootBagIDNew, CarBoot)
+>>>>>>> parent of 305ada5 (inventory update)
                             end
                             lockInventorySoUserNoSpam = true
                             Citizen.CreateThread(
@@ -921,6 +989,27 @@ Citizen.CreateThread(
                         end
                     else
                         DrawRect(0.2600, 0.3, 0.05, 0.025, 0, 0, 0, 150)
+                    end
+                end
+                if c then
+                    if CursorInArea(0.32000, 0.37000, 0.287037, 0.308333) then
+                        DrawRect(0.3453, 0.3, 0.05, 0.025, o.r, o.g, o.b, 150)
+                        if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
+                            PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                            if not lockInventorySoUserNoSpam then
+                                tRIFT.notify("~r~This feature is currently in development")
+                                TriggerServerEvent("RIFT:TransferAll")
+                            end
+                            lockInventorySoUserNoSpam = true
+                            Citizen.CreateThread(
+                                function()
+                                    Wait(250)
+                                    lockInventorySoUserNoSpam = false
+                                end
+                            )
+                        end
+                    else
+                        DrawRect(0.3453, 0.3, 0.05, 0.025, 0, 0, 0, 150)
                     end
                 end
                 if CursorInArea(0.4598, 0.5333, 0.6831, 0.7377) then
@@ -981,7 +1070,11 @@ Citizen.CreateThread(
                         DrawRect(0.342, 0.331 + T * (V + 1), 0.215, 0.026, o.r, o.g, o.b, 150)
                         if IsControlJustPressed(1, 329) or IsDisabledControlJustPressed(1, 329) then
                             PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+<<<<<<< HEAD
                             a = _
+=======
+                            a = a0
+>>>>>>> parent of 305ada5 (inventory update)
                             if n[a] then
                                 m = true
                             else
