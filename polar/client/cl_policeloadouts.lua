@@ -4,7 +4,7 @@ local weapons = module("Polar-weapons", "cfg/weapons")
 local loadoutCoords = {
     vector3(457.0222, -983.0001, 30.68948), -- mission row
     vector3(1844.323, 3692.164, 34.26707), -- sandy
-    vector3(-448.82821655273,6014.4443359375,36.995677947998), -- paleto
+    vector3(-436.22573852539,5989.7885742188,31.7161693573), -- paleto
     vector3(-1106.505, -826.4623, 14.2828), -- vespucci
 }
 

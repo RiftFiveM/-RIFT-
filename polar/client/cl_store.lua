@@ -42,14 +42,26 @@ local y = nil
 local z = nil
 RMenu.Add(
     "store",
+<<<<<<< HEAD:polar/client/cl_store.lua
     "mainmenu",
     RageUI.CreateMenu("", "Inventory", tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(), "menus", "store")
+=======
+    "MainMenu",
+    RageUI.CreateMenu(
+        "",
+        "Inventory",
+        tRIFT.getRageUIMenuWidth(),
+        tRIFT.getRageUIMenuHeight(),
+        "rift_storeui",
+        "rift_storeui"
+    )
+>>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
 )
 RMenu.Add(
     "store",
     "info",
     RageUI.CreateSubMenu(
-        RMenu:Get("store", "mainmenu"),
+        RMenu:Get("store", "MainMenu"),
         "",
         "Information",
         tPolar.getRageUIMenuWidth(),
@@ -59,7 +71,17 @@ RMenu.Add(
 RMenu.Add(
     "store",
     "redeem",
+<<<<<<< HEAD:polar/client/cl_store.lua
     RageUI.CreateSubMenu(RMenu:Get("store", "info"), "", "Redeem", tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight())
+=======
+    RageUI.CreateSubMenu(
+        RMenu:Get("store", "info"),
+        "",
+        "Redeem",
+        tRIFT.getRageUIMenuWidth(),
+        tRIFT.getRageUIMenuHeight()
+    )
+>>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
 )
 RMenu.Add(
     "store",
@@ -68,8 +90,15 @@ RMenu.Add(
         RMenu:Get("store", "redeem"),
         "",
         "Vehicles",
+<<<<<<< HEAD:polar/client/cl_store.lua
         tPolar.getRageUIMenuWidth(),
         tPolar.getRageUIMenuHeight(), "menus", "Polar_minigames_choosevehicle"))
+=======
+        tRIFT.getRageUIMenuWidth(),
+        tRIFT.getRageUIMenuHeight()
+    )
+)
+>>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
 RMenu.Add(
     "store",
     "vehicleListInner",
@@ -77,8 +106,15 @@ RMenu.Add(
         RMenu:Get("store", "vehicleList"),
         "",
         "Vehicles",
+<<<<<<< HEAD:polar/client/cl_store.lua
         tPolar.getRageUIMenuWidth(),
         tPolar.getRageUIMenuHeight(), "menus", "Polar_minigames_choosevehicle"))
+=======
+        tRIFT.getRageUIMenuWidth(),
+        tRIFT.getRageUIMenuHeight()
+    )
+)
+>>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
 RMenu.Add(
     "store",
     "vehicleSelection",
@@ -86,8 +122,15 @@ RMenu.Add(
         RMenu:Get("store", "vehicleList"),
         "",
         "Vehicle Options",
+<<<<<<< HEAD:polar/client/cl_store.lua
         tPolar.getRageUIMenuWidth(),
         tPolar.getRageUIMenuHeight(), "menus", "Polar_minigames_choosevehicle"))
+=======
+        tRIFT.getRageUIMenuWidth(),
+        tRIFT.getRageUIMenuHeight()
+    )
+)
+>>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
 local function A(B, C)
     notify("~r~" .. B.name .. " " .. C)
 end
@@ -284,7 +327,7 @@ RageUI.CreateWhile(
     1.0,
     true,
     function()
-        if RageUI.Visible(RMenu:Get("store", "mainmenu")) then
+        if RageUI.Visible(RMenu:Get("store", "MainMenu")) then
             RageUI.DrawContent(
                 {header = true, glare = false, instructionalButton = false},
                 function()
@@ -347,6 +390,7 @@ RageUI.CreateWhile(
                             end,
                             nil
                         )
+<<<<<<< HEAD:polar/client/cl_store.lua
                         RageUI.ButtonWithStyle(
                             "Join Support Discord",
                             "To open a ticket about this lock slot go to open-a-ticket, Then open a donation support ticket.",
@@ -358,6 +402,8 @@ RageUI.CreateWhile(
                                 end
                             end
                         )
+=======
+>>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
                     end
                     if U.canTransfer then
                         RageUI.ButtonWithStyle(
@@ -387,8 +433,9 @@ RageUI.CreateWhile(
                             nil
                         )
                     end
-                    local ai = j and string.format("~g~Copied %s into your clipboard!", d)
-                    string.format("Copies %s into your clipboard.", d)
+                    local ai =
+                        j and string.format("~g~Copied %s into your clipboard!", d) or
+                        string.format("Copies %s into your clipboard.", d)
                     RageUI.ButtonWithStyle(
                         "Copy Code to Clipboard",
                         ai,
@@ -396,7 +443,11 @@ RageUI.CreateWhile(
                         true,
                         function(X, Y, Z)
                             if Z then
+<<<<<<< HEAD:polar/client/cl_store.lua
                                 tPolar.CopyToClipBoard(d)
+=======
+                                tRIFT.CopyToClipboard(d)
+>>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
                                 j = true
                             end
                         end
@@ -450,10 +501,10 @@ RageUI.CreateWhile(
                         if type(F) == "table" then
                             local aj = not c[ag]
                             local ai = aj and "" or "You do not have access to this garage."
-                            RageUI.Button(
+                            RageUI.ButtonWithStyle(
                                 ag,
                                 ai,
-                                aj and {RightLabel = "→→→"} or {RightLabel = ""},
+                                {RightLabel = "→→→"},
                                 aj,
                                 function(X, Y, Z)
                                     if Z then
@@ -465,10 +516,10 @@ RageUI.CreateWhile(
                         else
                             local aj = J(ag)
                             local ai = aj and "" or "You can not own more than one of this vehicle."
-                            RageUI.Button(
+                            RageUI.ButtonWithStyle(
                                 F,
                                 ai,
-                                aj and {RightLabel = "→→→"} or {RightLabel = ""},
+                                {RightLabel = "→→→"},
                                 aj,
                                 function(X, Y, Z)
                                     if Z then
@@ -489,10 +540,10 @@ RageUI.CreateWhile(
                     for ag, F in ae(f.items[h], true) do
                         local aj = J(ag)
                         local ai = aj and "" or "You can not own more than one of this vehicle."
-                        RageUI.Button(
+                        RageUI.ButtonWithStyle(
                             F,
                             ai,
-                            aj and {RightLabel = "→→→"} or {RightLabel = ""},
+                            {RightLabel = "→→→"},
                             aj,
                             function(X, Y, Z)
                                 if Z then
@@ -529,9 +580,16 @@ RageUI.CreateWhile(
                         function(X, Y, Z)
                             if Z then
                                 if
+<<<<<<< HEAD:polar/client/cl_store.lua
                                     tPolar.canAnim() and tPolar.getPlayerCombatTimer() == 0 and tPolar.getPlayerVehicle() == 0 and
                                         not tPolar.isPlayerInRedZone() and
                                         tPolar.getPlayerBucket() == 0
+=======
+                                    tRIFT.canAnim() and tRIFT.getPlayerCombatTimer() == 0 and
+                                        tRIFT.getPlayerVehicle() == 0 and
+                                        not tRIFT.isPlayerInRedZone() and
+                                        tRIFT.getPlayerBucket() == 0
+>>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
                                  then
                                     a2(g)
                                 else
@@ -554,14 +612,26 @@ RegisterNetEvent(
 )
 RMenu.Add(
     "vehicletesting",
+<<<<<<< HEAD:polar/client/cl_store.lua
     "mainmenu",
     RageUI.CreateMenu("", "Main Menu", tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(), "menus", "store")
+=======
+    "MainMenu",
+    RageUI.CreateMenu(
+        "",
+        "Main Menu",
+        tRIFT.getRageUIMenuWidth(),
+        tRIFT.getRageUIMenuHeight(),
+        "rift_storeui",
+        "rift_storeui"
+    )
+>>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
 )
 RMenu.Add(
     "vehicletesting",
     "extras",
     RageUI.CreateSubMenu(
-        RMenu:Get("vehicletesting", "mainmenu"),
+        RMenu:Get("vehicletesting", "MainMenu"),
         "",
         "Extras",
         tPolar.getRageUIMenuWidth(),
@@ -617,7 +687,7 @@ RageUI.CreateWhile(
     1.0,
     true,
     function()
-        if RageUI.Visible(RMenu:Get("vehicletesting", "mainmenu")) then
+        if RageUI.Visible(RMenu:Get("vehicletesting", "MainMenu")) then
             RageUI.DrawContent(
                 {header = true, glare = false, instructionalButton = false},
                 function()
@@ -773,10 +843,10 @@ RageUI.CreateWhile(
 local function az()
     if l then
         if
-            not RageUI.Visible(RMenu:Get("vehicletesting", "mainmenu")) and
+            not RageUI.Visible(RMenu:Get("vehicletesting", "MainMenu")) and
                 not RageUI.Visible(RMenu:Get("vehicletesting", "extras"))
          then
-            RageUI.Visible(RMenu:Get("vehicletesting", "mainmenu"), true)
+            RageUI.Visible(RMenu:Get("vehicletesting", "MainMenu"), true)
         end
         DisableControlAction(0, 23, true)
         DisableControlAction(0, 75, true)
@@ -851,6 +921,7 @@ RegisterNetEvent(
         c = aB
     end
 )
+<<<<<<< HEAD:polar/client/cl_store.lua
 RegisterNetEvent("Polar:OpenStoreMenu")
 AddEventHandler(
     "Polar:OpenStoreMenu",
@@ -863,6 +934,16 @@ RegisterCommand(
     function()
         TriggerServerEvent("Polar:OpenStore")
     end
+=======
+RegisterCommand(
+    "store",
+    function()
+        if tRIFT.getUserId() == 1 then
+            RageUI.Visible(RMenu:Get("store", "MainMenu"), true)
+        end
+    end,
+    false
+>>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
 )
 RegisterNetEvent(
     "Polar:setStoreRankName",
@@ -873,7 +954,6 @@ RegisterNetEvent(
 RegisterNetEvent(
     "Polar:storeCloseMenu",
     function()
-        RageUI.ActuallyCloseAll()
-        RageUI.Visible(RMenu:Get("store", "mainmenu"), false)
+        RageUI.Visible(RMenu:Get("store", "MainMenu"), false)
     end
 )

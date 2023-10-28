@@ -9,8 +9,6 @@ local d = {
     ["LargeArmsCayo"] = {type = "radius",pos = vector3(5115.7465820312, -4623.2915039062, 2.642692565918),radius = 85.0},
     ["RebelCayo"] = {type = "radius", pos = vector3(4982.5634765625, -5175.1079101562, 2.4887988567352), radius = 120.0},
     ["LSDNorth"] = {type = "radius", pos = vector3(1317.0300292969, 4309.8359375, 38.005485534668), radius = 90.0},
-    ["CityRebel"] = {type = "radius", pos = vector3(1182.0738525391,-3267.5512695312,5.5286040306091), radius = 100.0},
-    ["CityLarge"] = {type = "radius", pos = vector3(696.26892089844,-1011.2525634766,22.793746948242), radius = 100.0},
     ["LSDSouth"] = {type = "radius", pos = vector3(2539.0964355469, -376.51586914063, 92.986785888672), radius = 120.0},
  ---["Purge"] = {type = "radius", pos = vector3(2539.0964355469, -376.51586914063, 92.986785888672), radius = 12000000.0},
 }

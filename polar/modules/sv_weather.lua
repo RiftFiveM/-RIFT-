@@ -1,10 +1,9 @@
------------------- change this -------------------
+voteCooldown = 1800
+currentWeather = "CLEAR"
 
-admins = {
-    'steam:110000105959047',
-    'license:09de6027ad53874e286d038c4fba5259e5ec7159',
-}
+weatherVoterCooldown = voteCooldown
 
+<<<<<<< HEAD:polar/modules/sv_weather.lua
 -- Set this to false if you don't want the weather to change automatically every 10 minutes.
 DynamicWeather = true
 
@@ -71,19 +70,30 @@ RegisterCommand('freezetime', function(source, args)
             else
                 TriggerClientEvent('Polar:notify', source, 'Time is ~y~no longer frozen~s~.')
             end
+=======
+RegisterServerEvent("RIFT:vote") 
+AddEventHandler("RIFT:vote", function(weatherType)
+    TriggerClientEvent("RIFT:voteStateChange",-1,weatherType)
+end)
+
+RegisterServerEvent("RIFT:tryStartWeatherVote") 
+AddEventHandler("RIFT:tryStartWeatherVote", function()
+	local source = source
+    local user_id = RIFT.getUserId(source)
+    if RIFT.hasPermission(user_id, 'admin.managecommunitypot') then
+        if weatherVoterCooldown >= voteCooldown then
+            TriggerClientEvent("RIFT:startWeatherVote", -1)
+            weatherVoterCooldown = 0
+>>>>>>> parent of ab6642c (Haloween update):rift/modules/sv_weather.lua
         else
-            TriggerClientEvent('chatMessage', source, '', {255,255,255}, '^8Error: ^1You are not allowed to use this command.')
+            TriggerClientEvent("chatMessage", source, "Another vote can be started in " .. tostring(voteCooldown-weatherVoterCooldown) .. " seconds!", {255, 0, 0})
         end
     else
-        freezeTime = not freezeTime
-        if freezeTime then
-            print("Time is now frozen.")
-        else
-            print("Time is no longer frozen.")
-        end
+        RIFTclient.notify(source, {'~r~You do not have permission for this.'})
     end
 end)
 
+<<<<<<< HEAD:polar/modules/sv_weather.lua
 RegisterCommand('freezeweather', function(source, args)
     if source ~= 0 then
         if isAllowedToChange(source) then
@@ -359,3 +369,22 @@ function NextWeatherStage()
     end
 end
 
+=======
+RegisterServerEvent("RIFT:getCurrentWeather") 
+AddEventHandler("RIFT:getCurrentWeather", function()
+    local source = source
+    TriggerClientEvent("RIFT:voteFinished",source,currentWeather)
+end)
+
+RegisterServerEvent("RIFT:setCurrentWeather")
+AddEventHandler("RIFT:setCurrentWeather", function(newWeather)
+	currentWeather = newWeather
+end)
+
+Citizen.CreateThread(function()
+	while true do
+		weatherVoterCooldown = weatherVoterCooldown + 1
+		Citizen.Wait(1000)
+	end
+end)
+>>>>>>> parent of ab6642c (Haloween update):rift/modules/sv_weather.lua
