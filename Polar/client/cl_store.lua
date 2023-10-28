@@ -48,7 +48,7 @@ RMenu.Add(
     RageUI.CreateMenu("", "Inventory", tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(), "menus", "store")
 =======
 =======
->>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
+>>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
     "MainMenu",
     RageUI.CreateMenu(
         "",
@@ -61,12 +61,12 @@ RMenu.Add(
     )
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 =======
-        tRIFT.getRageUIMenuWidth(),
-        tRIFT.getRageUIMenuHeight(),
-        "rift_storeui",
-        "rift_storeui"
+        tPolar.getRageUIMenuWidth(),
+        tPolar.getRageUIMenuHeight(),
+        "Polar_storeui",
+        "Polar_storeui"
     )
->>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
+>>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 )
 RMenu.Add(
     "store",
@@ -87,7 +87,7 @@ RMenu.Add(
     RageUI.CreateSubMenu(RMenu:Get("store", "info"), "", "Redeem", tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight())
 =======
 =======
->>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
+>>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
     RageUI.CreateSubMenu(
         RMenu:Get("store", "info"),
         "",
@@ -98,10 +98,10 @@ RMenu.Add(
     )
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 =======
-        tRIFT.getRageUIMenuWidth(),
-        tRIFT.getRageUIMenuHeight()
+        tPolar.getRageUIMenuWidth(),
+        tPolar.getRageUIMenuHeight()
     )
->>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
+>>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 )
 RMenu.Add(
     "store",
@@ -121,11 +121,11 @@ RMenu.Add(
 )
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 =======
-        tRIFT.getRageUIMenuWidth(),
-        tRIFT.getRageUIMenuHeight()
+        tPolar.getRageUIMenuWidth(),
+        tPolar.getRageUIMenuHeight()
     )
 )
->>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
+>>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 RMenu.Add(
     "store",
     "vehicleListInner",
@@ -144,11 +144,11 @@ RMenu.Add(
 )
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 =======
-        tRIFT.getRageUIMenuWidth(),
-        tRIFT.getRageUIMenuHeight()
+        tPolar.getRageUIMenuWidth(),
+        tPolar.getRageUIMenuHeight()
     )
 )
->>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
+>>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 RMenu.Add(
     "store",
     "vehicleSelection",
@@ -167,11 +167,11 @@ RMenu.Add(
 )
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 =======
-        tRIFT.getRageUIMenuWidth(),
-        tRIFT.getRageUIMenuHeight()
+        tPolar.getRageUIMenuWidth(),
+        tPolar.getRageUIMenuHeight()
     )
 )
->>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
+>>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 local function A(B, C)
     notify("~r~" .. B.name .. " " .. C)
 end
@@ -447,7 +447,7 @@ RageUI.CreateWhile(
 =======
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 =======
->>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
+>>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
                     end
                     if U.canTransfer then
                         RageUI.ButtonWithStyle(
@@ -494,8 +494,8 @@ RageUI.CreateWhile(
                                 tPolar.CopyToClipboard(d)
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 =======
-                                tRIFT.CopyToClipboard(d)
->>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
+                                tPolar.CopyToClipboard(d)
+>>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
                                 j = true
                             end
                         end
@@ -640,11 +640,11 @@ RageUI.CreateWhile(
                                         tPolar.getPlayerBucket() == 0
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 =======
-                                    tRIFT.canAnim() and tRIFT.getPlayerCombatTimer() == 0 and
-                                        tRIFT.getPlayerVehicle() == 0 and
-                                        not tRIFT.isPlayerInRedZone() and
-                                        tRIFT.getPlayerBucket() == 0
->>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
+                                    tPolar.canAnim() and tPolar.getPlayerCombatTimer() == 0 and
+                                        tPolar.getPlayerVehicle() == 0 and
+                                        not tPolar.isPlayerInRedZone() and
+                                        tPolar.getPlayerBucket() == 0
+>>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
                                  then
                                     a2(g)
                                 else
@@ -673,7 +673,7 @@ RMenu.Add(
     RageUI.CreateMenu("", "Main Menu", tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(), "menus", "store")
 =======
 =======
->>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
+>>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
     "MainMenu",
     RageUI.CreateMenu(
         "",
@@ -686,12 +686,12 @@ RMenu.Add(
     )
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 =======
-        tRIFT.getRageUIMenuWidth(),
-        tRIFT.getRageUIMenuHeight(),
-        "rift_storeui",
-        "rift_storeui"
+        tPolar.getRageUIMenuWidth(),
+        tPolar.getRageUIMenuHeight(),
+        "Polar_storeui",
+        "Polar_storeui"
     )
->>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
+>>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 )
 RMenu.Add(
     "vehicletesting",
@@ -1010,8 +1010,8 @@ RegisterCommand(
 RegisterCommand(
     "store",
     function()
-        if tRIFT.getUserId() == 1 then
->>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
+        if tPolar.getUserId() == 1 then
+>>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
             RageUI.Visible(RMenu:Get("store", "MainMenu"), true)
         end
     end,
@@ -1019,7 +1019,7 @@ RegisterCommand(
 <<<<<<< HEAD:polar/client/cl_store.lua
 >>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 =======
->>>>>>> parent of ab6642c (Haloween update):rift/client/cl_store.lua
+>>>>>>> parent of ab6642c (Haloween update):Polar/client/cl_store.lua
 )
 RegisterNetEvent(
     "Polar:setStoreRankName",
