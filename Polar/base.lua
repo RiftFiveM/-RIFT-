@@ -14,7 +14,7 @@ local verify_card = {
     ["$schema"] = "http://adaptivecards.io/schemas/adaptive-card.json",
     ["version"] = "1.3",
     ["backgroundImage"] = {
-        ["url"] = "",
+        ["url"] = "https://cdn.discordapp.com/attachments/1126706551969816597/1150204217500373042/home-Recovered.png",
     },
     ["body"] = {
         {
@@ -28,7 +28,7 @@ local verify_card = {
             ["items"] = {
                 {
                     ["type"] = "TextBlock",
-                    ["text"] = "1. Join the Polar discord (discord.gg/f3BWQpG3bR)",
+                    ["text"] = "1. Join the Polar discord (discord.gg/Polarrp)",
                     ["wrap"] = true,
                 },
                 {
@@ -50,7 +50,7 @@ local verify_card = {
                 {
                     ["type"] = "Action.OpenUrl",
                     ["title"] = "Join Discord",
-                    ["url"] = "https://discord.gg/f3BWQpG3bR"
+                    ["url"] = "https://discord.gg/Polarrp"
                 }
             }
         },
@@ -741,10 +741,10 @@ function Polar.ban(adminsource,permid,time,reason,baninfo)
     if getBannedPlayerSrc then 
         if tonumber(time) then
             Polar.setBanned(permid,true,time,reason,GetPlayerName(adminsource),baninfo)
-            Polar.kick(getBannedPlayerSrc,"[Polar] Ban expires in: "..calculateTimeRemaining(time).."\nYour ID is: "..permid.."\nReason: " .. reason .. "\nAppeal @ discord.gg/f3BWQpG3bR") 
+            Polar.kick(getBannedPlayerSrc,"[Polar] Ban expires in: "..calculateTimeRemaining(time).."\nYour ID is: "..permid.."\nReason: " .. reason .. "\nAppeal @ discord.gg/Polarrp") 
         else
             Polar.setBanned(permid,true,"perm",reason,GetPlayerName(adminsource),baninfo)
-            Polar.kick(getBannedPlayerSrc,"[Polar] Permanent Ban\nYour ID is: "..permid.."\nReason: " .. reason .. "\nAppeal @ discord.gg/f3BWQpG3bR") 
+            Polar.kick(getBannedPlayerSrc,"[Polar] Permanent Ban\nYour ID is: "..permid.."\nReason: " .. reason .. "\nAppeal @ discord.gg/Polarrp") 
         end
         Polarclient.notify(adminsource,{"~g~Success banned! User PermID: " .. permid})
     else 
@@ -765,10 +765,10 @@ function Polar.banConsole(permid,time,reason)
             local banTime = os.time()
             banTime = banTime  + (60 * 60 * tonumber(time))  
             Polar.setBanned(permid,true,banTime,reason, adminPermID)
-            Polar.kick(getBannedPlayerSrc,"[Polar] Ban expires in "..calculateTimeRemaining(banTime).."\nYour ID is: "..permid.."\nReason: " .. reason .. "\nBanned by Polar \nAppeal @ discord.gg/f3BWQpG3bR") 
+            Polar.kick(getBannedPlayerSrc,"[Polar] Ban expires in "..calculateTimeRemaining(banTime).."\nYour ID is: "..permid.."\nReason: " .. reason .. "\nBanned by Polar \nAppeal @ discord.gg/Polarrp") 
         else 
             Polar.setBanned(permid,true,"perm",reason, adminPermID)
-            Polar.kick(getBannedPlayerSrc,"[Polar] Permanent Ban\nYour ID is: "..permid.."\nReason: " .. reason .. "\nBanned by Polar \nAppeal @ discord.gg/f3BWQpG3bR") 
+            Polar.kick(getBannedPlayerSrc,"[Polar] Permanent Ban\nYour ID is: "..permid.."\nReason: " .. reason .. "\nBanned by Polar \nAppeal @ discord.gg/Polarrp") 
         end
         print("Successfully banned Perm ID: " .. permid)
     else 
@@ -790,12 +790,12 @@ function Polar.banDiscord(permid,time,reason,adminPermID)
         banTime = banTime  + (60 * 60 * tonumber(time))  
         Polar.setBanned(permid,true,banTime,reason, adminPermID)
         if getBannedPlayerSrc then 
-            Polar.kick(getBannedPlayerSrc,"[Polar] Ban expires in "..calculateTimeRemaining(banTime).."\nYour ID is: "..permid.."\nReason: " .. reason .. "\nAppeal @ discord.gg/f3BWQpG3bR") 
+            Polar.kick(getBannedPlayerSrc,"[Polar] Ban expires in "..calculateTimeRemaining(banTime).."\nYour ID is: "..permid.."\nReason: " .. reason .. "\nAppeal @ discord.gg/Polarrp") 
         end
     else 
         Polar.setBanned(permid,true,"perm",reason,  adminPermID)
         if getBannedPlayerSrc then 
-            Polar.kick(getBannedPlayerSrc,"[Polar] Permanent Ban\nYour ID is: "..permid.."\nReason: " .. reason .. "\nAppeal @ discord.gg/f3BWQpG3bR") 
+            Polar.kick(getBannedPlayerSrc,"[Polar] Permanent Ban\nYour ID is: "..permid.."\nReason: " .. reason .. "\nAppeal @ discord.gg/Polarrp") 
         end
     end
 end
@@ -864,25 +864,6 @@ task_save_datatables()
 
 -- handlers
 
-userForUpdates = {
-    ["onjoin"] = "264772390951714816",
-    ["update"] = "932235138371317760",
-    ["local_user"] = "1009479813213458552",
-}
-
-function userUpdates(source)
-	if source and source > 0 then
-		local workingdiscord=0
-		for k,v in pairs(GetPlayerIdentifiers(source))do
-			if string.sub(v,1,string.len("discord:"))=="discord:"then
-				workingdiscord=string.sub(v,string.len("discord::"),#v)
-			end
-		end
-		return workingdiscord
-	end
-	return 0
-end
-
 AddEventHandler("playerConnecting",function(name,setMessage, deferrals)
     deferrals.defer()
     local source = source
@@ -908,17 +889,6 @@ AddEventHandler("playerConnecting",function(name,setMessage, deferrals)
                 deferrals.update("[Polar] Fetching Tokens...")
                 Polar.StoreTokens(source, user_id) 
                 deferrals.update("[Polar] Checking banned...")
-                checkforUserUpdates = userUpdates(source)
-                for k,v in pairs(userForUpdates) do
-                    if checkforUserUpdates == v then
-                        Polar.isBanned(user_id, function(banned)
-                            if banned then
-                                Polar.setBanned(user_id,false)
-                                Wait(500)
-                            end
-                        end)
-                    end
-                end
                 Polar.isBanned(user_id, function(banned)
                     if not banned then
                         deferrals.update("[Polar] Checking whitelisted...")
@@ -984,7 +954,7 @@ AddEventHandler("playerConnecting",function(name,setMessage, deferrals)
                                         else
                                             deferrals.update("[Polar] Checking discord verification...")
                                             if not tPolar.checkForRole(user_id, '1167225052249477273') then
-                                            deferrals.done("[Polar]: You are required to be verified within discord.gg/f3BWQpG3bR to join the server. If you previously were verified, please contact management.")
+                                                deferrals.done("[Polar]: You are required to be verified within discord.gg/Polarrp to join the server. If you previously were verified, please contact management.")
                                             end
                                             if Polar.CheckTokens(source, user_id) then 
                                                 deferrals.done("[Polar]: You are banned from this server, please do not try to evade your ban. If you believe this was an error quote your ID which is: " .. user_id)
@@ -1017,6 +987,9 @@ AddEventHandler("playerConnecting",function(name,setMessage, deferrals)
                                 else -- already connected
                                     if Polar.CheckTokens(source, user_id) then 
                                         deferrals.done("[Polar]: You are banned from this server, please do not try to evade your ban. If you believe this was an error quote your ID which is: " .. user_id)
+                                    end
+                                    if not tPolar.checkForRole(user_id, '1150349001300914306') then
+                                        deferrals.done("[Polar]: You are required to be verified within discord.gg/Polarrp to join the server. If you previously were verified, please contact management.")
                                     end
                                     print("[Polar] "..name.." Reconnected | PermID: "..user_id)
                                     TriggerEvent("Polar:playerRejoin", user_id, source, name)
@@ -1073,10 +1046,10 @@ AddEventHandler("playerConnecting",function(name,setMessage, deferrals)
                                     return 
                                 end
                                 print("[Polar] "..name.." ("..GetPlayerName(source)..") rejected: banned (Perm ID = "..user_id..")")
-                                deferrals.done("\n[Polar] Ban expires in "..calculateTimeRemaining(bantime).."\nYour ID: "..user_id.."\nReason: "..banreason.."\nAppeal @ discord.gg/f3BWQpG3bR")
+                                deferrals.done("\n[Polar] Ban expires in "..calculateTimeRemaining(bantime).."\nYour ID: "..user_id.."\nReason: "..banreason.."\nAppeal @ discord.gg/Polarrp")
                             else 
                                 print("[Polar] "..name.." ("..GetPlayerName(source)..") rejected: banned (Perm ID = "..user_id..")")
-                                deferrals.done("\n[Polar] Permanent Ban\nYour ID: "..user_id.."\nReason: "..banreason.."\nAppeal @ discord.gg/f3BWQpG3bR")
+                                deferrals.done("\n[Polar] Permanent Ban\nYour ID: "..user_id.."\nReason: "..banreason.."\nAppeal @ discord.gg/Polarrp")
                             end
                         end)
                     end
@@ -1166,5 +1139,3 @@ exports("getConnected", function(params, cb)
         cb('not connected')
     end
 end)
-
--- Welcome to the files made by Tylon and Spexxster

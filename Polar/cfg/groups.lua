@@ -188,17 +188,12 @@ cfg.groups = {
         "admin.tp2coords",
         "admin.removewarn",
         "admin.noclip",
-<<<<<<< HEAD:Polar/cfg/groups.lua
         "admin.addcar",
         "admin.managecommunitypot",
         "group.add.vip",
         "group.add.operationsmanager",
         "group.add.staffmanager",
         "group.add.commanager",
-=======
-        "cardev.menu",
-        "group.add.vip",
->>>>>>> parent of c979760 (I didnt do anything):rift/cfg/groups.lua
         "group.add.headadmin",
         "group.add.senioradmin",
         "group.add.administrator",

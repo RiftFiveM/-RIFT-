@@ -1,5 +1,3 @@
-Polarclient = Tunnel.getInterface("Polar","Polar")
-
 local user_id = 0
 local foundMatch = false
 local inSpectatorAdminMode = false
@@ -27,7 +25,6 @@ local o = ''
 local tt= ''
 local a10
 local requestedVideo = false
-Tickets = {}
 
 admincfg = {}
 
@@ -35,7 +32,7 @@ admincfg.perm = "admin.tickets"
 admincfg.IgnoreButtonPerms = false
 admincfg.admins_cant_ban_admins = false
 
-local q = {"PD (Mission Row)", "PD (Sandy)", "PD (Paleto)", "City Hall", "Airport", "HMP", "Arenas", "Rebel Diner", "St Thomas", "Tutorial Spawn", "Simeons"}
+local q = {"PD (Mission Row)", "PD (Sandy)", "PD (Paleto)", "City Hall", "Airport", "HMP", "Rebel Diner", "St Thomas", "Tutorial Spawn", "Simeons"}
 local r = {
     vector3(446.72503662109, -982.44342041016, 30.68931579589),
     vector3(1839.3137207031, 3671.0014648438, 34.310436248779),
@@ -43,58 +40,52 @@ local r = {
     vector3(-551.08221435547, -194.19259643555, 38.219661712646),
     vector3(-1142.0673828125, -2851.802734375, 13.94624710083),
     vector3(1848.2724609375, 2586.7385253906, 45.671997070313),
-    vector3(-1418.8756103516,-2824.9370117188,431.12661743164),
     vector3(1588.3441162109, 6439.3696289063, 25.123600006104),
     vector3(283.37664794922, -579.45318603516, 43.219303131104),
     vector3(-1035.9499511719,-2734.6240234375,13.756628036499),
     vector3(-39.604099273682,-1111.8635253906,26.438835144043),
 }
 local s = 1
-local communityPot = '0'
 
-menuColour = '~b~'
+E = '~b~'
 
-RMenu.Add('adminmenu', 'main', RageUI.CreateMenu("", "~b~Admin Menu", tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(), "banners", "admin"))
-RMenu.Add("adminmenu", "players", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "main"), "", menuColour..'Admin Player Interaction Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
-RMenu.Add("adminmenu", "closeplayers", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "main"), "", menuColour..'Admin Player Interaction Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
-RMenu.Add("adminmenu", "staffmembers", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "main"), "", menuColour..'Admin Player Interaction Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
-RMenu.Add("adminmenu", "searchoptions", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "main"), "", menuColour..'Admin Player Search Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
-RMenu.Add("adminmenu", "functions", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "main"), "", menuColour..'Admin Functions Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
-RMenu.Add("adminmenu", "devfunctions", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "main"), "", menuColour..'Dev Functions Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
-RMenu.Add("adminmenu", "communitypot", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "functions"), "", menuColour..'Community Pot',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners", "communitypot"))
-RMenu.Add("adminmenu", "ticketdata",RageUI.CreateSubMenu(RMenu:Get("adminmenu", "functions"),"",menuColour .. "Ticket Data",tPolar.getRageUIMenuWidth(),tPolar.getRageUIMenuHeight(),"banners","admin"))
-RMenu.Add("adminmenu", "moneymenu", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "functions"), "", menuColour..'Money Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners", "admin"))
-RMenu.Add("adminmenu", "submenu", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "players"), "", menuColour..'Admin Player Interaction Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners", "admin"))
-RMenu.Add("adminmenu", "searchname", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "searchoptions"), "", menuColour..'Admin Player Search Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners", "admin"))
-RMenu.Add("adminmenu", "searchtempid", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "searchoptions"), "", menuColour..'Admin Player Search Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners", "admin"))
-RMenu.Add("adminmenu", "searchpermid", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "searchoptions"), "", menuColour..'Admin Player Search Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners", "admin"))
-RMenu.Add("adminmenu", "searchhistory", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "searchoptions"), "", menuColour..'Admin Player Search Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners", "admin"))
-RMenu.Add("adminmenu", "notespreviewban", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "players"), "", menuColour..'Player Notes',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners", "admin"))
-RMenu.Add("adminmenu", "banselection", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "notespreviewban"), "", menuColour..'Ban Menu ~w~- ~o~[Tab] to search bans',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners", "admin"))
-RMenu.Add("adminmenu", "generatedban", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "banselection"), "", menuColour..'Ban Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners", "admin"))
-RMenu.Add("adminmenu", "notesub", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "players"), "", menuColour..'Player Notes',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners", "admin"))
-RMenu.Add("adminmenu", "groups", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "submenu"), "", menuColour..'Admin Groups Menu ~w~- ~o~[Tab] to search groups',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners", "admin"))
-RMenu.Add("adminmenu", "addgroup", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "groups"), "", menuColour..'Admin Groups Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners", "admin"))
-RMenu.Add("adminmenu", "removegroup", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "groups"), "", menuColour..'Admin Groups Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners", "admin"))
+RMenu.Add('adminmenu', 'main', RageUI.CreateMenu("", "~b~Admin Menu", tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(), "banners","admin"))
+RMenu.Add("adminmenu", "players", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "main"), "", E..'Admin Player Interaction Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "closeplayers", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "main"), "", E..'Admin Player Interaction Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "staffmembers", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "main"), "", E..'Admin Player Interaction Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "searchoptions", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "main"), "", E..'Admin Player Search Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "functions", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "main"), "", E..'Admin Functions Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "devfunctions", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "main"), "", E..'Dev Functions Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "communitypot", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "functions"), "", E..'Community Pot',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "moneymenu", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "functions"), "", E..'Money Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "submenu", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "players"), "", E..'Admin Player Interaction Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "searchname", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "searchoptions"), "", E..'Admin Player Search Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "searchtempid", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "searchoptions"), "", E..'Admin Player Search Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "searchpermid", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "searchoptions"), "", E..'Admin Player Search Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "searchhistory", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "searchoptions"), "", E..'Admin Player Search Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "notespreviewban", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "players"), "", E..'Player Notes',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "banselection", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "notespreviewban"), "", E..'Ban Menu ~w~- ~o~[Tab] to search bans',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "generatedban", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "banselection"), "", E..'Ban Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "notesub", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "players"), "", E..'Player Notes',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "groups", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "submenu"), "", E..'Admin Groups Menu ~w~- ~o~[Tab] to search groups',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "addgroup", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "groups"), "", E..'Admin Groups Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
+RMenu.Add("adminmenu", "removegroup", RageUI.CreateSubMenu(RMenu:Get("adminmenu", "groups"), "", E..'Admin Groups Menu',tPolar.getRageUIMenuWidth(), tPolar.getRageUIMenuHeight(),"banners","admin"))
 RMenu:Get('adminmenu', 'main')
 
 local groups = {
 	["Founder"] = "Founder",
-    ["Staff Manager"] = "Staff Manager",
-    ["Operations Manager"] = "Operations Manager",
+    ["Lead Developer"] = "Lead Developer",
+    ["Developer"] = "Developer",
     ["Community Manager"] = "Community Manager",
-    ["Head Admin"] = "Head Administrator",
+    ["Staff Manager"] = "Staff Manager",
+    ["Head Administrator"] = "Head Administrator",
     ["Senior Admin"] = "Senior Administrator",
-	["Admin"] = "Administrator",
-    ["Senior Mod"] = "Senior Moderator",
-	["Moderator"] = "Moderator",
-    ["Support Team"] = "Support Team",
-    ["Trial Staff"] = "Trial Staff",
+	["Administrator"] = "Administrator",
     ["cardev"] = "Car Developer",
     ["Supporter"] = "Supporter",
     ["Premium"] = "Premium",
     ["Supreme"] = "Supreme",
-    ["Kingpin"] = "Kingpin",
+    ["Kingpin"] = "King Pin",
     ["Rainmaker"] = "Rainmaker",
     ["Baller"] = "Baller",
     ["pov"] = "POV List",
@@ -116,6 +107,7 @@ local groups = {
     ["Highroller"] = "Highrollers License",
     ["TutorialDone"] = "Completed Tutorial",
     ["Royal Mail Driver"] = "Royal Mail Driver",
+    ["AA Mechanic"] = "AA Mechanic",
     ["Bus Driver"] = "Bus Driver",
     ["Deliveroo"] = "Deliveroo",
     ["Scuba Diver"] = "Scuba Diver",
@@ -123,8 +115,6 @@ local groups = {
     ["Taco Seller"] = "Taco Seller",
     ["Burger Shot Cook"] = "Burger Shot Cook",
     ["Cinematic"] = "Cinematic Menu",
-    ["Booster"] = "Discord Booster",
-    ["Editz"] = "Editz Perms",
 }
 
 
@@ -152,7 +142,7 @@ Citizen.CreateThread(function()
         Citizen.Wait(0)
         if hoveredPlayer ~= nil then
             local hoveredPedCoords = GetEntityCoords(GetPlayerPed(GetPlayerFromServerId(hoveredPlayer)))
-            DrawMarker(2, hoveredPedCoords.x, hoveredPedCoords.y, hoveredPedCoords.z + 1.1,0.0,0.0,0.0,0.0,-180.0,0.0,0.4,0.4,0.4,36,113,252,125,false,true,2, false)
+            DrawMarker(2, hoveredPedCoords.x, hoveredPedCoords.y, hoveredPedCoords.z + 1.1,0.0,0.0,0.0,0.0,-180.0,0.0,0.4,0.4,0.4,255,255,0,125,false,true,2, false)
         end
     end
 end)
@@ -179,13 +169,8 @@ RageUI.CreateWhile(1.0, true, function()
                 end, RMenu:Get('adminmenu', 'closeplayers'))
                 RageUI.ButtonWithStyle("Search Players", "", {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                 end, RMenu:Get('adminmenu', 'searchoptions'))
-                RageUI.ButtonWithStyle("Online Staff Members", "", {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
+                RageUI.ButtonWithStyle("Staff Members", "", {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                 end, RMenu:Get('adminmenu', 'staffmembers'))
-                RageUI.ButtonWithStyle("Functions", "", {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
-                end, RMenu:Get('adminmenu', 'functions'))
-                RageUI.ButtonWithStyle("Settings", "", {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
-                end, RMenu:Get('SettingsMenu', 'MainMenu'))
-            end)
         end
     end
     if RageUI.Visible(RMenu:Get('adminmenu', 'players')) then
@@ -212,7 +197,6 @@ RageUI.CreateWhile(1.0, true, function()
                             if Selected then 
                                 SelectedPlayer = playersNearby[i]
                                 SelectedPerm = v[3]
-                                TriggerServerEvent("Polar:CheckPov",v[3])
                             end
                             if Active then 
                                 hoveredPlayer = v[2]
@@ -221,7 +205,7 @@ RageUI.CreateWhile(1.0, true, function()
                     end
                 end
             else
-                RageUI.Separator("No players nearby!")
+                RageUI.Separator("~r~No players nearby!")
             end
         end)
     end
@@ -233,7 +217,7 @@ RageUI.CreateWhile(1.0, true, function()
                         if Selected then
                             SelectedPlayer = players[k]
                             SelectedPerm = v[3]
-                            TriggerServerEvent("Polar:CheckStaff",v[3])
+                            TriggerServerEvent("Polar:CheckPov",v[3])
                         end
                     end, RMenu:Get('adminmenu', 'submenu'))
                 end
@@ -292,11 +276,7 @@ RageUI.CreateWhile(1.0, true, function()
                     end
                 end, RMenu:Get('adminmenu', 'notespreviewban'))
             end
-<<<<<<< HEAD:Polar/client/adminmenu.lua
-            if tPolar.getStaffLevel() >= 10 then
-=======
             if tPolar.getStaffLevel() >= 5 then
->>>>>>> parent of 95ce20f (clothing store fixed):Polar/client/adminmenu.lua
                 RageUI.ButtonWithStyle("TP To Waypoint", "", {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
                         local WaypointHandle = GetFirstBlipInfoId(8)
@@ -324,7 +304,7 @@ RageUI.CreateWhile(1.0, true, function()
                     end
                 end)
             end
-            if tPolar.getStaffLevel() >= 3 then
+            if tPolar.getStaffLevel() >= 1 then
                 RageUI.ButtonWithStyle("Spawn Taxi", "", {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
                         local A = GetEntityCoords(tPolar.getPlayerPed())
@@ -341,7 +321,7 @@ RageUI.CreateWhile(1.0, true, function()
                             local M = GetPlayerPed(S)
                             if T ~= -1 and M ~= 0 then
                                 local U = GetEntityCoords(M, true)
-                                if #(D - U) < 500.0 then
+                                if #(D - U) < 50.0 then
                                     local V = tPolar.clientGetUserIdFromSource(T)
                                     if V > 0 then
                                         TriggerServerEvent('Polar:RevivePlayer', GetPlayerServerId(PlayerId()), V, true)
@@ -361,17 +341,16 @@ RageUI.CreateWhile(1.0, true, function()
                         end
                         if (GetOnscreenKeyboardResult()) then
                             local result = GetOnscreenKeyboardResult()
-                            if result then 
-                                TriggerServerEvent('Polar:RemoveWarning', result)
+
                             end
                         end
                     end
                 end)
             end 
-            if tPolar.getStaffLevel() >= 6 then
+            if tPolar.getStaffLevel() >= 1 then
                 local P=""
                 if tPolar.hasStaffBlips() then 
-                    P="~r~Turn off blips"
+                    P="Turn off blips"
                 else 
                     P="~g~Turn on blips"
                 end
@@ -388,7 +367,7 @@ RageUI.CreateWhile(1.0, true, function()
                 RageUI.ButtonWithStyle("RP Zones","",{RightLabel="→→→"},true,function(Hovered, Active, Selected)
                 end,RMenu:Get("rpzones","mainmenu"))
             end  
-            if tPolar.getStaffLevel() >= 10 then
+            if tPolar.getStaffLevel() >= 0 then
                 RageUI.ButtonWithStyle("Give Money","",{RightLabel="→→→"},true,function(Hovered, Active, Selected)
                 end,RMenu:Get('adminmenu','moneymenu'))
                 RageUI.ButtonWithStyle("Add Car", "", {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
@@ -396,12 +375,6 @@ RageUI.CreateWhile(1.0, true, function()
                         TriggerServerEvent('Polar:AddCar')
                     end
                 end, RMenu:Get('adminmenu', 'functions'))
-                RageUI.ButtonWithStyle("Check Tickets","~g~Displays your ticket data",{RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
-                    if Selected then
-                        tPolar.notify("~y~Feature Coming Soon!")
-                        -- TriggerServerEvent("Polar:GetAdminTickets")
-                    end
-                end, RMenu:Get("adminmenu", "ticketdata"))
                 RageUI.Checkbox("Set Globally Hidden","",tPolar.isLocalPlayerHidden(),{},function()
                 end,function()
                     TriggerServerEvent("Polar:setUserHidden", true)
@@ -411,54 +384,15 @@ RageUI.CreateWhile(1.0, true, function()
             end
         end)
     end
-    -- RageUI.IsVisible(
-    --     RMenu:Get("adminmenu", "ticketdata"),
-    --     true,
-    --     true,
-    --     true,
-    --     function()
-    --         if next(z) == nil then
-    --             RageUI.Separator("~r~No ticket data found")
-    --         else
-    --             for r, J in ipairs(z) do
-    --                 RageUI.Separator(J)
-    --             end
-    --         end
-            -- RageUI.ButtonWithStyle(
-            --     "View Leaderboard",
-            --     "",
-            --     {RightLabel = "→→→"},
-            --     true,
-            --     function(K, L, M)
-            --         if M then
-            --             TriggerServerEvent("Polar:getTicketLeadeboard")
-            --         end
-            --     end
-            -- )
-    --         RageUI.ButtonWithStyle(
-    --             "View Self",
-    --             "",
-    --             {RightLabel = "→→→"},
-    --             true,
-    --             function(K, L, M)
-    --                 if M then
-    --                     TriggerServerEvent("Polar:getTicketData")
-    --                 end
-    --             end
-    --         )
-    --     end,
-    --     function()
-    --     end
-    -- )
     if RageUI.Visible(RMenu:Get('adminmenu', 'moneymenu')) then
         RageUI.DrawContent({ header = true, glare = false, instructionalButton = false}, function()
             if a10 ~= nil and sn ~= nil and sc ~= nil and sb ~= nil and sw ~= nil and sch ~= nil then
-                RageUI.Separator("Name: ~b~"..sn)
-                RageUI.Separator("PermID: ~b~"..a10)
-                RageUI.Separator("TempID: ~b~"..sc)
-                RageUI.Separator("Bank Balance: ~b~£"..sb)
-                RageUI.Separator("Cash Balance: ~b~£"..sw)
-                RageUI.Separator("Casino Chips: ~b~"..sch)
+                RageUI.Separator("Name: "..sn)
+                RageUI.Separator("PermID: "..a10)
+                RageUI.Separator("TempID: "..sc)
+                RageUI.Separator("Bank Balance: £"..sb)
+                RageUI.Separator("Cash Balance: £"..sw)
+                RageUI.Separator("Casino Chips: "..sch)
                 RageUI.Separator("")
                 RageUI.ButtonWithStyle("Bank Balance ~g~+",nil,{RightLabel="→→→"},true,function(w,x,y)
                     if y then
@@ -486,14 +420,11 @@ RageUI.CreateWhile(1.0, true, function()
                     if y then
                         tPolar.clientPrompt("Amount:","",function(l)
                             if tonumber(l) then
-                                TriggerServerEvent('Polar:ManagePlayerCash',a10,l,"Increase")
-                            else
-                                tPolar.notify("~r~Invalid Amount")
                             end
                         end)
                     end
                 end)
-                RageUI.ButtonWithStyle("Cash Balance ~r~-",nil,{RightLabel="→→→"},true,function(w,x,y)
+                RageUI.ButtonWithStyle("Bank Balance ~r~-",nil,{RightLabel="→→→"},true,function(w,x,y)
                     if y then
                         tPolar.clientPrompt("Amount:","",function(l)
                             if tonumber(l) then
@@ -620,9 +551,6 @@ RageUI.CreateWhile(1.0, true, function()
     if RageUI.Visible(RMenu:Get('adminmenu', 'searchtempid')) then
         RageUI.DrawContent({ header = true, glare = false, instructionalButton = false}, function()
             if foundMatch == false then
-                searchid = tPolar.KeyboardInput("Enter Temp ID", "", 10)
-                if searchid == nil then 
-                    searchid = ""
                 end
             end
             for k, v in pairs(players) do
@@ -642,34 +570,7 @@ RageUI.CreateWhile(1.0, true, function()
                 end
             end
         end)
-    end
-    if RageUI.Visible(RMenu:Get('adminmenu', 'searchname')) then
-        RageUI.DrawContent({ header = true, glare = false, instructionalButton = false}, function()
-            if foundMatch == false then
-                SearchName = tPolar.KeyboardInput("Enter Name", "", 10)
-                if SearchName == nil then 
-                    SearchName = ""
-                end
-            end
-            for k, v in pairs(players) do
-                foundMatch = true
-                if string.find(string.lower(v[1]), string.lower(SearchName)) then
-                    if not tPolar.isUserHidden(v[3]) then
-                        RageUI.ButtonWithStyle(v[1] .." ["..v[2].."]", v[1] .. " ("..v[4].." hours) PermID: " .. v[3] .. " TempID: " .. v[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
-                            if Selected then
-                                SelectedPlayer = players[k]
-                                TriggerServerEvent("Polar:CheckPov",v[3])
-                                g = v[1]
-                                h[i] = g
-                                i = i + 1
-                            end
-                        end, RMenu:Get('adminmenu', 'submenu'))
-                    end
-                end
-            end
-        end)
-    end
-    if RageUI.Visible(RMenu:Get('adminmenu', 'searchhistory')) then
+        If.Visible(RMenu:Get('adminmenu', 'searchhistory')) then
         RageUI.DrawContent({ header = true, glare = false, instructionalButton = false}, function()
             for k, v in pairs(players) do
                 if i > 1 then
@@ -696,7 +597,8 @@ RageUI.CreateWhile(1.0, true, function()
                 RageUI.ActuallyCloseAll()
             end
             if povlist == nil then
-                RageUI.Separator("~y~Player must provide POV on request: Loading...")
+                RageUI.Separator("~y~Player must provide POV on request: nigger 
+                 ~o~Loading...")
             elseif povlist == true then
                 RageUI.Separator("~y~Player must provide POV on request: ~g~true")
             elseif povlist == false then
@@ -711,7 +613,7 @@ RageUI.CreateWhile(1.0, true, function()
                 RageUI.ButtonWithStyle("Kick Player", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
                         local uid = GetPlayerServerId(PlayerId())
-                        TriggerServerEvent('Polar:ABCDEFGHIJKLMNOP', uid, SelectedPlayer[3], SelectedPlayer[2])
+                        TriggerServerEvent('Polar:KickPlayer', uid, SelectedPlayer[3], SelectedPlayer[2])
                     end
                 end, RMenu:Get('adminmenu', 'submenu'))
             end
@@ -735,17 +637,17 @@ RageUI.CreateWhile(1.0, true, function()
                                 inRedZone = false
                                 TriggerServerEvent("Polar:spectatePlayer", SelectedPlayer[3])
                                 inSpectatorAdminMode = true
-                                RageUI.Text({message = string.format("~r~Press [E] to stop spectating.")})
+                                RageUI.Text({message = string.format("Press [E] to stop spectating.")})
                             else
-                                tPolar.notify("~r~You are already spectating a player.")
+                                tPolar.notify("You are already spectating a player.")
                             end
                         else
-                            tPolar.notify("~r~You cannot spectate yourself.")
+                            tPolar.notify("You cannot spectate yourself.")
                         end
                     end
                 end, RMenu:Get('adminmenu', 'submenu'))
             end
-            if tPolar.getStaffLevel() >= 5 then
+            if tPolar.getStaffLevel() >= 3 then
                 RageUI.ButtonWithStyle("Revive", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
                         local uid = GetPlayerServerId(PlayerId())
@@ -753,19 +655,7 @@ RageUI.CreateWhile(1.0, true, function()
                     end
                 end, RMenu:Get('adminmenu', 'submenu'))
             end
-<<<<<<< HEAD:Polar/client/adminmenu.lua
-            if tPolar.getStaffLevel() >= 10 then
-                RageUI.ButtonWithStyle("Armour", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
-                    if Selected then
-                        local uid = GetPlayerServerId(PlayerId())
-                        TriggerServerEvent('Polar:ArmourPlayer', uid, SelectedPlayer[3])
-                    end
-                end, RMenu:Get('adminmenu', 'submenu'))
-            end
             if tPolar.getStaffLevel() >= 1 then
-=======
-            if tPolar.getStaffLevel() >= 1 then
->>>>>>> parent of 95ce20f (clothing store fixed):Polar/client/adminmenu.lua
                 RageUI.ButtonWithStyle("Teleport to Player", "Name: " .. SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
                         local newSource = GetPlayerServerId(PlayerId())
@@ -794,36 +684,6 @@ RageUI.CreateWhile(1.0, true, function()
                         TriggerServerEvent("Polar:Teleport2Legion", SelectedPlayer[2])
                     end
                 end, RMenu:Get('adminmenu', 'submenu'))
-                RageUI.ButtonWithStyle("Give Player Mosin", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
-                    if Selected then
-                        TriggerServerEvent("Polar:EditzgiveMosin", SelectedPlayer[2])
-                    end
-                end, RMenu:Get('adminmenu', 'submenu'))
-                RageUI.ButtonWithStyle("Teleport to Arena", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
-                    if Selected then
-                        TriggerServerEvent("Polar:Teleport2arena", SelectedPlayer[2])
-                    end
-                end,RMenu:Get('adminmenu', 'submenu'))
-                RageUI.ButtonWithStyle("Teleport to Simeons", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
-                    if Selected then
-                        TriggerServerEvent("Polar:Teleport2simeons", SelectedPlayer[2])
-                    end
-                end,RMenu:Get('adminmenu', 'submenu'))
-                RageUI.ButtonWithStyle("Teleport to Casino", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
-                    if Selected then
-                        TriggerServerEvent("Polar:Teleport2casino", SelectedPlayer[2])
-                    end
-                end,RMenu:Get('adminmenu', 'submenu'))
-                RageUI.ButtonWithStyle("Teleport to Rebel", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
-                    if Selected then
-                        TriggerServerEvent("Polar:Teleport2rebel", SelectedPlayer[2])
-                    end
-                end,RMenu:Get('adminmenu', 'submenu'))
-                RageUI.ButtonWithStyle("Teleport to Paleto", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
-                    if Selected then
-                        TriggerServerEvent("Polar:Teleport2Paleto", SelectedPlayer[2])
-                    end
-                end, RMenu:Get('adminmenu', 'submenu'))
                 RageUI.ButtonWithStyle("Freeze", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
                         local uid = GetPlayerServerId(PlayerId())
@@ -842,15 +702,6 @@ RageUI.CreateWhile(1.0, true, function()
                 RageUI.ButtonWithStyle("Force Clock Off", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
                         TriggerServerEvent('Polar:ForceClockOff', SelectedPlayer[2])
-                        TriggerEvent("Polar:ForceRefreshData")
-                    end
-                end, RMenu:Get('adminmenu', 'submenu'))
-            end
-            if tPolar.getStaffLevel() >= 12 then
-                RageUI.ButtonWithStyle("Force Staff Off", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
-                    if Selected then
-                        TriggerServerEvent('Polar:ForceStaffOff', SelectedPlayer[2])
-                        TriggerEvent("Polar:ForceRefreshData")
                     end
                 end, RMenu:Get('adminmenu', 'submenu'))
             end
@@ -885,17 +736,17 @@ RageUI.CreateWhile(1.0, true, function()
                         TriggerServerEvent("Polar:requestAccountInfosv", SelectedPlayer[3])
                     end
                 end,RMenu:Get("adminmenu", "submenu"))
-                RageUI.ButtonWithStyle("See Groups", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
+                RageUI.ButtonWithStyle("See Groups", --[["~r~This is moderator+ ~w~Name: " ..]] SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
                         TriggerServerEvent("Polar:GetGroups", SelectedPlayer[3])
                         tt=''
                     end
                 end,RMenu:Get("adminmenu", "groups"))
             end
-            if tPolar.getStaffLevel() >= 10 then
-                RageUI.ButtonWithStyle("Commit Godly Wrath on Player","",{RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
+            if tPolar.getStaffLevel() >= 12 then
+                RageUI.ButtonWithStyle("Commit Godly Wrath on Player", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
-                        TriggerServerEvent("Polar:zapPlayer", SelectedPlayer[2])
+                        ExecuteCommand("theforce")
                     end
                 end,RMenu:Get("adminmenu", "submenu"))
             end
@@ -978,7 +829,7 @@ RageUI.CreateWhile(1.0, true, function()
                         RageUI.Separator("~g~Generating ban info, please wait...")
                     else
                         RageUI.Separator("~r~You are about to ban " ..banningName, function() end)
-                        RageUI.Separator("For the following reason(s):", function() end)
+                        RageUI.Separator("~w~For the following reason(s):", function() end)
                         for k,v in pairs(SeparatorMsg) do
                             RageUI.Separator(v, function() end)
                         end
@@ -1003,7 +854,7 @@ RageUI.CreateWhile(1.0, true, function()
                         end)
                     end
                 else
-                    RageUI.Separator("~r~You must select at least one ban reason.", function() end)
+                    RageUI.Separator("You must select at least one ban reason.", function() end)
                 end
             end
         end)
@@ -1191,7 +1042,7 @@ RegisterNetEvent("Polar:receivedUserInformation")
 AddEventHandler("Polar:receivedUserInformation", function(us,un,ub,uw,uc)
     if us == nil or un == nil or ub == nil or uw == nil or uc == nil then
         a10 = nil
-        tPolar.notify("Player does not exist.")
+        tPolar.notify("~r~Player does not exist.")
         return
     end
     sc=us
@@ -1228,28 +1079,11 @@ AddEventHandler('Polar:OpenAdminMenu', function(admin)
     end
 end)
 
-    RageUI.IsVisible(RMenu:Get("adminmenu", "tickets"),true, false,true,function()
-            RageUI.Separator("All Your Admin Tickets Will Show Up Here", function() end)
-            RageUI.Separator("", function() end)
-            for k,v in pairs(Tickets) do
-                RageUI.Separator("Name: "..v.Name, function() end)
-                RageUI.Separator("UserID: "..k, function() end)
-                RageUI.Separator("Total Admin Tickets: "..v.Tickets, function() end)
-        end
-    end)
-
-RegisterNetEvent("Polar:GotAdminTickets")
-AddEventHandler("Polar:GotAdminTickets", function(a)
-    if a ~= '[]' then
-        Tickets = a
+RegisterCommand('devmenu',function()
+    if tPolar.isDev() then
+        RageUI.Visible(RMenu:Get("adminmenu", "devfunctions"), not RageUI.Visible(RMenu:Get("adminmenu", "devfunctions")))
     end
 end)
-
--- RegisterCommand('devmenu',function()
---     if tPolar.isDev() then
---         RageUI.Visible(RMenu:Get("adminmenu", "devfunctions"), not RageUI.Visible(RMenu:Get("adminmenu", "devfunctions")))
---     end
--- end)
 
 function DrawHelpMsg(msg)
     SetTextComponentFormat("STRING")
@@ -1318,4 +1152,68 @@ AddEventHandler("Polar:onClientSpawn",function(C, D)
             Citizen.Wait(5000)
         end
     end
+end)
+
+local aK = false
+RegisterNetEvent("Polar:adminTicketFeedback",function(aL)
+    local aM, aN = tPolar.getPlayerVehicle()
+    if aM ~= 0 and aN and GetEntitySpeed(aM) > 25.0 or tPolar.getPlayerCombatTimer() > 0 then
+        return
+    end
+    if aK then
+        return
+    end
+    aK = true
+    RequestStreamedTextureDict("ticket_response", false)
+    while not HasStreamedTextureDictLoaded("ticket_response") do
+        Citizen.Wait(0)
+    end
+    setCursor(1)
+    TriggerScreenblurFadeIn(500.0)
+    tPolar.hideUI()
+    local aO = nil
+    while not aO do
+        DisableControlAction(0, 202, true)
+        drawNativeNotification("Press ~INPUT_FRONTEND_CANCEL~ to stop providing feedback")
+        for a1 = 0, 6 do
+            DisableControlAction(0, a1, true)
+        end
+        DrawSprite("ticket_response", "faces", 0.5, 0.575, 0.39, 0.28275, 0.0, 255, 255, 255, 255)
+        DrawAdvancedText(0.58,0.4,0.01,0.01,0.65,"How would you rate your experience with the admin?",255,255,255,255,0,0)
+        if CursorInArea(0.304, 0.411, 0.483, 0.669) and IsControlJustPressed(0, 237) then
+            aO = "good"
+        end
+        if CursorInArea(0.446, 0.552, 0.483, 0.669) and IsControlJustPressed(0, 237) then
+            aO = "neutral"
+        end
+        if CursorInArea(0.588, 0.693, 0.483, 0.669) and IsControlJustPressed(0, 237) then
+            aO = "bad"
+        end
+        if IsDisabledControlJustPressed(0, 202) then
+            break
+        end
+        Citizen.Wait(0)
+    end
+    setCursor(0)
+    SetStreamedTextureDictAsNoLongerNeeded("ticket_response")
+    if aO then
+        local aP = false
+        tPolar.clientPrompt("Attached Message","",function(aQ)
+            TriggerServerEvent("Polar:adminTicketFeedback", aL, aO, aQ)
+            aP = true
+        end)
+        while not aP do
+            for a1 = 0, 6 do
+                DisableControlAction(0, a1, true)
+            end
+            drawNativeNotification("Press ~INPUT_FRONTEND_RUP~ to submit the " .. aO .. " feedback")
+            DrawAdvancedText(0.58,0.4,0.01,0.01,0.65,"Would you like to provide any additional feedback?",255,255,255,255,0,0)
+            Citizen.Wait(0)
+        end
+    else
+        TriggerServerEvent("Polar:adminTicketNoFeedback", aL)
+    end
+    tPolar.showUI()
+    TriggerScreenblurFadeOut(500.0)
+    aK = false
 end)

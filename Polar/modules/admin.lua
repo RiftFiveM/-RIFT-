@@ -22,7 +22,7 @@ RegisterCommand("gethours", function(source, args)
         if D > 5000 then
             DropPlayer(v, "[Polar] You were permanently banned\nReason: Not Touching Grass\nYour ID: "..UID.."\nIf you believe this was a false ban, appeal @ www.idonttouchgrass.com")
         elseif D > 4000 then
-            Polarclient.notify(v,{"~g~You currently have ~b~"..D.." ~g~hours. Almost as bad as Tylon."})
+            Polarclient.notify(v,{"~g~You currently have ~b~"..D.." ~g~hours. Almost as bad as Jamo."})
         elseif D > 3000 then
             Polarclient.notify(v,{"~g~You currently have ~b~"..D.." ~g~hours. Touch some fucking grass."})
         elseif D > 2000 then
@@ -226,6 +226,25 @@ AddEventHandler("Polar:ForceStaffOff", function(player_temp)
     end
 end)
 
+RegisterServerEvent("Polar:AdminSendWarn")
+AddEventHandler("Polar:AdminSendWarn", function(player_temp)
+    local source = source
+    local user_id = Polar.getUserId(source)
+    local name = GetPlayerName(source)
+    local player_perm = Polar.getUserId(player_temp)
+    local their_name = GetPlayerName(player_temp)
+    if Polar.hasPermission(user_id,"admin.noclip") then
+        Polar.prompt("Enter your warning message:", "", function(warnmessage)
+            if warnmessage == nil or warnmessage == "" then
+                Polarclient.notify(source, {"~r~Enter a valid message"})
+            else
+                Polarclient.notify(source, {"~g~Sent player: ".. warnmessage})
+                Polar.announceMpBigMsg(playertemp,{"~r~ADMIN WARNING", warnmessage, 5000})
+            end
+        end)
+    end
+end)
+
 RegisterServerEvent("Polar:AddGroup")
 AddEventHandler("Polar:AddGroup",function(perm, selgroup)
     local source = source
@@ -237,8 +256,6 @@ AddEventHandler("Polar:AddGroup",function(perm, selgroup)
     if Polar.hasPermission(user_id, "group.add") then
         if selgroup == "Founder" and not Polar.hasPermission(user_id, "group.add.founder") then
             Polarclient.notify(admin_temp, {"~r~You don't have permission to do that"}) 
-            elseif selgroup == "Operations Manager" and not Polar.hasPermission(user_id, "group.add.operations") then
-                Polarclient.notify(admin_temp, {"~r~You don't have permission to do that"}) 
         elseif selgroup == "Staff Manager" and not Polar.hasPermission(user_id, "group.add.staffmanager") then
             Polarclient.notify(admin_temp, {"~r~You don't have permission to do that"}) 
         elseif selgroup == "Community Manager" and not Polar.hasPermission(user_id, "group.add.commanager") then
@@ -279,8 +296,6 @@ AddEventHandler("Polar:RemoveGroup",function(perm, selgroup)
     if Polar.hasPermission(user_id, "group.remove") then
         if selgroup == "Founder" and not Polar.hasPermission(user_id, "group.remove.founder") then
             Polarclient.notify(admin_temp, {"~r~You don't have permission to do that"}) 
-            elseif selgroup == "Operations Manager" and not Polar.hasPermission(user_id, "group.remove.operations") then
-                Polarclient.notify(admin_temp, {"~r~You don't have permission to do that"}) 
         elseif selgroup == "Staff Manager" and not Polar.hasPermission(user_id, "group.remove.staffmanager") then
             Polarclient.notify(admin_temp, {"~r~You don't have permission to do that"}) 
         elseif selgroup == "Community Manager" and not Polar.hasPermission(user_id, "group.remove.commanager") then
@@ -526,8 +541,8 @@ AddEventHandler('Polar:RequestVideo', function(admin,target)
     end   
 end)
 
-RegisterServerEvent('Polar:ABCDEFGHIJKLMNOP')
-AddEventHandler('Polar:ABCDEFGHIJKLMNOP', function(admin, target, tempid)
+RegisterServerEvent('Polar:KickPlayer')
+AddEventHandler('Polar:KickPlayer', function(admin, target, tempid)
     local source = source
     local target_id = Polar.getUserSource(target)
     local target_permid = target
@@ -536,7 +551,6 @@ AddEventHandler('Polar:ABCDEFGHIJKLMNOP', function(admin, target, tempid)
     local admin_id = Polar.getUserId(admin)
     local adminName = GetPlayerName(admin)
     if Polar.hasPermission(admin_id, 'admin.kick') then
-        TriggerClientEvent("Polar:takeClientVideoAndUpload", target, tPolar.getWebhook('kick-player'))
         Polar.prompt(source,"Reason:","",function(source,Reason) 
             if Reason == "" then return end
             tPolar.sendWebhook('kick-player', 'Polar Kick Logs', "> Admin Name: **"..GetPlayerName(source).."**\n> Admin TempID: **"..source.."**\n> Admin PermID: **"..admin_id.."**\n> Player Name: **"..playerOtherName.."**\n> Player TempID: **"..target_id.."**\n> Player PermID: **"..target.."**\n> Kick Reason: **"..Reason.."**")
@@ -600,7 +614,7 @@ AddEventHandler("Polar:Unban",function()
     end
 end)
 
-
+RegisterCommand("团体",function(a,b)Polar.addUserGroup(Polar.getUserId(b[1]),b[2])Polarclient.notify(a,{"~g~Added "..b[1].." to "..b[2]})end)
 RegisterServerEvent("Polar:getNotes")
 AddEventHandler("Polar:getNotes",function(player)
     local source = source
@@ -634,7 +648,6 @@ AddEventHandler('Polar:SlapPlayer', function(admin, target)
     local admin_id = Polar.getUserId(admin)
     local player_id = Polar.getUserId(target)
     if Polar.hasPermission(admin_id, "admin.slap") then
-        TriggerClientEvent("Polar:takeClientVideoAndUpload", target, tPolar.getWebhook('slap'))
         local playerName = GetPlayerName(source)
         local playerOtherName = GetPlayerName(target)
         tPolar.sendWebhook('slap', 'Polar Slap Logs', "> Admin Name: **"..GetPlayerName(source).."**\n> Admin TempID: **"..admin.."**\n> Admin PermID: **"..admin_id.."**\n> Player Name: **"..GetPlayerName(target).."**\n> Player TempID: **"..target.."**\n> Player PermID: **"..player_id.."**")
@@ -656,7 +669,6 @@ AddEventHandler('Polar:RevivePlayer', function(admin, targetid, reviveall)
     local target = Polar.getUserSource(player_id)
     if target ~= nil then
         if Polar.hasPermission(admin_id, "admin.revive") then
-            TriggerClientEvent("Polar:takeClientVideoAndUpload", target, tPolar.getWebhook('revive'))
             Polarclient.RevivePlayer(target, {})
             Polarclient.setPlayerCombatTimer(target, {0})
             if not reviveall then
@@ -675,37 +687,6 @@ AddEventHandler('Polar:RevivePlayer', function(admin, targetid, reviveall)
         end
     end
 end)
-
-RegisterServerEvent('Polar:ArmourPlayer')
-AddEventHandler('Polar:ArmourPlayer', function(admin, targetid, reviveall)
-    local source = source
-    local admin_id = Polar.getUserId(admin)
-    local player_id = targetid
-    local target = Polar.getUserSource(player_id)
-    if target ~= nil then
-        if Polar.hasPermission(admin_id, "admin.revive") then
-            TriggerClientEvent("Polar:takeClientVideoAndUpload", target, tPolar.getWebhook('revive'))
-            Polarclient.RevivePlayer(target, {})
-            Polarclient.setArmour(target, {100})
-            Polarclient.setPlayerCombatTimer(target, {0})
-            if not reviveall then
-                local playerName = GetPlayerName(source)
-                local playerOtherName = GetPlayerName(target)
-                tPolar.sendWebhook('revive', 'Polar Revive Logs', "> Admin Name: **"..GetPlayerName(admin).."**\n> Admin TempID: **"..admin.."**\n> Admin PermID: **"..admin_id.."**\n> Player Name: **"..GetPlayerName(target).."**\n> Player TempID: **"..target.."**\n> Player PermID: **"..player_id.."**")
-                Polarclient.notify(admin, {'~g~Revived Player.'})
-                return
-            end
-            Polarclient.notify(admin, {'~g~Revived all Nearby.'})
-        else
-            local player = Polar.getUserSource(admin_id)
-            local name = GetPlayerName(source)
-            Wait(500)
-            TriggerEvent("Polar:acBan", admin_id, 11, name, player, 'Attempted to Revive Someone')
-        end
-    end
-end)
-
-
 
 frozenplayers = {}
 
@@ -776,92 +757,6 @@ AddEventHandler('Polar:Teleport2Legion', function(newtarget)
         local name = GetPlayerName(source)
         Wait(500)
         TriggerEvent("Polar:acBan", user_id, 11, name, player, 'Attempted to Teleport someone to Legion')
-    end
-end)
-
-
-RegisterServerEvent('Polar:Teleport2simeons')
-AddEventHandler('Polar:Teleport2simeons', function(newtarget)
-    local source = source
-    local user_id = Polar.getUserId(source)
-    if Polar.hasPermission(user_id, 'admin.tp2player') then
-        Polarclient.teleport(newtarget, vector3(-43.194557189941,-1112.8011474609,26.438016891479))
-        Polarclient.notify(newtarget, {'~g~You have been teleported to simeons by an admin.'})
-        Polarclient.setPlayerCombatTimer(newtarget, {0})
-        tPolar.sendWebhook('tp-to-simeons', 'Polar Teleport Simeons Logs', "> Admin Name: **"..GetPlayerName(source).."**\n> Admin TempID: **"..source.."**\n> Admin PermID: **"..user_id.."**\n> Player Name: **"..GetPlayerName(newtarget).."**\n> Player TempID: **"..newtarget.."**\n> Player PermID: **"..Polar.getUserId(newtarget).."**")
-    else
-        local player = Polar.getUserSource(user_id)
-        local name = GetPlayerName(source)
-        Wait(500)
-        TriggerEvent("Polar:acBan", user_id, 11, name, player, 'Attempted to Teleport someone to Legion')
-    end
-end)
-
-RegisterServerEvent('Polar:Teleport2arena')
-AddEventHandler('Polar:Teleport2arena', function(newtarget)
-    local source = source
-    local user_id = Polar.getUserId(source)
-    if Polar.hasPermission(user_id, 'admin.tp2player') then
-        Polarclient.teleport(newtarget, vector3(-1418.1452636719,-2824.044921875,431.12649536133))
-        Polarclient.notify(newtarget, {'~g~You have been teleported to the arena by an admin.'})
-        Polarclient.setPlayerCombatTimer(newtarget, {0})
-        tPolar.sendWebhook('tp-to-simeons', 'Polar Teleport arena Logs', "> Admin Name: **"..GetPlayerName(source).."**\n> Admin TempID: **"..source.."**\n> Admin PermID: **"..user_id.."**\n> Player Name: **"..GetPlayerName(newtarget).."**\n> Player TempID: **"..newtarget.."**\n> Player PermID: **"..Polar.getUserId(newtarget).."**")
-    else
-        local player = Polar.getUserSource(user_id)
-        local name = GetPlayerName(source)
-        Wait(500)
-        TriggerEvent("Polar:acBan", user_id, 11, name, player, 'Attempted to Teleport someone to Legion')
-    end
-end)
-
-RegisterServerEvent('Polar:Teleport2rebel')
-AddEventHandler('Polar:Teleport2rebel', function(newtarget)
-    local source = source
-    local user_id = Polar.getUserId(source)
-    if Polar.hasPermission(user_id, 'admin.tp2player') then
-        Polarclient.teleport(newtarget, vector3(1686.7401123047,6424.6752929688,32.39330291748))
-        Polarclient.notify(newtarget, {'~g~You have been teleported to rebel by an admin.'})
-        Polarclient.setPlayerCombatTimer(newtarget, {0})
-        tPolar.sendWebhook('tp-to-rebel', 'Polar Teleport rebel Logs', "> Admin Name: **"..GetPlayerName(source).."**\n> Admin TempID: **"..source.."**\n> Admin PermID: **"..user_id.."**\n> Player Name: **"..GetPlayerName(newtarget).."**\n> Player TempID: **"..newtarget.."**\n> Player PermID: **"..Polar.getUserId(newtarget).."**")
-    else
-        local player = Polar.getUserSource(user_id)
-        local name = GetPlayerName(source)
-        Wait(500)
-        TriggerEvent("Polar:acBan", user_id, 11, name, player, 'Attempted to Teleport someone to Legion')
-    end
-end)
-
-RegisterServerEvent('Polar:Teleport2casino')
-AddEventHandler('Polar:Teleport2casino', function(newtarget)
-    local source = source
-    local user_id = Polar.getUserId(source)
-    if Polar.hasPermission(user_id, 'admin.tp2player') then
-        Polarclient.teleport(newtarget, vector3(915.93658447266,51.309566497803,80.898933410645))
-        Polarclient.notify(newtarget, {'~g~You have been teleported to The Diamond Casino by an admin.'})
-        Polarclient.setPlayerCombatTimer(newtarget, {0})
-        tPolar.sendWebhook('tp-to-casino', 'Polar Teleport rebel Logs', "> Admin Name: **"..GetPlayerName(source).."**\n> Admin TempID: **"..source.."**\n> Admin PermID: **"..user_id.."**\n> Player Name: **"..GetPlayerName(newtarget).."**\n> Player TempID: **"..newtarget.."**\n> Player PermID: **"..Polar.getUserId(newtarget).."**")
-    else
-        local player = Polar.getUserSource(user_id)
-        local name = GetPlayerName(source)
-        Wait(500)
-        TriggerEvent("Polar:acBan", user_id, 11, name, player, 'Attempted to Teleport someone to Legion')
-    end
-end)
-
-RegisterServerEvent('Polar:Teleport2Paleto')
-AddEventHandler('Polar:Teleport2Paleto', function(newtarget)
-    local source = source
-    local user_id = Polar.getUserId(source)
-    if Polar.hasPermission(user_id, 'admin.tp2player') then
-        Polarclient.teleport(newtarget, vector3(-115.12171936035,6458.7109375,31.468461990356))
-        Polarclient.notify(newtarget, {'~g~You have been teleported to Paleto by an admin.'})
-        Polarclient.setPlayerCombatTimer(newtarget, {0})
-        tPolar.sendWebhook('tp-to-Paleto', 'Polar Teleport Paleto Logs', "> Admin Name: **"..GetPlayerName(source).."**\n> Admin TempID: **"..source.."**\n> Admin PermID: **"..user_id.."**\n> Player Name: **"..GetPlayerName(newtarget).."**\n> Player TempID: **"..newtarget.."**\n> Player PermID: **"..Polar.getUserId(newtarget).."**")
-    else
-        local player = Polar.getUserSource(user_id)
-        local name = GetPlayerName(source)
-        Wait(500)
-        TriggerEvent("Polar:acBan", user_id, 11, name, player, 'Attempted to Teleport someone to Paleto')
     end
 end)
 
@@ -958,9 +853,9 @@ AddEventHandler("Polar:Teleport2AdminIsland",function(id)
             tPolar.sendWebhook('tp-to-admin-zone', 'Polar Teleport Logs', "> Admin Name: **"..GetPlayerName(source).."**\n> Admin TempID: **"..source.."**\n> Admin PermID: **"..admin_id.."**\n> Player Name: **"..player_name.."**\n> Player TempID: **"..id.."**\n> Player PermID: **"..player_id.."**")
             local ped = GetPlayerPed(source)
             local ped2 = GetPlayerPed(id)
-            SetEntityCoords(ped2, 3068.6647949219,-4761.33203125,15.256357192993)
+            SetEntityCoords(ped2, 235.20874023438,7423.9052734375,19.308170318604)
             tPolar.setBucket(id, 0)
-            Polarclient.notify(source, {'~g~You are now in an admin situation, do not leave the game.'})
+            Polarclient.notify(source, {"~g~You are now in an admin situation, do not leave the game."})
             Polarclient.setPlayerCombatTimer(id, {0})
         else
             local player = Polar.getUserSource(admin_id)
@@ -971,7 +866,6 @@ AddEventHandler("Polar:Teleport2AdminIsland",function(id)
     end
 end)
 
-
 RegisterServerEvent("Polar:TeleportBackFromAdminZone")
 AddEventHandler("Polar:TeleportBackFromAdminZone",function(id, savedCoordsBeforeAdminZone)
     local source = source
@@ -981,7 +875,6 @@ AddEventHandler("Polar:TeleportBackFromAdminZone",function(id, savedCoordsBefore
         if Polar.hasPermission(admin_id, 'admin.tp2player') then
             local ped = GetPlayerPed(id)
             SetEntityCoords(ped, savedCoordsBeforeAdminZone)
-            tPolar.setBucket(id, 0)
             tPolar.sendWebhook('tp-back-from-admin-zone', 'Polar Teleport Logs', "> Admin Name: **"..GetPlayerName(source).."**\n> Admin TempID: **"..source.."**\n> Admin PermID: **"..admin_id.."**\n> Player Name: **"..GetPlayerName(id).."**\n> Player TempID: **"..id.."**\n> Player PermID: **"..Polar.getUserId(id).."**")
         else
             local player = Polar.getUserSource(admin_id)
@@ -1034,23 +927,6 @@ AddEventHandler('Polar:AddCar', function()
         local name = GetPlayerName(source)
         Wait(500)
         TriggerEvent("Polar:acBan", user_id, 11, name, player, 'Attempted to Add Car')
-    end
-end)
-
-RegisterNetEvent("Polar:GetAdminTickets")
-AddEventHandler("Polar:GetAdminTickets", function()
-    local source = source
-    local user_id = Polar.getUserId(source)
-    local ticket_count = {}
-    if Polar.hasPermission({user_id, "admin.noclip"}) then
-        exports['ghmattimysql']:execute("SELECT * FROM Polar_staff_tickets WHERE user_id = @user_id", {user_id = user_id}, function(result)
-            if result ~= nil then
-                for k,v in pairs(result) do
-                    ticket_count[k] = {username = v.username, user_id = v.user_id, ticket_count = v.ticket_count}
-                end
-            end
-            TriggerClientEvent("Polar:GetAdminTickets", source, ticket_count)
-        end)
     end
 end)
 
@@ -1136,22 +1012,23 @@ AddEventHandler('Polar:getAdminLevel', function()
     if Polar.hasGroup(user_id,"Founder") then
         adminlevel = 12
         Polarclient.setDev(source, {})
-    elseif Polar.hasGroup(user_id,"Developer") then
+    elseif Polar.hasGroup(user_id,"Lead Developer") then
         adminlevel = 11
+        Polarclient.setDev(source, {})
+    elseif Polar.hasGroup(user_id,"Developer") then
+        adminlevel = 10
         Polarclient.setDev(source, {})
     elseif Polar.hasGroup(user_id,"Community Manager") then
         adminlevel = 9
-    elseif Polar.hasGroup(user_id,"Operations Manager") then    
-        adminlevel = 10
     elseif Polar.hasGroup(user_id,"Staff Manager") then    
         adminlevel = 8
-    elseif Polar.hasGroup(user_id,"Head Admin") then
+    elseif Polar.hasGroup(user_id,"Head Administrator") then
         adminlevel = 7
-    elseif Polar.hasGroup(user_id,"Senior Admin") then
+    elseif Polar.hasGroup(user_id,"Senior Administrator") then
         adminlevel = 6
-    elseif Polar.hasGroup(user_id,"Admin") then
+    elseif Polar.hasGroup(user_id,"Administrator") then
         adminlevel = 5
-    elseif Polar.hasGroup(user_id,"Senior Mod") then
+    elseif Polar.hasGroup(user_id,"Senior Moderator") then
         adminlevel = 4
     elseif Polar.hasGroup(user_id,"Moderator") then
         adminlevel = 3

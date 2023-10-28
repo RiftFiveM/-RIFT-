@@ -93,7 +93,7 @@ function tPolar.toggleNoclip()
 end
 RegisterKeyMapping("noclip", "Staff Noclip", "keyboard", "F4")
 RegisterCommand("noclip",function()
-    if tPolar.getStaffLevel() >= 4 then
+    if tPolar.getStaffLevel() >= 5 then
         TriggerServerEvent("Polar:noClip")
     end
 end)
@@ -162,31 +162,19 @@ function tPolar.staffMode(status)
         if staffMode ~= status then
             staffMode=status
             if staffMode then 
-                tPolar.notify("~g~Staff Powerz Activated.")
-                if GetEntityHealth(PlayerPedId()) <= 102 then
+                tPolar.notify('~g~Staff Powerz Activated.')
+                if GetEntityHealth(PlayerPedId())<=102 then 
                     tPolar.RevivePlayer()
                 end
                 tPolar.setRedzoneTimerDisabled(true)
                 a = tPolar.getCustomization()
-                if tPolar.getModelGender() == "male" then
+                if tPolar.getModelGender()=="male"then 
                     tPolar.loadCustomisationPreset("StaffMale")
-                    if tPolar.isHalloween() then
-                        tPolar.loadCustomisationPreset("StaffHalloweenMale")
-                    end
-                    if tPolar.isChristmas() then
-                        tPolar.loadCustomisationPreset("StaffChristmasMale")
-                    end
+                    SetPedComponentVariation(PlayerPedId(), 11, 200, tPolar.getStaffLevel(), 0)
                 else
                     tPolar.loadCustomisationPreset("StaffFemale")
-                    if tPolar.isHalloween() then
-                        tPolar.loadCustomisationPreset("StaffHalloweenFemale")
-                    end
-                    if tPolar.isChristmas() then
-                        tPolar.loadCustomisationPreset("StaffChristmasFemale")
-                    end
-                end
-                local z = GetPedDrawableVariation(PlayerPedId(), 11)
-                SetPedComponentVariation(PlayerPedId(), 11, z, tPolar.getStaffLevel(), 0)
+                    SetPedComponentVariation(PlayerPedId(), 11, 202, tPolar.getStaffLevel(), 0)
+                end 
             else
                 tPolar.setRedzoneTimerDisabled(false)
                 SetEntityInvincible(PlayerPedId(),false)
@@ -244,7 +232,7 @@ Citizen.CreateThread(function()
                 SetEntityHealth(B,200)
             end
             if not isInTicket then
-                drawNativeText("~r~Reminder: You are /staffon'd. ~b~ If you staffed on illegally ~r~ you will be banned ", 255, 0, 0, 255, true)
+                drawNativeText("~r~Reminder: You are /staffon'd.", 255, 0, 0, 255, true)
             end
         end
     end
@@ -260,7 +248,7 @@ AddEventHandler('Polar:sendTicketInfo', function(permid, name)
     while isInTicket do
         Wait(0)
         if permid ~= nil and name ~= nil then
-            drawNativeText("~y~You've taken the ticket of " ..name.. "("..permid..") ~r~ Make sure to Upload Ban Clip", 255, 0, 0, 255, true)   
+            drawNativeText("~y~You've taken the ticket of " ..name.. "("..permid..")", 255, 0, 0, 255, true)   
         end
     end
 end)
