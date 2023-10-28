@@ -106,6 +106,6 @@ exports("setMaxProximityMode", function(maxMode)
 	end
 end)
 
-exports("cleRIFTxProximityMode", function()
+exports("clePolarxProximityMode", function()
 	maxProximityMode = 1000
 end)

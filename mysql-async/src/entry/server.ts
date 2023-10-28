@@ -9,7 +9,7 @@ const defaultCfg = {
   host: '127.0.0.1',
   user: 'root',
   password: '',
-  database: 'rift',
+  database: 'Polar',
   supportBigNumbers: true,
   multipleStatements: true,
 };

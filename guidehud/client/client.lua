@@ -30,7 +30,7 @@ RegisterNUICallback('closeGuideHud', function(data, cb)
     bIsOpen = false
 end)
 
-RegisterNetEvent("RIFT:setIsNewPlayer", function()
+RegisterNetEvent("Polar:setIsNewPlayer", function()
 	bIsNewPlayer = true
 end)
 

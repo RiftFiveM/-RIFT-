@@ -11,7 +11,7 @@ const remark = {
 
 module.exports = {
   siteName: 'mysql-async Documentation',
-  pathPrefix: '/rift-mysql-async',
+  pathPrefix: '/Polar-mysql-async',
   plugins: [
     {
       use: '@gridsome/source-filesystem',

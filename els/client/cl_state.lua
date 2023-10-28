@@ -7,7 +7,7 @@
 SavedVehicles = {}
 EnabledVehicles = {}
 
-RegisterNetEvent("RIFTELS:changeStage", function(netId, stage)
+RegisterNetEvent("PolarELS:changeStage", function(netId, stage)
 	if not VehicleConfigs then return end
 
 	local state = GetSavedVehicleState(netId)
@@ -16,7 +16,7 @@ RegisterNetEvent("RIFTELS:changeStage", function(netId, stage)
 	Controller.OnStageChange(state)
 end)
 
-RegisterNetEvent("RIFTELS:toggleSiren", function(netId, tone)
+RegisterNetEvent("PolarELS:toggleSiren", function(netId, tone)
 	if not VehicleConfigs then return end
 
 	local state = GetSavedVehicleState(netId)
@@ -25,7 +25,7 @@ RegisterNetEvent("RIFTELS:toggleSiren", function(netId, tone)
 	Controller.OnSirenChange(state)
 end)
 
-RegisterNetEvent("RIFTELS:toggleBullhorn", function(netId, enabled)
+RegisterNetEvent("PolarELS:toggleBullhorn", function(netId, enabled)
 	if not VehicleConfigs then return end
 
 	local state = GetSavedVehicleState(netId)
@@ -36,7 +36,7 @@ RegisterNetEvent("RIFTELS:toggleBullhorn", function(netId, enabled)
 	Controller.OnBullhornChange(state)
 end)
 
-RegisterNetEvent("RIFTELS:patternChange", function(netId, patternIndex, enabled)
+RegisterNetEvent("PolarELS:patternChange", function(netId, patternIndex, enabled)
 	if not VehicleConfigs then return end
 
 	local state = GetSavedVehicleState(netId)
@@ -45,7 +45,7 @@ RegisterNetEvent("RIFTELS:patternChange", function(netId, patternIndex, enabled)
 	state.pattern[pattern].enabled = enabled
 end)
 
-RegisterNetEvent("RIFTELS:vehicleRemoved", function(netId)
+RegisterNetEvent("PolarELS:vehicleRemoved", function(netId)
 	local state = SavedVehicles[netId]
 
 	if state then VehicleLeftScope(netId, state) end
@@ -53,7 +53,7 @@ RegisterNetEvent("RIFTELS:vehicleRemoved", function(netId)
 	SavedVehicles[netId] = nil
 end)
 
-RegisterNetEvent("RIFTELS:indicatorChange", function(netId, indicator, enabled)
+RegisterNetEvent("PolarELS:indicatorChange", function(netId, indicator, enabled)
 	if not NetworkDoesNetworkIdExist(netId) then return end
 
 	local entity = NetworkGetEntityFromNetworkId(netId)

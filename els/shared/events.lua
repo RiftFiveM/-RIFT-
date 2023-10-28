@@ -1,10 +1,10 @@
 local lookup = {
-    ["RIFTELS:changeStage"] = "RIFTELS:1",
-    ["RIFTELS:toggleSiren"] = "RIFTELS:2",
-    ["RIFTELS:toggleBullhorn"] = "RIFTELS:3",
-    ["RIFTELS:patternChange"] = "RIFTELS:4",
-    ["RIFTELS:vehicleRemoved"] = "RIFTELS:5",
-    ["RIFTELS:indicatorChange"] = "RIFTELS:6"
+    ["PolarELS:changeStage"] = "PolarELS:1",
+    ["PolarELS:toggleSiren"] = "PolarELS:2",
+    ["PolarELS:toggleBullhorn"] = "PolarELS:3",
+    ["PolarELS:patternChange"] = "PolarELS:4",
+    ["PolarELS:vehicleRemoved"] = "PolarELS:5",
+    ["PolarELS:indicatorChange"] = "PolarELS:6"
 }
 
 local origRegisterNetEvent = RegisterNetEvent
@@ -19,7 +19,7 @@ if IsDuplicityVersion() then
     end
 
     TriggerClientScopeEvent = function(name, target, ...)
-        exports["rift"]:TriggerClientScopeEvent(lookup[name], target, ...)
+        exports["Polar"]:TriggerClientScopeEvent(lookup[name], target, ...)
     end
 else
     local origTriggerServerEvent = TriggerServerEvent

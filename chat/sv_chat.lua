@@ -19,7 +19,7 @@ AddEventHandler('_chat:messageEntered', function(author, color, message)
 
     if not WasEventCanceled() then
         if cooldown[source] and not (os.time() > cooldown[source]) then
-            TriggerClientEvent('chatMessage', source, "RIFT",  { 255, 255, 255 }, "You are being rate limited.", "alert")
+            TriggerClientEvent('chatMessage', source, "Polar",  { 255, 255, 255 }, "You are being rate limited.", "alert")
             return
         else
             cooldown[source] = nil

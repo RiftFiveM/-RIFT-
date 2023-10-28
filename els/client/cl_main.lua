@@ -76,7 +76,7 @@ function PerformInitialisation()
 end
 
 function WriteLoadError(name, message)
-	--print(string.format("[RIFT ELS] Unable to load VCF for %s. %s.", name, message))
+	--print(string.format("[Polar ELS] Unable to load VCF for %s. %s.", name, message))
 end
 
 function ProcessCurrentVehicle()
@@ -231,13 +231,13 @@ function ProcessCivilianVehicle(isDriver)
 	if IsControlJustPressed(0, Config.Keyboard.IndicatorLeft) then
 		local indicator = GetVehicleIndicatorLights(CurrentVehicle)
 		local enabled = not (indicator == 1)
-		TriggerServerEvent("RIFTELS:indicatorChange", 1, enabled)
+		TriggerServerEvent("PolarELS:indicatorChange", 1, enabled)
 	end
 
 	if IsControlJustPressed(0, Config.Keyboard.IndicatorRight) then
 		local indicator = GetVehicleIndicatorLights(CurrentVehicle)
 		local enabled = not (indicator == 2)
-		TriggerServerEvent("RIFTELS:indicatorChange", 2, enabled)
+		TriggerServerEvent("PolarELS:indicatorChange", 2, enabled)
 	end
 end
 
@@ -268,7 +268,7 @@ function OnKeyStageChange()
 
 	PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", 1)
 
-	TriggerServerEvent("RIFTELS:changeStage", state.stage)
+	TriggerServerEvent("PolarELS:changeStage", state.stage)
 
 	if state.stage == 1 and IsAmbulanceSound(state.config.sounds.srnTone1.audioString) then
 		Citizen.CreateThreadNow(PlayNineNineModeSound)
@@ -286,7 +286,7 @@ function OnKeyBullhorn(enable)
 
 	Controller.OnBullhornChange(state)
 
-	TriggerServerEvent("RIFTELS:toggleBullhorn", enable)
+	TriggerServerEvent("PolarELS:toggleBullhorn", enable)
 end
 
 function OnKeySiren(tone, pressed)
@@ -304,7 +304,7 @@ function OnKeySiren(tone, pressed)
 
 	Controller.OnSirenChange(state)
 
-	TriggerServerEvent("RIFTELS:toggleSiren", tone)
+	TriggerServerEvent("PolarELS:toggleSiren", tone)
 
 	if state.siren.tone ~= 0 then
 		Citizen.CreateThreadNow(PlaySirenSwitchSound)
@@ -323,7 +323,7 @@ function OnKeyPattern(patternName)
 	PlaySoundFrontend(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", 1)
 
 	local patternIndex = GetIndexFromPattern(patternName)
-	TriggerServerEvent("RIFTELS:patternChange", patternIndex, pattern.enabled)
+	TriggerServerEvent("PolarELS:patternChange", patternIndex, pattern.enabled)
 end
 
 function DisableCurrentVehicle()
@@ -332,13 +332,13 @@ function DisableCurrentVehicle()
 	if state.bullhorn.enabled then
 		state.bullhorn.enabled = false
 		Controller.OnBullhornChange(state)
-		TriggerServerEvent("RIFTELS:toggleBullhorn", false)
+		TriggerServerEvent("PolarELS:toggleBullhorn", false)
 	end
 
 	if state.siren.tone ~= 0 or state.stage ~= 0 then
 		state.stage = 0
 		Controller.OnStageChange(state)
-		TriggerServerEvent("RIFTELS:changeStage", 0)
+		TriggerServerEvent("PolarELS:changeStage", 0)
 	end
 end
 

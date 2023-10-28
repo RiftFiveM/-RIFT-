@@ -5850,7 +5850,7 @@ exports['Amazon RDS'] = {
     + 'UyBhcC1ub3J0aGVhc3QtMyBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC\n'
     + 'ggEBAMZtQNnm/XT19mTa10ftHLzg5UhajoI65JHv4TQNdGXdsv+CQdGYU49BJ9Eu\n'
     + '3bYgiEtTzR2lQe9zGMvtuJobLhOWuavzp7IixoIQcHkFHN6wJ1CvqrxgvJfBq6Hy\n'
-    + 'EuCDCiU+PPDRIFT6XM6Qx3IpHd1wrJkjRB80dhmMSpxmRmx849uFafhN+P1QybsM\n'
+    + 'EuCDCiU+PPDPolar6XM6Qx3IpHd1wrJkjRB80dhmMSpxmRmx849uFafhN+P1QybsM\n'
     + 'TI0o48VON2+vj+mNuQTyLMMP8D4odSQHjaoG+zyJfJGZeAyqQyoOUOFEyQaHC3TT\n'
     + '3IDSNCQlpxb9LerbCoKu79WFBBq3CS5cYpg8/fsnV2CniRBFFUumBt5z4dhw9RJU\n'
     + 'qlUXXO1ZyzpGd+c5v6FtrfXtnIUCAwEAAaNmMGQwDgYDVR0PAQH/BAQDAgEGMBIG\n'
@@ -16161,7 +16161,7 @@ var ConnectionConfig = __webpack_require__(9);
 
 
 function getConfigFromConnectionString() {
-  const connectionString = GetConvar('mysql_connection_string', 'mysql://root@localhost/rift');
+  const connectionString = GetConvar('mysql_connection_string', 'mysql://root@localhost/Polar');
   let cfg = {};
 
   if (/(?:database|initial\scatalog)=(?:(.*?);|(.*))/gi.test(connectionString)) {
@@ -16196,7 +16196,7 @@ const defaultCfg = {
   host: '127.0.0.1',
   user: 'root',
   password: '',
-  database: 'rift',
+  database: 'Polar',
   supportBigNumbers: true,
   multipleStatements: true
 }; // Switch to just connecting immediately

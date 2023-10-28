@@ -1,7 +1,7 @@
 {
   "name": "mysql-async",
   "version": "3.3.2",
-  "description": "rift-mysql-async",
+  "description": "Polar-mysql-async",
   "private": true,
   "scripts": {
     "build": "webpack --progress",

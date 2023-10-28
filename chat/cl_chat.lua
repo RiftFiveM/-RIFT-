@@ -19,7 +19,7 @@ RegisterNetEvent('__cfx_internal:serverPrint')
 RegisterNetEvent('_chat:messageEntered')
 
 function containsMyName(args)
-  local myName = string.lower(exports["rift"]:getPlayerName(PlayerId()))
+  local myName = string.lower(exports["Polar"]:getPlayerName(PlayerId()))
   local message = ""
   for i = 2, #args do
     message = message .. args[i] .. " "
@@ -253,13 +253,13 @@ Citizen.CreateThread(function()
   end
 end)
 
-AddEventHandler("RIFT:hideChat",function(flag)
+AddEventHandler("Polar:hideChat",function(flag)
   hideChat = flag
   if hideChat then
     TriggerEvent('chat:clear')
   end
 end)
 
-AddEventHandler("RIFT:chatReduceOpacity", function(flag)
+AddEventHandler("Polar:chatReduceOpacity", function(flag)
   isReducedOpacity = flag
 end)
