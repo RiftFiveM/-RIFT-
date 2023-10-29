@@ -1,16 +1,16 @@
 grindBoost = 2.0
 
 local defaultPrices = {
-    ["Weed"] = math.floor(1500*grindBoost),
-    ["Cocaine"] = math.floor(2500*grindBoost),
-    ["Meth"] = math.floor(3000*grindBoost),
-    ["Heroin"] = math.floor(10000*grindBoost),
-    ["LSDNorth"] = math.floor(18000*grindBoost),
-    ["LSDSouth"] = math.floor(18000*grindBoost),
-    ["Copper"] = math.floor(1000*grindBoost),
-    ["Limestone"] = math.floor(2000*grindBoost),
-    ["Gold"] = math.floor(4000*grindBoost),
-    ["Diamond"] = math.floor(7000*grindBoost),
+    ["Weed"] = math.floor(3000*grindBoost),  ---1500
+    ["Cocaine"] = math.floor(5000*grindBoost), ----2500
+    ["Meth"] = math.floor(6000*grindBoost), ---3000
+    ["Heroin"] = math.floor(20000*grindBoost), ---10000
+    ["LSDNorth"] = math.floor(36000*grindBoost), --180000
+    ["LSDSouth"] = math.floor(36000*grindBoost), --- 18000
+    ["Copper"] = math.floor(2000*grindBoost), --- 1000
+    ["Limestone"] = math.floor(4000*grindBoost), ---2000
+    ["Gold"] = math.floor(8000*grindBoost), ---4000
+    ["Diamond"] = math.floor(14000*grindBoost), --7000
 }
 
 function Polar.getCommissionPrice(drugtype)

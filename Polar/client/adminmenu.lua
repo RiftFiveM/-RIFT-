@@ -32,7 +32,7 @@ admincfg.perm = "admin.tickets"
 admincfg.IgnoreButtonPerms = false
 admincfg.admins_cant_ban_admins = false
 
-local q = {"PD (Mission Row)", "PD (Sandy)", "PD (Paleto)", "City Hall", "Airport", "HMP", "Rebel Diner", "St Thomas", "Tutorial Spawn", "Simeons"}
+local q = {"PD (Mission Row)", "PD (Sandy)", "PD (Paleto)", "City Hall", "Airport", "HMP", "Rebel Diner", "St Thomas", "Tutorial Spawn", "Simeons", "Organ Heist"}
 local r = {
     vector3(446.72503662109, -982.44342041016, 30.68931579589),
     vector3(1839.3137207031, 3671.0014648438, 34.310436248779),
@@ -44,6 +44,7 @@ local r = {
     vector3(283.37664794922, -579.45318603516, 43.219303131104),
     vector3(-1035.9499511719,-2734.6240234375,13.756628036499),
     vector3(-39.604099273682,-1111.8635253906,26.438835144043),
+    vector3(233.68759155273,-1387.4451904297,30.552282333374),
 }
 local s = 1
 
@@ -81,6 +82,10 @@ local groups = {
     ["Head Administrator"] = "Head Administrator",
     ["Senior Admin"] = "Senior Administrator",
 	["Administrator"] = "Administrator",
+    ["Senior Moderator"] = "Senior Moderator",
+	["Moderator"] = "Moderator",
+    ["Support Team"] = "Support Team",
+    ["Trial Staff"] = "Trial Staff",
     ["cardev"] = "Car Developer",
     ["Supporter"] = "Supporter",
     ["Premium"] = "Premium",
@@ -171,6 +176,11 @@ RageUI.CreateWhile(1.0, true, function()
                 end, RMenu:Get('adminmenu', 'searchoptions'))
                 RageUI.ButtonWithStyle("Staff Members", "", {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                 end, RMenu:Get('adminmenu', 'staffmembers'))
+                RageUI.ButtonWithStyle("Functions", "", {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
+                end, RMenu:Get('adminmenu', 'functions'))
+                RageUI.ButtonWithStyle("Settings", "", {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
+                end, RMenu:Get('SettingsMenu', 'MainMenu'))
+            end)
         end
     end
     if RageUI.Visible(RMenu:Get('adminmenu', 'players')) then
@@ -197,6 +207,7 @@ RageUI.CreateWhile(1.0, true, function()
                             if Selected then 
                                 SelectedPlayer = playersNearby[i]
                                 SelectedPerm = v[3]
+                                TriggerServerEvent("Polar:CheckPov",v[3])
                             end
                             if Active then 
                                 hoveredPlayer = v[2]
@@ -213,6 +224,7 @@ RageUI.CreateWhile(1.0, true, function()
         RageUI.DrawContent({ header = true, glare = false, instructionalButton = false}, function()
             for k, v in pairs(players) do
                 if not tPolar.isUserHidden(v[3]) then
+                elseif tPolar.getStaffLevel() >= 1 then
                     RageUI.ButtonWithStyle(v[1] .." ["..v[2].."]", v[1] .. " ("..v[4].." hours) PermID: " .. v[3] .. " TempID: " .. v[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                         if Selected then
                             SelectedPlayer = players[k]
@@ -341,13 +353,14 @@ RageUI.CreateWhile(1.0, true, function()
                         end
                         if (GetOnscreenKeyboardResult()) then
                             local result = GetOnscreenKeyboardResult()
-
+                            if result then 
+                                TriggerServerEvent('Polar:RemoveWarning', result)
                             end
                         end
                     end
                 end)
             end 
-            if tPolar.getStaffLevel() >= 1 then
+            if tPolar.getStaffLevel() >= 6 then
                 local P=""
                 if tPolar.hasStaffBlips() then 
                     P="Turn off blips"
@@ -367,8 +380,8 @@ RageUI.CreateWhile(1.0, true, function()
                 RageUI.ButtonWithStyle("RP Zones","",{RightLabel="→→→"},true,function(Hovered, Active, Selected)
                 end,RMenu:Get("rpzones","mainmenu"))
             end  
-            if tPolar.getStaffLevel() >= 0 then
-                RageUI.ButtonWithStyle("Give Money","",{RightLabel="→→→"},true,function(Hovered, Active, Selected)
+            if tPolar.getStaffLevel() >= 10 then
+                RageUI.ButtonWithStyle("Manage Money","",{RightLabel="→→→"},true,function(Hovered, Active, Selected)
                 end,RMenu:Get('adminmenu','moneymenu'))
                 RageUI.ButtonWithStyle("Add Car", "", {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
@@ -420,6 +433,9 @@ RageUI.CreateWhile(1.0, true, function()
                     if y then
                         tPolar.clientPrompt("Amount:","",function(l)
                             if tonumber(l) then
+                                TriggerServerEvent('Polar:ManagePlayerCash',a10,l,"Increase")
+                            else
+                                tPolar.notify("~r~Invalid Amount")
                             end
                         end)
                     end
@@ -551,6 +567,9 @@ RageUI.CreateWhile(1.0, true, function()
     if RageUI.Visible(RMenu:Get('adminmenu', 'searchtempid')) then
         RageUI.DrawContent({ header = true, glare = false, instructionalButton = false}, function()
             if foundMatch == false then
+                searchid = tPolar.KeyboardInput("Enter Temp ID", "", 10)
+                if searchid == nil then 
+                    searchid = ""
                 end
             end
             for k, v in pairs(players) do
@@ -570,7 +589,34 @@ RageUI.CreateWhile(1.0, true, function()
                 end
             end
         end)
-        If.Visible(RMenu:Get('adminmenu', 'searchhistory')) then
+    end
+    if RageUI.Visible(RMenu:Get('adminmenu', 'searchname')) then
+        RageUI.DrawContent({ header = true, glare = false, instructionalButton = false}, function()
+            if foundMatch == false then
+                SearchName = tPolar.KeyboardInput("Enter Name", "", 10)
+                if SearchName == nil then 
+                    SearchName = ""
+                end
+            end
+            for k, v in pairs(players) do
+                foundMatch = true
+                if string.find(string.lower(v[1]), string.lower(SearchName)) then
+                    if not tPolar.isUserHidden(v[3]) then
+                        RageUI.ButtonWithStyle(v[1] .." ["..v[2].."]", v[1] .. " ("..v[4].." hours) PermID: " .. v[3] .. " TempID: " .. v[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
+                            if Selected then
+                                SelectedPlayer = players[k]
+                                TriggerServerEvent("Polar:CheckPov",v[3])
+                                g = v[1]
+                                h[i] = g
+                                i = i + 1
+                            end
+                        end, RMenu:Get('adminmenu', 'submenu'))
+                    end
+                end
+            end
+        end)
+    end
+    if RageUI.Visible(RMenu:Get('adminmenu', 'searchhistory')) then
         RageUI.DrawContent({ header = true, glare = false, instructionalButton = false}, function()
             for k, v in pairs(players) do
                 if i > 1 then
@@ -597,8 +643,7 @@ RageUI.CreateWhile(1.0, true, function()
                 RageUI.ActuallyCloseAll()
             end
             if povlist == nil then
-                RageUI.Separator("~y~Player must provide POV on request: nigger 
-                 ~o~Loading...")
+                RageUI.Separator("~y~Player must provide POV on request: ~o~Loading...")
             elseif povlist == true then
                 RageUI.Separator("~y~Player must provide POV on request: ~g~true")
             elseif povlist == false then
@@ -684,6 +729,11 @@ RageUI.CreateWhile(1.0, true, function()
                         TriggerServerEvent("Polar:Teleport2Legion", SelectedPlayer[2])
                     end
                 end, RMenu:Get('adminmenu', 'submenu'))
+                RageUI.ButtonWithStyle("Teleport to Paleto", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
+                    if Selected then
+                        TriggerServerEvent("Polar:Teleport2Paleto", SelectedPlayer[2])
+                    end
+                end, RMenu:Get('adminmenu', 'submenu'))
                 RageUI.ButtonWithStyle("Freeze", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
                         local uid = GetPlayerServerId(PlayerId())
@@ -702,6 +752,14 @@ RageUI.CreateWhile(1.0, true, function()
                 RageUI.ButtonWithStyle("Force Clock Off", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
                         TriggerServerEvent('Polar:ForceClockOff', SelectedPlayer[2])
+                    end
+                end, RMenu:Get('adminmenu', 'submenu'))
+            end
+            if tPolar.getStaffLevel() >= 8 then
+                RageUI.ButtonWithStyle("Force Staff Off", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
+                    if Selected then
+                        TriggerServerEvent('Polar:ForceStaffOff', SelectedPlayer[2])
+                        TriggerEvent("Polar:ForceRefreshData")
                     end
                 end, RMenu:Get('adminmenu', 'submenu'))
             end
@@ -736,7 +794,7 @@ RageUI.CreateWhile(1.0, true, function()
                         TriggerServerEvent("Polar:requestAccountInfosv", SelectedPlayer[3])
                     end
                 end,RMenu:Get("adminmenu", "submenu"))
-                RageUI.ButtonWithStyle("See Groups", --[["~r~This is moderator+ ~w~Name: " ..]] SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
+                RageUI.ButtonWithStyle("See Groups", SelectedPlayer[1] .. " Perm ID: " .. SelectedPlayer[3] .. " Temp ID: " .. SelectedPlayer[2], {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
                     if Selected then
                         TriggerServerEvent("Polar:GetGroups", SelectedPlayer[3])
                         tt=''

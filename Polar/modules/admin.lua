@@ -1020,6 +1020,8 @@ AddEventHandler('Polar:getAdminLevel', function()
         Polarclient.setDev(source, {})
     elseif Polar.hasGroup(user_id,"Community Manager") then
         adminlevel = 9
+    elseif Polar.hasGroup(user_id,"Operations Manager") then
+        adminlevel = 9
     elseif Polar.hasGroup(user_id,"Staff Manager") then    
         adminlevel = 8
     elseif Polar.hasGroup(user_id,"Head Administrator") then

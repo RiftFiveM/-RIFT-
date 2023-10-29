@@ -988,7 +988,7 @@ AddEventHandler("playerConnecting",function(name,setMessage, deferrals)
                                     if Polar.CheckTokens(source, user_id) then 
                                         deferrals.done("[Polar]: You are banned from this server, please do not try to evade your ban. If you believe this was an error quote your ID which is: " .. user_id)
                                     end
-                                    if not tPolar.checkForRole(user_id, '1150349001300914306') then
+                                    if not tPolar.checkForRole(user_id, '1167225052249477273') then
                                         deferrals.done("[Polar]: You are required to be verified within discord.gg/Polarrp to join the server. If you previously were verified, please contact management.")
                                     end
                                     print("[Polar] "..name.." Reconnected | PermID: "..user_id)

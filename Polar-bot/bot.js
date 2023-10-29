@@ -111,7 +111,7 @@ if (settingsjson.settings.StatusEnabled) {
                     },
                     {
                         "name": "How do I direct connect?",
-                        "value": '`F8 -> connect 57.128.170.29`',
+                        "value": '``F8 -> connect s1.Polar.city``',
                         "inline": false
                     },
                 ],
@@ -259,7 +259,7 @@ client.on('message', (message) => {
                 } catch (err) {
                     let embed = {
                         "title": "Error Occured!",
-                        "description": "\nAn error occured. Contact <@1111102537903390770> about the issue:\n\n```" + err.message + "\n```",
+                        "description": "\nAn error occured. Contact <@620232047671377931> about the issue:\n\n```" + err.message + "\n```",
                         "color": 13632027
                     }
                     message.channel.send({ embed })
@@ -267,7 +267,7 @@ client.on('message', (message) => {
             }
         } else {
             if (cmd.conf.support && message.guild.id === "1167224647142621236"){
-                if (message.member.roles.has("1167225052249477273")){
+                if (message.member.roles.has("1167224647142621236")){
                     cmd.runcmd(exports, client, message, params, permissions);
                 }
             } else {
@@ -285,7 +285,7 @@ client.on("guildMemberAdd", function (member) {
         try {
             exports.ghmattimysql.execute("SELECT * FROM `Polar_verification` WHERE discord_id = ? AND verified = 1", [member.id], (result) => {
                 if (result.length > 0){
-                    let role = member.guild.roles.find(r => r.name === '| [Verified]');
+                    let role = member.guild.roles.find(r => r.name === '| Verified');
                     member.addRole(role);
                 }
             });

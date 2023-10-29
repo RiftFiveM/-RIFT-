@@ -231,12 +231,8 @@ RageUI.CreateWhile(1.0, true, function()
                 RageUI.Button('MP Male','WARNING: Resets all your Body Options',{},true,function(L,M,N)
                     if N then 
                         if GetEntityHealth(PlayerPedId()) > 102 then
-<<<<<<< HEAD:Polar/client/cl_clothingmenu.lua
                             tPolar.loadCustomisationPreset("DefaultMale")
                             Polarclient.RevivePlayer(target, {})
-=======
-                            tPolar.loadCustomisationPreset("DefaultMale")
->>>>>>> parent of 95ce20f (clothing store fixed):Polar/client/cl_clothingmenu.lua
                         else
                             tPolar.notify("~r~Cannot change gender, you're dead.")
                         end
